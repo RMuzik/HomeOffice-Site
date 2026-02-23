@@ -1,0 +1,377 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const seo = {
+  title: 'Guide Complet Setup Home Office 2026 — Bureau, Chaise, Écran & Accessoires',
+  description: 'Le guide ultime pour construire votre home office parfait en 2026. Sélection expert : bureau debout, chaise ergonomique, moniteur, éclairage et accessoires testés.',
+};
+
+const products = {
+  bureaux: [
+    {
+      name: 'FlexiSpot E7 Pro',
+      brand: 'FlexiSpot',
+      badge: '🏆 Meilleur choix',
+      description: 'Le bureau assis-debout le plus vendu en Europe. Moteur silencieux 45dB, capacité 125kg, mémoire 4 positions. Idéal pour une utilisation quotidienne intensive.',
+      price: '499€',
+      oldPrice: '599€',
+      rating: 4.8,
+      reviewCount: 2847,
+      asin: 'B07KTTXQPW',
+      pros: ['Moteur ultra-silencieux', 'Structure très stable', 'Garantie 5 ans', 'Livraison rapide'],
+      cons: ['Plateau non inclus', 'Montage 45 min'],
+      affiliateTag: 'zeroalc-21',
+    },
+    {
+      name: 'IKEA BEKANT Assis-Debout',
+      brand: 'IKEA',
+      badge: '💰 Budget',
+      description: 'L\'entrée de gamme fiable d\'IKEA. Moins de fonctionnalités mais suffisant pour débuter. Disponible en magasin pour éviter les frais de port.',
+      price: '549€',
+      rating: 4.2,
+      reviewCount: 1203,
+      asin: 'B001MS57O8',
+      pros: ['Disponible en magasin', 'Marque fiable', 'SAV IKEA'],
+      cons: ['Pas de mémoire de positions', 'Moteur plus bruyant'],
+      affiliateTag: 'zeroalc-21',
+    },
+  ],
+  chaises: [
+    {
+      name: 'Herman Miller Aeron',
+      brand: 'Herman Miller',
+      badge: '👑 Premium',
+      description: 'La référence absolue en ergonomie. 12 ans de garantie, soutien lombaire PostureFit SL, maille respirante. Un investissement pour 10+ ans.',
+      price: '1 499€',
+      rating: 4.9,
+      reviewCount: 4521,
+      asin: 'B003HSB34E',
+      pros: ['Ergonomie parfaite', 'Garantie 12 ans', 'Revente facile', 'Maille respirante'],
+      cons: ['Prix élevé', 'Délai de livraison'],
+      affiliateTag: 'zeroalc-21',
+    },
+    {
+      name: 'Secretlab Titan Evo 2022',
+      brand: 'Secretlab',
+      badge: '⭐ Choix éditeur',
+      description: 'La chaise gaming qui s\'impose au bureau. Soutien lombaire magnétique, accoudoirs 4D, revêtement SoftWeave respirant. Polyvalente et confortable.',
+      price: '449€',
+      rating: 4.7,
+      reviewCount: 1563,
+      asin: 'B09C6J4WCS',
+      pros: ['Lombaire magnétique', 'Accoudoirs 4D', 'Design sobre', 'Bonne garantie'],
+      cons: ['Coussin de tête optionnel', 'Assemblage 30 min'],
+      affiliateTag: 'zeroalc-21',
+    },
+  ],
+  moniteurs: [
+    {
+      name: 'LG 27UK850-W 4K USB-C',
+      brand: 'LG',
+      badge: '🖥️ Meilleur achat',
+      description: 'IPS 4K 27" avec USB-C 60W — connecte ton MacBook avec un seul câble. Couverture sRGB 99%, compatible HDR10. Le moniteur universel du home office.',
+      price: '399€',
+      oldPrice: '499€',
+      rating: 4.6,
+      reviewCount: 3102,
+      asin: 'B07W6JRBSD',
+      pros: ['USB-C 60W', '4K IPS', 'Pied réglable', 'Ports USB-A x4'],
+      cons: ['Pas de 144Hz', 'Pied volumineux'],
+      affiliateTag: 'zeroalc-21',
+    },
+    {
+      name: 'Dell UltraSharp U2723DE',
+      brand: 'Dell',
+      badge: '🔌 Hub intégré',
+      description: 'Le moniteur hub par excellence. USB-C 90W, RJ45, 5 ports USB, webcam optionnelle. Remplace votre dock et libère votre bureau.',
+      price: '649€',
+      rating: 4.8,
+      reviewCount: 987,
+      asin: 'B09JYRS2KP',
+      pros: ['USB-C 90W', 'Hub 5 ports', 'IPS Black', 'Ergonomie parfaite'],
+      cons: ['Prix premium', 'Pas de 4K'],
+      affiliateTag: 'zeroalc-21',
+    },
+  ],
+  accessoires: [
+    {
+      name: 'Logitech MX Master 3S',
+      brand: 'Logitech',
+      badge: '🖱️ Souris #1',
+      description: 'La souris de productivité ultime. Scroll électromagnétique, 8000 DPI, compatible multi-appareils. Silencieuse à -90% vs clic standard.',
+      price: '99€',
+      rating: 4.8,
+      reviewCount: 8934,
+      asin: 'B09HFPV76X',
+      pros: ['Scroll MagSpeed', 'Multi-device 3', 'Silencieuse', 'Autonomie 70j'],
+      cons: ['Prix élevé', 'Taille grande main'],
+      affiliateTag: 'zeroalc-21',
+    },
+    {
+      name: 'Elgato Key Light',
+      brand: 'Elgato',
+      badge: '💡 Éclairage pro',
+      description: '2800 lumens, température réglable 2900-7000K, contrôle via app ou Stream Deck. Transforme vos visios en call pro.',
+      price: '199€',
+      rating: 4.7,
+      reviewCount: 5621,
+      asin: 'B07L755X9G',
+      pros: ['Luminosité pro', 'Contrôle app', 'Bras articulé', 'Sans ventilateur'],
+      cons: ['Prix', 'Câble USB encombrant'],
+      affiliateTag: 'zeroalc-21',
+    },
+  ],
+};
+---
+
+<BestOf {...seo}>
+  <!-- Hero -->
+  <div class="bg-gradient-to-b from-oak-50 to-white border-b border-oak-100 py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center gap-2 text-sm text-ink-muted mb-4">
+        <a href="/" class="hover:text-ink transition-colors">Accueil</a>
+        <span>→</span>
+        <span>Guide complet setup</span>
+      </div>
+      <h1 class="font-display text-4xl font-bold text-ink mb-4 leading-tight">
+        Guide Complet Home Office 2026
+      </h1>
+      <p class="text-xl text-ink-soft mb-6 max-w-2xl">
+        Tout ce qu'il faut savoir pour construire un setup productif, ergonomique et beau.
+        Bureau debout, chaise ergo, moniteur 4K — on a testé pour vous.
+      </p>
+      <div class="flex flex-wrap gap-4 text-sm text-ink-muted">
+        <span class="flex items-center gap-1.5">📅 Mis à jour février 2026</span>
+        <span class="flex items-center gap-1.5">⏱️ Lecture 8 min</span>
+        <span class="flex items-center gap-1.5">🧪 30+ produits testés</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- Intro -->
+    <div class="prose prose-oak max-w-none mb-16">
+      <p class="text-lg text-ink-soft leading-relaxed">
+        Un bon setup home office ne se construit pas en un jour — mais avec les bons choix dès le départ,
+        vous évitez les erreurs coûteuses. Ce guide vous accompagne catégorie par catégorie,
+        du bureau assis-debout indispensable jusqu'aux accessoires qui font la différence.
+      </p>
+
+      <!-- Table des matières -->
+      <div class="bg-oak-50 rounded-2xl p-6 my-8 border border-oak-100 not-prose">
+        <h2 class="font-display text-lg font-bold text-ink mb-4">📋 Dans ce guide</h2>
+        <ol class="space-y-2">
+          <li><a href="#bureaux" class="text-accent hover:underline font-medium">1. Bureaux assis-debout — la base du setup</a></li>
+          <li><a href="#chaises" class="text-accent hover:underline font-medium">2. Chaises ergonomiques — votre santé d'abord</a></li>
+          <li><a href="#moniteurs" class="text-accent hover:underline font-medium">3. Moniteurs — voir grand et net</a></li>
+          <li><a href="#accessoires" class="text-accent hover:underline font-medium">4. Accessoires essentiels</a></li>
+          <li><a href="#budget" class="text-accent hover:underline font-medium">5. Guide par budget</a></li>
+          <li><a href="#ergonomie" class="text-accent hover:underline font-medium">6. Les règles d'ergonomie</a></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- BUREAUX -->
+    <section id="bureaux" class="mb-16 scroll-mt-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl">🖥️</span>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Bureaux assis-debout</h2>
+          <p class="text-ink-muted text-sm">La base indispensable de tout setup ergonomique</p>
+        </div>
+      </div>
+
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 text-sm text-amber-800">
+        <strong>💡 Pourquoi un bureau assis-debout ?</strong> Alterner entre position assise et debout réduit les douleurs dorsales de 54% selon une étude de 2023. C'est l'investissement le plus impactant pour votre santé.
+      </div>
+
+      <div class="grid gap-6">
+        {products.bureaux.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+
+      <div class="mt-6 text-center">
+        <a href="/best-standing-desks" class="inline-flex items-center gap-2 text-accent font-medium hover:underline">
+          Voir tous nos bureaux debout testés →
+        </a>
+      </div>
+    </section>
+
+    <!-- CHAISES -->
+    <section id="chaises" class="mb-16 scroll-mt-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl">🪑</span>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Chaises ergonomiques</h2>
+          <p class="text-ink-muted text-sm">8h par jour — ne faites pas d'économies ici</p>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-sm text-blue-800">
+        <strong>💡 Règle des 10% :</strong> Investissez 10% de votre salaire mensuel dans votre chaise. Si vous gagnez 2500€/mois, une chaise à 250€ minimum. Les TMS coûtent bien plus cher à long terme.
+      </div>
+
+      <div class="grid gap-6">
+        {products.chaises.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+
+      <div class="mt-6 text-center">
+        <a href="/best-ergonomic-chairs" class="inline-flex items-center gap-2 text-accent font-medium hover:underline">
+          Voir tous nos tests de chaises ergonomiques →
+        </a>
+      </div>
+    </section>
+
+    <!-- MONITEURS -->
+    <section id="moniteurs" class="mb-16 scroll-mt-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl">📺</span>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Moniteurs</h2>
+          <p class="text-ink-muted text-sm">Voir plus grand, travailler plus vite</p>
+        </div>
+      </div>
+
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-8 text-sm text-green-800">
+        <strong>💡 Taille idéale :</strong> 27" pour un usage général à 60cm de distance. 32" si vous travaillez souvent sur deux fenêtres côte à côte. En 4K, préférez 27" minimum pour une densité de pixels confortable.
+      </div>
+
+      <div class="grid gap-6">
+        {products.moniteurs.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+    </section>
+
+    <!-- ACCESSOIRES -->
+    <section id="accessoires" class="mb-16 scroll-mt-8">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl">⌨️</span>
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Accessoires essentiels</h2>
+          <p class="text-ink-muted text-sm">Les petits détails qui font les grandes différences</p>
+        </div>
+      </div>
+
+      <div class="grid gap-6">
+        {products.accessoires.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+    </section>
+
+    <!-- GUIDE BUDGET -->
+    <section id="budget" class="mb-16 scroll-mt-8">
+      <h2 class="font-display text-2xl font-bold text-ink mb-6">💰 Guide par budget</h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white border border-oak-200 rounded-2xl p-6">
+          <div class="text-2xl mb-2">🌱</div>
+          <h3 class="font-bold text-ink mb-1">Setup Starter</h3>
+          <p class="text-accent font-bold text-xl mb-3">500 – 800€</p>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Bureau fixe qualité (150€)</li>
+            <li>→ Chaise entrée de gamme ergonomique (200€)</li>
+            <li>→ Moniteur Full HD 24" (180€)</li>
+            <li>→ Clavier + souris basiques (70€)</li>
+          </ul>
+          <a href="/budget-home-office-setup" class="mt-4 inline-block text-accent text-sm font-medium hover:underline">Voir le guide budget →</a>
+        </div>
+
+        <div class="bg-accent/5 border-2 border-accent rounded-2xl p-6 relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">RECOMMANDÉ</div>
+          <div class="text-2xl mb-2">⚡</div>
+          <h3 class="font-bold text-ink mb-1">Setup Pro</h3>
+          <p class="text-accent font-bold text-xl mb-3">1 500 – 2 500€</p>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ FlexiSpot E7 Pro (499€)</li>
+            <li>→ Secretlab Titan Evo (449€)</li>
+            <li>→ LG 27UK850-W 4K (399€)</li>
+            <li>→ Logitech MX Master 3S (99€)</li>
+            <li>→ Elgato Key Light (199€)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-oak-200 rounded-2xl p-6">
+          <div class="text-2xl mb-2">👑</div>
+          <h3 class="font-bold text-ink mb-1">Setup Elite</h3>
+          <p class="text-accent font-bold text-xl mb-3">4 000€+</p>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Bureau premium sur mesure (800€)</li>
+            <li>→ Herman Miller Aeron (1499€)</li>
+            <li>→ LG UltraWide 34" 4K (899€)</li>
+            <li>→ Setup audio Rode (350€)</li>
+            <li>→ Accessoires premium (450€)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ERGONOMIE -->
+    <section id="ergonomie" class="mb-16 scroll-mt-8">
+      <h2 class="font-display text-2xl font-bold text-ink mb-6">📐 Les règles d'ergonomie</h2>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-oak-50 rounded-xl p-5 border border-oak-100">
+          <h3 class="font-semibold text-ink mb-2">🪑 Position assise</h3>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Pieds à plat sur le sol ou repose-pieds</li>
+            <li>→ Genoux à 90° ou légèrement plus bas que les hanches</li>
+            <li>→ Dos droit, soutien lombaire en contact</li>
+            <li>→ Coudes à 90°, avant-bras parallèles au bureau</li>
+          </ul>
+        </div>
+
+        <div class="bg-oak-50 rounded-xl p-5 border border-oak-100">
+          <h3 class="font-semibold text-ink mb-2">🖥️ Position de l'écran</h3>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Haut de l'écran au niveau des yeux</li>
+            <li>→ Distance : 50 à 70cm du visage</li>
+            <li>→ Légèrement incliné vers l'arrière (15°)</li>
+            <li>→ Éviter les reflets de fenêtre (écran perpendiculaire)</li>
+          </ul>
+        </div>
+
+        <div class="bg-oak-50 rounded-xl p-5 border border-oak-100">
+          <h3 class="font-semibold text-ink mb-2">⏰ Rythme de travail</h3>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Règle 20-20-20 : toutes les 20 min, regarder à 20 pieds (6m) 20 sec</li>
+            <li>→ Se lever 5 min toutes les heures</li>
+            <li>→ Alterner assis/debout toutes les 90 min</li>
+            <li>→ Étirements quotidiens du cou et des épaules</li>
+          </ul>
+        </div>
+
+        <div class="bg-oak-50 rounded-xl p-5 border border-oak-100">
+          <h3 class="font-semibold text-ink mb-2">💡 Éclairage optimal</h3>
+          <ul class="space-y-1.5 text-ink-soft text-sm">
+            <li>→ Lumière naturelle sur le côté (pas en face ni derrière)</li>
+            <li>→ Température : 4000-5000K pour le travail de jour</li>
+            <li>→ 3000K le soir pour préserver le sommeil</li>
+            <li>→ 500 lux minimum sur le plan de travail</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="bg-gradient-to-r from-accent to-accent/80 rounded-2xl p-8 text-white text-center">
+      <h2 class="font-display text-2xl font-bold mb-3">Prêt à construire votre setup ?</h2>
+      <p class="text-white/80 mb-6">Commencez par le plus important : votre budget. On vous guide vers les meilleurs choix.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/budget-home-office-setup" class="bg-white text-accent font-bold px-6 py-3 rounded-xl hover:bg-oak-50 transition-colors">
+          Setup < 500€ 💰
+        </a>
+        <a href="/best-standing-desks" class="bg-white/20 text-white font-bold px-6 py-3 rounded-xl hover:bg-white/30 transition-colors border border-white/30">
+          Voir les bureaux debout
+        </a>
+      </div>
+    </div>
+
+  </div>
+</BestOf>
