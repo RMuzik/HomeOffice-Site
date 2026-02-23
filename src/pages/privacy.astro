@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+
+const seo = {
+  title: 'Politique de confidentialité — HomeOffice Setup Pro',
+  description: 'Comment nous collectons, utilisons et protégeons vos données personnelles sur HomeOfficeSetup.pro',
+};
+---
+
+<Base {...seo}>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+
+    <h1 class="font-display text-3xl font-bold text-ink mb-2">Politique de confidentialité</h1>
+    <p class="text-ink-muted text-sm mb-10">Dernière mise à jour : février 2026</p>
+
+    <div class="prose prose-oak max-w-none space-y-10">
+
+      <!-- Intro -->
+      <section>
+        <p class="text-ink-soft leading-relaxed">
+          HomeOffice Setup Pro (<strong>homeofficesetup.pro</strong>) s'engage à protéger votre vie privée.
+          Cette politique explique quelles données nous collectons, comment nous les utilisons,
+          et quels sont vos droits conformément au Règlement Général sur la Protection des Données (RGPD).
+        </p>
+      </section>
+
+      <!-- 1. Responsable du traitement -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">1. Responsable du traitement</h2>
+        <p class="text-ink-soft leading-relaxed">
+          Ce site est exploité à titre personnel. Pour toute question relative à vos données,
+          vous pouvez nous contacter à : <a href="mailto:contact@homeofficesetup.pro" class="text-accent hover:underline">contact@homeofficesetup.pro</a>
+        </p>
+      </section>
+
+      <!-- 2. Données collectées -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">2. Données collectées</h2>
+        <p class="text-ink-soft leading-relaxed mb-4">Nous collectons uniquement les données strictement nécessaires au fonctionnement du site :</p>
+
+        <div class="space-y-4">
+          <div class="bg-oak-50 rounded-xl p-4 border border-oak-100">
+            <h3 class="font-semibold text-ink mb-1">Données de navigation</h3>
+            <p class="text-ink-soft text-sm">Adresse IP (anonymisée), pages visitées, durée de visite, type de navigateur. Collectées via les logs du serveur Vercel à des fins d'analyse d'audience.</p>
+          </div>
+
+          <div class="bg-oak-50 rounded-xl p-4 border border-oak-100">
+            <h3 class="font-semibold text-ink mb-1">Cookies techniques</h3>
+            <p class="text-ink-soft text-sm">Cookies strictement nécessaires au fonctionnement du site (aucun cookie publicitaire ou de tracking tiers).</p>
+          </div>
+
+          <div class="bg-oak-50 rounded-xl p-4 border border-oak-100">
+            <h3 class="font-semibold text-ink mb-1">Liens affiliés Amazon</h3>
+            <p class="text-ink-soft text-sm">Lorsque vous cliquez sur un lien Amazon Associates, Amazon peut déposer des cookies sur votre navigateur conformément à sa propre politique de confidentialité. Nous ne recevons pas de données personnelles vous concernant via ces liens.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Utilisation des données -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">3. Utilisation des données</h2>
+        <p class="text-ink-soft leading-relaxed mb-3">Vos données sont utilisées exclusivement pour :</p>
+        <ul class="space-y-2 text-ink-soft">
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> Assurer le bon fonctionnement technique du site</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> Analyser les pages les plus consultées pour améliorer nos guides</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> Détecter et corriger les erreurs techniques</li>
+        </ul>
+        <p class="text-ink-soft leading-relaxed mt-3">Nous ne vendons, ne louons et ne partageons aucune donnée personnelle avec des tiers à des fins commerciales.</p>
+      </section>
+
+      <!-- 4. Base légale -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">4. Base légale du traitement</h2>
+        <p class="text-ink-soft leading-relaxed">
+          Le traitement de vos données repose sur notre intérêt légitime (art. 6.1.f RGPD) à assurer
+          le bon fonctionnement et l'amélioration de ce site, dans le respect de vos droits fondamentaux.
+        </p>
+      </section>
+
+      <!-- 5. Durée de conservation -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">5. Durée de conservation</h2>
+        <p class="text-ink-soft leading-relaxed">
+          Les données de navigation sont conservées au maximum <strong>13 mois</strong> conformément aux recommandations de la CNIL,
+          puis supprimées automatiquement.
+        </p>
+      </section>
+
+      <!-- 6. Vos droits -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">6. Vos droits (RGPD)</h2>
+        <p class="text-ink-soft leading-relaxed mb-3">Conformément au RGPD, vous disposez des droits suivants :</p>
+        <ul class="space-y-2 text-ink-soft">
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> <strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> <strong>Droit de rectification</strong> : corriger des données inexactes</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> <strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> <strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1">→</span> <strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+        </ul>
+        <p class="text-ink-soft leading-relaxed mt-3">
+          Pour exercer ces droits, contactez-nous à <a href="mailto:contact@homeofficesetup.pro" class="text-accent hover:underline">contact@homeofficesetup.pro</a>.
+          Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener" class="text-accent hover:underline">CNIL</a>.
+        </p>
+      </section>
+
+      <!-- 7. Services tiers -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">7. Services tiers</h2>
+        <div class="space-y-3">
+          <div class="border-l-2 border-oak-200 pl-4">
+            <h3 class="font-semibold text-ink text-sm">Vercel</h3>
+            <p class="text-ink-muted text-sm">Hébergement du site. Peut collecter des données de performance. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener" class="text-accent hover:underline">Politique Vercel →</a></p>
+          </div>
+          <div class="border-l-2 border-oak-200 pl-4">
+            <h3 class="font-semibold text-ink text-sm">Amazon Associates</h3>
+            <p class="text-ink-muted text-sm">Programme d'affiliation. Amazon peut déposer des cookies lors du clic sur nos liens. <a href="https://www.amazon.fr/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ" target="_blank" rel="noopener" class="text-accent hover:underline">Politique Amazon →</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Modifications -->
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">8. Modifications</h2>
+        <p class="text-ink-soft leading-relaxed">
+          Nous nous réservons le droit de modifier cette politique à tout moment.
+          La date de dernière mise à jour en haut de cette page sera actualisée en conséquence.
+          Nous vous encourageons à consulter cette page régulièrement.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Back link -->
+    <div class="mt-12 pt-8 border-t border-oak-100">
+      <a href="/" class="text-ink-muted hover:text-ink text-sm flex items-center gap-2 transition-colors">
+        ← Retour à l'accueil
+      </a>
+    </div>
+
+  </div>
+</Base>
