@@ -1,0 +1,248 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'homeofficepr-21';
+const LAST_UPDATED = '21 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Herman Miller',
+    name: 'Aeron (remanufacturée)',
+    asin: 'B001MS57O8',
+    price: '899€',
+    rating: 4.9,
+    reviewCount: 8423,
+    img: '🏆',
+    highlight: true,
+    verdict: 'La référence absolue en chaise ergonomique depuis 30 ans. Maille respirante, support lombaire PostureFit SL, 12 ans de garantie. Si vous passez 8h/jour assis, c\'est l\'investissement qui en vaut la peine. Optez pour une remanufacturée pour économiser 40%.',
+    pros: ['Ergonomie irréprochable', 'Garantie 12 ans', 'Valeur de revente élevée'],
+    cons: ['Prix très élevé', 'Délai livraison 2-4 semaines'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'Secretlab',
+    name: 'Titan Evo 2022 SoftSec',
+    asin: 'B09JYRS2KP',
+    price: '499€',
+    rating: 4.7,
+    reviewCount: 3215,
+    img: '🪑',
+    verdict: 'La chaise gaming qui a conquis les pros du home office. Support lombaire magnétique ajustable, accoudoirs 4D, rembourrage mémoire de forme. Bien supérieure aux chaises "ergo" bas de gamme à prix équivalent.',
+    pros: ['Lombaire magnétique excellent', 'Accoudoirs 4D précis', 'Bonne longévité'],
+    cons: ['Esthétique gaming polarisante', 'Assise ferme au début'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Humanscale',
+    name: 'Liberty Task Chair',
+    asin: 'B00BX4SZCK',
+    price: '1 299€',
+    rating: 4.8,
+    reviewCount: 892,
+    img: '🌿',
+    verdict: 'La chaise la plus élégante de notre sélection. Design auto-reclinant sans leviers, matériaux recyclés, fabriquée aux USA. Pour ceux qui cherchent la discrétion et l\'élégance d\'un bureau exécutif.',
+    pros: ['Mécanisme auto-reclinant unique', 'Design épuré premium', 'Matériaux durables'],
+    cons: ['Prix très élevé', 'Peu d\'ajustements manuels'],
+  },
+  {
+    rank: 4,
+    badge: 'new' as const,
+    brand: 'FlexiSpot',
+    name: 'BS13 Ergonomic Chair',
+    asin: 'B0CVMNXYZ1',
+    price: '299€',
+    rating: 4.4,
+    reviewCount: 1847,
+    img: '💺',
+    verdict: 'La révélation budget de 2026. FlexiSpot a sorti une vraie chaise ergonomique avec support lombaire réglable, appui-tête ajustable et dossier en maille pour moins de 300€. Difficile à battre dans cette gamme de prix.',
+    pros: ['Excellent rapport Q/P', 'Maille respirante', 'Appui-tête inclus'],
+    cons: ['Marque moins établie', 'Durabilité à prouver'],
+  },
+  {
+    rank: 5,
+    badge: null,
+    brand: 'Steelcase',
+    name: 'Leap V2',
+    asin: 'B003HSB34E',
+    price: '1 099€',
+    rating: 4.8,
+    reviewCount: 5234,
+    img: '⚙️',
+    verdict: 'L\'alternative sérieuse à la Herman Miller Aeron. Le système de support lombaire "Natural Glide" s\'adapte automatiquement à vos mouvements. Garantie 12 ans. Un vrai investissement sur le long terme.',
+    pros: ['Lombaire auto-adaptatif', 'Très durable', 'Garantie 12 ans'],
+    cons: ['Prix élevé', 'Design fonctionnel plutôt qu\'esthétique'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparatif', label: 'Comparatif rapide' },
+  { id: 'comment-choisir', label: 'Comment choisir ?' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'FAQ chaises ergonomiques' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Meilleures chaises ergonomiques 2026',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.pro/best-ergonomic-chairs#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOf
+  title="Meilleures chaises ergonomiques 2026"
+  description={`Top ${products.length} chaises ergonomiques pour le home office en 2026. Tests et avis : Herman Miller, Steelcase, Secretlab, FlexiSpot.`}
+  h1={`Les ${products.length} meilleures chaises ergonomiques (testées 2026)`}
+  intro="Passer 8h par jour assis sur une mauvaise chaise, c'est 40h de contraintes par semaine sur votre colonne vertébrale. Voici les chaises qui font vraiment la différence."
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Chaises ergonomiques', href: '/best-ergonomic-chairs' }]}
+>
+
+  <!-- Quick winner -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">💡</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Le mot de l'éditeur</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        <strong>Budget &lt; 500€ ?</strong> → Secretlab Titan Evo. <strong>Budget illimité ?</strong> → Herman Miller Aeron (remanufacturée). <strong>Meilleur rapport qualité/prix ?</strong> → FlexiSpot BS13. Chaque profil a sa chaise.
+      </p>
+    </div>
+  </div>
+
+  <!-- Comparatif -->
+  <section id="comparatif" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Comparatif en un coup d'œil</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Chaise</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Prix</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Note</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Lombaire</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Garantie</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map(p => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+                {p.badge === 'budget' && <span class="ml-2 badge-budget text-[10px] py-0.5">💰</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+              <td class="px-3 py-3 text-center text-ink-muted text-xs">
+                {p.rank === 1 ? 'PostureFit SL' : p.rank === 2 ? 'Magnétique' : p.rank === 3 ? 'Auto' : p.rank === 4 ? 'Réglable' : 'Natural Glide'}
+              </td>
+              <td class="px-3 py-3 text-center text-ink-muted">
+                {[1,3,5].includes(p.rank) ? '12 ans' : p.rank === 2 ? '5 ans' : '3 ans'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Comment choisir -->
+  <section id="comment-choisir" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Comment choisir sa chaise ergonomique ?</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '📐', title: 'Ajustabilité', text: 'Hauteur d\'assise, profondeur, lombaire, accoudoirs — plus une chaise est ajustable, plus elle s\'adapte à votre morphologie.' },
+        { emoji: '🌬️', title: 'Respirabilité', text: 'Maille ou mousse ? La maille est fraîche mais moins moelleuse. La mousse haute densité est confortable mais peut être chaude en été.' },
+        { emoji: '⏱️', title: 'Budget vs durée', text: 'Une chaise à 200€ durera 3-5 ans. Une à 900€ peut durer 15+ ans. Sur 10 ans, la différence de coût est moins évidente.' },
+        { emoji: '🔄', title: 'Retours et essais', text: 'Privilégiez les vendeurs avec politique de retour généreuse. Il faut 1-2 semaines pour vraiment évaluer une chaise.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Produits -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Tests détaillés</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ chaises ergonomiques</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Est-ce qu\'une chaise ergonomique vaut vraiment son prix ?',
+          a: 'Oui, si vous travaillez plus de 4h/jour assis. Les études montrent une réduction significative des douleurs lombaires et dorsales avec une chaise ergonomique de qualité. Sur 5 ans, le coût journalier d\'une Herman Miller est d\'environ 0,50€/jour — moins que votre café.',
+        },
+        {
+          q: 'Herman Miller vs Steelcase : quelle différence ?',
+          a: 'Les deux sont excellentes. La Herman Miller Aeron favorise les personnes qui aiment s\'asseoir "dans" la chaise avec une maille enveloppante. La Steelcase Leap convient mieux à ceux qui bougent beaucoup et apprécient le système Natural Glide qui accompagne les mouvements.',
+        },
+        {
+          q: 'Peut-on acheter une chaise ergonomique reconditionnée ?',
+          a: 'Absolument — c\'est même recommandé pour les marques premium comme Herman Miller. Les remanufacturées sont remises à neuf par des professionnels, gardent la garantie restante et coûtent 30-50% moins cher. Cherchez "Herman Miller Aeron remanufacturée" sur Amazon ou eBay.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Liens affiliés Amazon Associates — commissions perçues sans surcoût pour vous. Nos sélections sont indépendantes.
+  </p>
+
+</BestOf>

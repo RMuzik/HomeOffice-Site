@@ -1,0 +1,153 @@
+---
+/**
+ * ProductCard.astro — Carte produit affilié réutilisable
+ * Affiche badge, image, rating, prix et bouton CTA Amazon
+ */
+
+export interface Props {
+  rank?: number;
+  badge?: 'pick' | 'premium' | 'budget' | 'new' | null;
+  badgeLabel?: string;
+  brand: string;
+  name: string;
+  asin: string;           // Amazon ASIN pour construire l'URL affiliée
+  affiliateTag: string;   // ex: homeofficepr-21
+  price: string;
+  originalPrice?: string; // Prix barré si promo
+  rating: number;
+  reviewCount: number;
+  img?: string;           // emoji fallback si pas d'image réelle
+  imgUrl?: string;        // URL image réelle
+  pros?: string[];
+  cons?: string[];
+  verdict?: string;
+  highlight?: boolean;    // Mise en avant visuelle (border electric)
+}
+
+const {
+  rank,
+  badge,
+  badgeLabel,
+  brand,
+  name,
+  asin,
+  affiliateTag,
+  price,
+  originalPrice,
+  rating,
+  reviewCount,
+  img = '📦',
+  imgUrl,
+  pros = [],
+  cons = [],
+  verdict,
+  highlight = false,
+} = Astro.props;
+
+const amazonUrl = `https://www.amazon.fr/dp/${asin}?tag=${affiliateTag}&linkCode=ogi&th=1&psc=1`;
+const starsCount = Math.round(rating);
+const badgeLabels: Record<string, string> = {
+  pick: badgeLabel || '🏆 Meilleur choix',
+  premium: badgeLabel || '✨ Premium',
+  budget: badgeLabel || '💰 Meilleur rapport qualité/prix',
+  new: badgeLabel || '🆕 Nouveauté 2026',
+};
+---
+
+<article class={`product-card ${highlight ? 'ring-2 ring-electric' : ''} relative`}
+         id={`product-${asin}`}>
+
+  <!-- Rank badge -->
+  {rank && (
+    <div class="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-ink text-cream text-sm font-display font-bold flex items-center justify-center">
+      {rank}
+    </div>
+  )}
+
+  <!-- Badge qualité -->
+  {badge && (
+    <div class={`absolute top-4 ${rank ? 'left-14' : 'left-4'} z-10`}>
+      {badge === 'pick' && <span class="badge-pick">{badgeLabels.pick}</span>}
+      {badge === 'premium' && <span class="badge-premium">{badgeLabels.premium}</span>}
+      {badge === 'budget' && <span class="badge-budget">{badgeLabels.budget}</span>}
+      {badge === 'new' && <span class="badge bg-blue-100 text-blue-800">{badgeLabels.new}</span>}
+    </div>
+  )}
+
+  <!-- Image -->
+  <div class="aspect-[4/3] bg-gradient-to-br from-oak-50 to-oak-100 flex items-center justify-center overflow-hidden">
+    {imgUrl
+      ? <img src={imgUrl} alt={`${brand} ${name}`} class="w-full h-full object-contain p-4" loading="lazy" />
+      : <span class="text-7xl">{img}</span>
+    }
+  </div>
+
+  <!-- Content -->
+  <div class="p-6">
+    <!-- Brand + Name -->
+    <p class="text-xs font-semibold text-ink-muted uppercase tracking-widest mb-1">{brand}</p>
+    <h3 class="font-display text-xl font-bold text-ink leading-tight mb-3">
+      {name}
+    </h3>
+
+    <!-- Rating -->
+    <div class="flex items-center gap-2 mb-4">
+      <div class="stars text-base">
+        {'★'.repeat(starsCount)}{'☆'.repeat(5 - starsCount)}
+      </div>
+      <span class="font-semibold text-ink">{rating}</span>
+      <span class="text-sm text-ink-muted">({reviewCount.toLocaleString('fr-FR')} avis)</span>
+    </div>
+
+    <!-- Verdict -->
+    {verdict && (
+      <p class="text-sm text-ink-muted leading-relaxed mb-4 pb-4 border-b border-oak-100">
+        {verdict}
+      </p>
+    )}
+
+    <!-- Pros / Cons -->
+    {(pros.length > 0 || cons.length > 0) && (
+      <div class="grid grid-cols-2 gap-4 mb-4 text-sm">
+        {pros.length > 0 && (
+          <div>
+            <p class="font-semibold text-green-700 mb-1 text-xs uppercase tracking-wide">✓ Pour</p>
+            <ul class="space-y-1">
+              {pros.map(p => <li class="text-ink-muted leading-snug">{p}</li>)}
+            </ul>
+          </div>
+        )}
+        {cons.length > 0 && (
+          <div>
+            <p class="font-semibold text-red-600 mb-1 text-xs uppercase tracking-wide">✗ Contre</p>
+            <ul class="space-y-1">
+              {cons.map(c => <li class="text-ink-muted leading-snug">{c}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- Prix + CTA -->
+    <div class="flex items-center justify-between gap-4 mt-auto pt-4 border-t border-oak-100">
+      <div>
+        <span class="font-display text-2xl font-bold text-ink">{price}</span>
+        {originalPrice && (
+          <span class="text-sm text-ink-muted line-through ml-2">{originalPrice}</span>
+        )}
+      </div>
+      <a
+        href={amazonUrl}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        class="btn-primary text-sm py-2.5 px-5 shrink-0"
+        data-asin={asin}
+      >
+        Voir sur Amazon
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

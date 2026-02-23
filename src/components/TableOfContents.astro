@@ -1,0 +1,44 @@
+---
+/**
+ * TableOfContents.astro — Sommaire flottant pour les pages Best-Of
+ */
+
+export interface Props {
+  items: { id: string; label: string; rank?: number }[];
+  lastUpdated?: string;
+  productsCount?: number;
+}
+
+const { items, lastUpdated, productsCount = items.length } = Astro.props;
+---
+
+<div class="rounded-2xl bg-oak-50 border border-oak-200 overflow-hidden">
+  <!-- Header -->
+  <div class="bg-ink px-5 py-4">
+    <p class="font-display font-bold text-cream text-sm">📋 Dans ce guide</p>
+    {lastUpdated && (
+      <p class="text-cream/50 text-xs mt-0.5">Mis à jour {lastUpdated} · {productsCount} produits</p>
+    )}
+  </div>
+
+  <!-- Items -->
+  <nav class="p-3">
+    <ul class="space-y-1">
+      {items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-ink-muted hover:text-ink hover:bg-oak-100 transition-all duration-200 group"
+          >
+            {item.rank && (
+              <span class="shrink-0 w-5 h-5 rounded-md bg-oak-200 text-ink text-xs font-bold flex items-center justify-center group-hover:bg-electric group-hover:text-white transition-colors">
+                {item.rank}
+              </span>
+            )}
+            <span class="line-clamp-1">{item.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>

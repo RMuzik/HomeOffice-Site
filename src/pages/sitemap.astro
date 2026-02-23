@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+
+const pages = [
+  { url: '/', title: 'Accueil', desc: 'Setup home office — guide principal' },
+  { url: '/best-standing-desks', title: 'Meilleurs bureaux assis-debout 2026', desc: 'Top 5 bureaux debout testés' },
+  { url: '/best-ergonomic-chairs', title: 'Meilleures chaises ergonomiques 2026', desc: 'Top 5 chaises ergo comparées' },
+  { url: '/best-monitors-home-office', title: 'Meilleurs moniteurs home office 2026', desc: 'Comparatif moniteurs pour le travail' },
+  { url: '/budget-home-office-setup', title: 'Setup home office budget', desc: 'Guide complet par budget' },
+  { url: '/home-office-setup', title: 'Guide setup home office complet', desc: 'Tout pour construire son setup' },
+  { url: '/best-webcams-home-office', title: 'Meilleures webcams home office', desc: 'Top webcams pour visioconférences' },
+  { url: '/best-desk-lamps', title: 'Meilleures lampes de bureau', desc: 'Éclairage bureau — comparatif' },
+  { url: '/best-headsets-home-office', title: 'Meilleurs casques home office', desc: 'Casques audio pour le télétravail' },
+  { url: '/guides/ergonomie-bureau', title: 'Guide ergonomie bureau complet', desc: 'Posture, réglages et conseils' },
+  { url: '/guides/lumiere-naturelle', title: 'Optimiser l\'éclairage du home office', desc: 'Lumière naturelle et artificielle' },
+];
+---
+
+<Base title="Plan du site" description="Retrouvez tous les guides et comparatifs HomeOfficeSetup.pro">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+    <h1 class="font-display text-4xl font-bold text-ink mb-3">Plan du site</h1>
+    <p class="text-ink-muted mb-10">Tous les guides et comparatifs disponibles sur HomeOfficeSetup.pro</p>
+
+    <div class="space-y-2">
+      {pages.map(page => (
+        <a href={page.url}
+           class="flex items-center justify-between p-4 rounded-xl bg-white border border-oak-100 hover:border-electric/30 hover:bg-electric/5 transition-all group">
+          <div>
+            <p class="font-semibold text-ink group-hover:text-electric transition-colors">{page.title}</p>
+            <p class="text-sm text-ink-muted">{page.desc}</p>
+          </div>
+          <svg class="w-5 h-5 text-oak-300 group-hover:text-electric transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

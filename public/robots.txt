@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Bloquer les pages utilitaires
+Disallow: /sitemap
+Disallow: /affiliate-disclosure
+
+# Sitemap
+Sitemap: https://homeofficesetup.pro/sitemap-index.xml
+
+# Crawl-delay raisonnable
+Crawl-delay: 1

@@ -1,0 +1,291 @@
+---
+import Base from '../layouts/Base.astro';
+
+const featuredCategories = [
+  { href: '/best-standing-desks', icon: '🖥️', label: 'Bureaux debout', count: '12 modèles', color: 'bg-oak-100' },
+  { href: '/best-ergonomic-chairs', icon: '🪑', label: 'Chaises ergo', count: '10 modèles', color: 'bg-amber-50' },
+  { href: '/best-monitors-home-office', icon: '📺', label: 'Moniteurs', count: '8 modèles', color: 'bg-orange-50' },
+  { href: '/best-desk-lamps', icon: '💡', label: 'Éclairage', count: '7 modèles', color: 'bg-yellow-50' },
+  { href: '/best-webcams-home-office', icon: '📷', label: 'Webcams', count: '6 modèles', color: 'bg-oak-50' },
+  { href: '/budget-home-office-setup', icon: '💰', label: 'Budget guide', count: 'Dès 300€', color: 'bg-green-50' },
+];
+
+const recentPicks = [
+  {
+    href: '/best-standing-desks',
+    tag: 'Meilleur rapport qualité/prix',
+    brand: 'FlexiSpot',
+    name: 'E7 Pro Standing Desk',
+    price: '499€',
+    rating: 4.8,
+    reviews: 2847,
+    badge: 'pick',
+    desc: 'Le bureau assis-debout le plus vendu en Europe — moteur silencieux, plateau robuste, mémorisation de 4 positions.',
+    img: '🖥️',
+  },
+  {
+    href: '/best-ergonomic-chairs',
+    tag: 'Choix éditeur',
+    brand: 'Secretlab',
+    name: 'Titan Evo 2022',
+    price: '449€',
+    rating: 4.7,
+    reviews: 1563,
+    badge: 'premium',
+    desc: 'La chaise gaming qui fait aussi office de chaise de bureau — soutien lombaire magnétique, accoudoirs 4D.',
+    img: '🪑',
+  },
+  {
+    href: '/best-monitors-home-office',
+    tag: 'Meilleur achat 2026',
+    brand: 'LG',
+    name: '27UK850-W 4K USB-C',
+    price: '399€',
+    rating: 4.6,
+    reviews: 3102,
+    badge: 'budget',
+    desc: 'IPS 4K 27" avec USB-C 60W — le moniteur universel pour le home office, compatible Mac & PC.',
+    img: '📺',
+  },
+];
+---
+
+<Base title="Home" description="Guides d'achat home office testés et comparés. Bureaux debout, chaises ergonomiques, moniteurs — tout pour construire le setup parfait.">
+
+  <!-- ── HERO ── -->
+  <section class="relative overflow-hidden bg-cream-dark">
+    <!-- Fond décoratif -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-oak-100/60 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-electric/5 blur-3xl"></div>
+      <!-- Grid lines -->
+      <div class="absolute inset-0 opacity-[0.03]"
+           style="background-image: linear-gradient(#1A1208 1px, transparent 1px), linear-gradient(90deg, #1A1208 1px, transparent 1px); background-size: 60px 60px">
+      </div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 lg:py-28">
+      <div class="max-w-3xl">
+
+        <!-- Eyebrow -->
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-electric/10 border border-electric/20 animate-fade-in">
+          <span class="w-2 h-2 rounded-full bg-electric animate-pulse"></span>
+          <span class="text-electric font-semibold text-sm">Mis à jour — Février 2026</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-ink leading-[0.95] mb-6 animate-fade-up">
+          Le setup<br/>
+          <span class="text-electric">home office</span><br/>
+          parfait existe.
+        </h1>
+
+        <p class="text-lg sm:text-xl text-ink-muted leading-relaxed mb-8 max-w-xl animate-fade-up delay-100">
+          Guides d'achat indépendants, testés sur le terrain. Bureaux debout, chaises ergo, moniteurs — tout ce dont vous avez besoin pour travailler mieux depuis chez vous.
+        </p>
+
+        <div class="flex flex-wrap gap-3 animate-fade-up delay-200">
+          <a href="/home-office-setup" class="btn-primary text-base px-8 py-4">
+            Guide complet setup
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="/budget-home-office-setup" class="btn-secondary text-base px-8 py-4">
+            Setup &lt; 500€ 💰
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-8 mt-12 pt-8 border-t border-oak-200 animate-fade-up delay-300">
+          {[
+            { n: '50+', label: 'produits testés' },
+            { n: '10', label: 'guides complets' },
+            { n: '4.8★', label: 'note moyenne' },
+          ].map(stat => (
+            <div>
+              <div class="font-display text-2xl font-bold text-ink">{stat.n}</div>
+              <div class="text-sm text-ink-muted">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CATÉGORIES RAPIDES ── -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="text-electric font-semibold text-sm mb-1 tracking-wide uppercase">Parcourir</p>
+        <h2 class="font-display text-3xl font-bold text-ink">Par catégorie</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      {featuredCategories.map((cat, i) => (
+        <a href={cat.href}
+           class={`animate-on-scroll group flex flex-col items-center text-center p-5 rounded-2xl ${cat.color} hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-oak-200`}
+           style={`transition-delay: ${i * 60}ms`}>
+          <span class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">{cat.icon}</span>
+          <span class="font-display font-semibold text-ink text-sm leading-tight mb-1">{cat.label}</span>
+          <span class="text-xs text-ink-muted">{cat.count}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── PICKS RÉCENTS ── -->
+  <section class="bg-oak-50/50 border-y border-oak-100 py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-electric font-semibold text-sm mb-1 tracking-wide uppercase">Sélection</p>
+          <h2 class="font-display text-3xl font-bold text-ink">Nos meilleurs picks</h2>
+        </div>
+        <a href="/home-office-setup" class="text-sm font-semibold text-electric hover:text-electric-light transition-colors hidden sm:block">
+          Voir tout →
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {recentPicks.map((product, i) => (
+          <a href={product.href}
+             class="product-card group animate-on-scroll"
+             style={`animation-delay: ${i * 100}ms`}>
+
+            <!-- Image placeholder -->
+            <div class="aspect-[4/3] bg-gradient-to-br from-oak-100 to-oak-200 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-500">
+              {product.img}
+            </div>
+
+            <div class="p-5">
+              <!-- Badge -->
+              <div class="mb-3">
+                {product.badge === 'pick' && <span class="badge-pick">{product.tag}</span>}
+                {product.badge === 'premium' && <span class="badge-premium">{product.tag}</span>}
+                {product.badge === 'budget' && <span class="badge-budget">{product.tag}</span>}
+              </div>
+
+              <!-- Brand + Name -->
+              <p class="text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">{product.brand}</p>
+              <h3 class="font-display text-lg font-bold text-ink mb-2 leading-tight group-hover:text-electric transition-colors">
+                {product.name}
+              </h3>
+
+              <p class="text-sm text-ink-muted leading-relaxed mb-4">{product.desc}</p>
+
+              <!-- Rating + Price -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <div class="stars text-sm">{'★'.repeat(Math.round(product.rating))}</div>
+                  <span class="text-sm text-ink-muted">{product.rating} ({product.reviews.toLocaleString()})</span>
+                </div>
+                <span class="font-display font-bold text-ink text-lg">{product.price}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST SECTION ── -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="text-electric font-semibold text-sm mb-3 tracking-wide uppercase">Notre méthode</p>
+        <h2 class="font-display text-4xl font-bold text-ink mb-6 leading-tight">
+          Testé. Comparé.<br/>Mis à jour.
+        </h2>
+        <p class="text-ink-muted leading-relaxed mb-6">
+          Chaque produit de notre guide est analysé sur ses caractéristiques réelles, les avis vérifiés d'acheteurs et le rapport qualité/prix. Nos guides sont mis à jour chaque semaine pour refléter les dernières sorties et les évolutions de prix.
+        </p>
+        <div class="space-y-4">
+          {[
+            { icon: '🔍', title: 'Analyse approfondie', desc: 'Fiches techniques, comparatifs et avis utilisateurs croisés.' },
+            { icon: '💰', title: 'Meilleurs prix suivis', desc: 'Alertes prix Amazon Associates en temps réel.' },
+            { icon: '📅', title: 'Mis à jour chaque semaine', desc: 'Nouveaux modèles et baisses de prix intégrés automatiquement.' },
+          ].map(item => (
+            <div class="flex gap-4">
+              <span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
+              <div>
+                <h4 class="font-display font-semibold text-ink">{item.title}</h4>
+                <p class="text-sm text-ink-muted">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Visual card -->
+      <div class="relative">
+        <div class="bg-ink rounded-3xl p-8 text-cream">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-electric flex items-center justify-center text-2xl">🏆</div>
+            <div>
+              <p class="text-cream/60 text-xs font-semibold uppercase tracking-wider">Pick du mois</p>
+              <p class="font-display font-bold">Février 2026</p>
+            </div>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-2">FlexiSpot E7 Pro</h3>
+          <p class="text-cream/70 text-sm mb-6 leading-relaxed">Le bureau assis-debout qui domine le marché européen. Moteur silencieux 45 dB, capacité 125kg, garantie 5 ans.</p>
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <p class="text-cream/60 text-xs">Prix constaté</p>
+              <p class="font-display text-3xl font-bold text-electric">499€</p>
+            </div>
+            <div class="text-right">
+              <p class="text-cream/60 text-xs">Note globale</p>
+              <p class="font-display text-3xl font-bold">9.4<span class="text-cream/60 text-lg">/10</span></p>
+            </div>
+          </div>
+          <a href="/best-standing-desks" class="block text-center py-3 px-6 rounded-xl bg-electric text-white font-semibold text-sm hover:bg-electric-light transition-colors">
+            Voir le test complet →
+          </a>
+        </div>
+        <!-- Decoration -->
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-oak-200 -z-10"></div>
+        <div class="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-electric/20 -z-10"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GUIDES RÉCENTS ── -->
+  <section class="bg-ink text-cream py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-electric font-semibold text-sm mb-1 tracking-wide uppercase">Ressources</p>
+          <h2 class="font-display text-3xl font-bold">Guides pratiques</h2>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { href: '/budget-home-office-setup', emoji: '💰', title: 'Setup complet sous 500€', desc: 'Desk + chaise + moniteur — le bundle indispensable pour bien démarrer.' },
+          { href: '/guides/ergonomie-bureau', emoji: '🦴', title: 'Guide ergonomie complet', desc: 'Posture, hauteur de bureau, position des écrans — comment éviter les TMS.' },
+          { href: '/guides/lumiere-naturelle', emoji: '☀️', title: 'Optimiser son éclairage', desc: 'Lumière naturelle vs artificielle, ring light, panneau LED — tout savoir.' },
+        ].map((guide, i) => (
+          <a href={guide.href}
+             class="group p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300">
+            <span class="text-3xl mb-4 block">{guide.emoji}</span>
+            <h3 class="font-display font-bold text-lg text-cream mb-2 group-hover:text-electric transition-colors">
+              {guide.title}
+            </h3>
+            <p class="text-cream/60 text-sm leading-relaxed">{guide.desc}</p>
+            <div class="mt-4 text-electric text-sm font-semibold group-hover:gap-3 flex items-center gap-2 transition-all">
+              Lire le guide <span>→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DISCLOSURE ── -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <p class="disclosure text-center">
+      <strong>Divulgation affilié :</strong> HomeOfficeSetup.pro participe au programme Amazon Associates. Nous percevons une commission sur les achats effectués via nos liens, sans surcoût pour vous. Cela nous permet de maintenir ce site indépendant et gratuit.
+    </p>
+  </div>
+
+</Base>

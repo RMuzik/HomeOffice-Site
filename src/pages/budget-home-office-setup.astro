@@ -1,0 +1,243 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'homeofficepr-21';
+const LAST_UPDATED = '21 février 2026';
+
+const setups = [
+  {
+    budget: '300€',
+    title: 'Setup minimal fonctionnel',
+    desc: 'Tout le nécessaire pour travailler confortablement.',
+    color: 'bg-green-50 border-green-200',
+    items: [
+      { name: 'Bureau IKEA Lagkapten', price: '79€', role: 'Bureau' },
+      { name: 'Chaise IKEA Markus', price: '149€', role: 'Chaise ergo' },
+      { name: 'Moniteur AOC 24G2', price: '149€', role: 'Écran 24"' },
+    ],
+    total: '377€',
+  },
+  {
+    budget: '500€',
+    title: 'Setup productif équilibré',
+    desc: 'Le sweet spot confort / ergonomie / budget.',
+    color: 'bg-electric/5 border-electric/30',
+    recommended: true,
+    items: [
+      { name: 'Bureau IKEA Bekant assis-debout', price: '219€', role: 'Bureau debout' },
+      { name: 'FlexiSpot BS13', price: '249€', role: 'Chaise ergo' },
+      { name: 'LG 27MN600P-B 27"', price: '229€', role: 'Moniteur' },
+      { name: 'Logitech MK470', price: '59€', role: 'Clavier + souris' },
+    ],
+    total: '756€',
+  },
+  {
+    budget: '1000€',
+    title: 'Setup pro optimisé',
+    desc: 'Pour 8h/jour devant l\'écran — investissement rentable.',
+    color: 'bg-oak-50 border-oak-200',
+    items: [
+      { name: 'FlexiSpot E7 Pro', price: '499€', role: 'Bureau debout moteur' },
+      { name: 'Secretlab Titan Evo', price: '449€', role: 'Chaise gaming ergo' },
+      { name: 'LG 27UK850-W 4K USB-C', price: '399€', role: 'Moniteur 4K' },
+      { name: 'Logitech MX Keys + MX Master 3', price: '199€', role: 'Périphériques pro' },
+    ],
+    total: '1 546€',
+  },
+];
+
+const budgetProducts = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'IKEA',
+    name: 'Markus — Chaise de bureau',
+    asin: 'B002Y3PJGU',
+    price: '149€',
+    rating: 4.5,
+    reviewCount: 24831,
+    img: '🪑',
+    highlight: true,
+    verdict: 'La chaise ergonomique la plus vendue de France. Support lombaire intégré, hauteur réglable, accoudoirs fixes. Pour 149€, impossible de faire mieux.',
+    pros: ['Prix imbattable', 'Disponible immédiatement', 'Lombaire intégré'],
+    cons: ['Accoudoirs fixes', 'Durabilité 3-5 ans'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'AOC',
+    name: '24G2 — Moniteur 24" Full HD IPS',
+    asin: 'B08BHVXYMR',
+    price: '149€',
+    rating: 4.6,
+    reviewCount: 12453,
+    img: '📺',
+    verdict: 'Le meilleur moniteur 24" à moins de 150€. IPS 75Hz, dalle sans bord, faible latence. Pour le travail bureautique, il fait tout ce qu\'on lui demande.',
+    pros: ['Prix très compétitif', 'Dalle IPS fidèle', 'Design sans bord'],
+    cons: ['75Hz max', 'Pied peu réglable'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Logitech',
+    name: 'MK470 — Combo clavier + souris sans fil',
+    asin: 'B07W6JRBSD',
+    price: '59€',
+    rating: 4.5,
+    reviewCount: 8234,
+    img: '⌨️',
+    verdict: 'Le combo sans fil idéal pour débuter. Frappe silencieuse, autonomie 24 mois, récepteur USB nano. Suffisant pour 95% des usages bureautiques.',
+    pros: ['Silencieux', 'Autonomie excellente', 'Plug & play'],
+    cons: ['Pas d\'éclairage', 'Souris basique'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Anker',
+    name: 'PowerConf S3 — Speakerphone Bluetooth',
+    asin: 'B08GGZ2PMT',
+    price: '79€',
+    rating: 4.6,
+    reviewCount: 3214,
+    img: '🎙️',
+    verdict: 'Le speakerphone qui transforme vos visioconférences. Micro 360° réduction de bruit, compatible Zoom/Teams/Meet, autonomie 24h.',
+    pros: ['Micro omnidirectionnel', 'Réduction bruit active', 'Compatible tous outils'],
+    cons: ['Moins bon qu\'un micro dédié', 'Bluetooth uniquement'],
+  },
+];
+
+const tocItems = [
+  { id: 'setups', label: 'Setups par budget' },
+  { id: 'produits-essentiels', label: 'Les 4 essentiels budget' },
+  { id: 'conseils', label: 'Conseils pour économiser' },
+  { id: 'faq', label: 'FAQ' },
+];
+---
+
+<BestOf
+  title="Setup Home Office Budget 2026 — Guide Complet"
+  description="Comment construire un setup home office complet pour 300€, 500€ ou 1000€. Guide d'achat complet avec les meilleures options budget testées et comparées."
+  h1="Setup home office budget : le guide complet 2026"
+  intro="Construire un home office productif ne nécessite pas de dépenser une fortune. Voici comment optimiser chaque euro selon votre budget — de 300€ à 1000€."
+  lastUpdated={LAST_UPDATED}
+  productsCount={budgetProducts.length}
+  tocItems={tocItems}
+  breadcrumb={[{ label: 'Setup budget', href: '/budget-home-office-setup' }]}
+>
+
+  <!-- SETUPS PAR BUDGET -->
+  <section id="setups" class="mb-14 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-8">Setups complets par budget</h2>
+    <div class="space-y-6">
+      {setups.map((setup) => (
+        <div class={`rounded-2xl border-2 p-6 ${setup.color} relative overflow-hidden`}>
+          {setup.recommended && (
+            <div class="absolute top-0 right-0 bg-electric text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+              ⭐ Recommandé
+            </div>
+          )}
+          <div class="mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-ink text-cream text-xs font-bold mb-2">
+              Budget {setup.budget}
+            </span>
+            <h3 class="font-display text-xl font-bold text-ink">{setup.title}</h3>
+            <p class="text-sm text-ink-muted mt-1">{setup.desc}</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-2 mb-4">
+            {setup.items.map(item => (
+              <div class="flex items-center justify-between bg-white/60 rounded-xl px-4 py-2.5">
+                <div>
+                  <p class="text-xs text-ink-muted">{item.role}</p>
+                  <p class="font-medium text-ink text-sm">{item.name}</p>
+                </div>
+                <span class="font-bold text-ink shrink-0 ml-3">{item.price}</span>
+              </div>
+            ))}
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-black/10">
+            <span class="text-sm text-ink-muted">Total estimé</span>
+            <span class="font-display text-2xl font-bold text-ink">{setup.total}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PRODUITS BUDGET -->
+  <section id="produits-essentiels" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-2">Les 4 essentiels budget</h2>
+    <p class="text-ink-muted mb-8">Les produits qui donnent le plus pour votre argent.</p>
+    <div class="space-y-10">
+      {budgetProducts.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          highlight={product.highlight}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- CONSEILS -->
+  <section id="conseils" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">5 conseils pour maximiser votre budget</h2>
+    <div class="space-y-4">
+      {[
+        { n: '01', title: 'Investissez d\'abord sur la chaise', text: 'C\'est la pièce où vous passez 8h/jour. Une bonne chaise ergonomique (150-300€) protège votre dos. Économisez plutôt sur les accessoires.' },
+        { n: '02', title: 'Achetez reconditionné', text: 'Moniteur ou chaise de marque premium reconditionnée = 40-60% moins cher. Amazon Renewed offre une garantie 12 mois.' },
+        { n: '03', title: 'IKEA pour les meubles, premium pour l\'électronique', text: 'Un bureau IKEA à 100€ fait parfaitement l\'affaire. Mais ne faites pas d\'économies sur le moniteur ou la chaise.' },
+        { n: '04', title: 'Ajoutez les accessoires progressivement', text: 'Commencez avec bureau + chaise + moniteur. Ajoutez clavier, webcam, éclairage au fur et à mesure.' },
+        { n: '05', title: 'Guettez Prime Day et le Black Friday', text: 'Amazon offre des réductions de 20-40% sur l\'électronique en juillet et novembre. Créez une wishlist en avance.' },
+      ].map(item => (
+        <div class="flex gap-5 p-5 bg-oak-50 rounded-2xl border border-oak-100">
+          <span class="font-display text-3xl font-bold text-oak-300 shrink-0 leading-none">{item.n}</span>
+          <div>
+            <h3 class="font-display font-bold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Questions fréquentes</h2>
+    <div class="space-y-4">
+      {[
+        { q: 'Quel est le budget minimum pour un home office correct ?', a: 'Comptez minimum 300-400€ : bureau basique (80€), chaise IKEA Markus (149€) et moniteur 24" (149€). En dessous, vous ferez des compromis sur le confort qui impacteront votre productivité à long terme.' },
+        { q: 'Vaut-il mieux acheter tout d\'un coup ou progressivement ?', a: 'Progressivement, dans cet ordre : chaise → moniteur → bureau → accessoires. La chaise est la priorité absolue — elle protège votre dos.' },
+        { q: 'Les produits reconditionnés sont-ils fiables ?', a: 'Oui, surtout via Amazon Renewed (garantie 12 mois) ou Back Market (garantie 24 mois). Pour les chaises premium, cherchez des remanufacturées — remises à neuf professionnellement.' },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Liens affiliés Amazon Associates — commissions perçues sans surcoût pour vous. Recommandations 100% indépendantes.
+  </p>
+
+</BestOf>

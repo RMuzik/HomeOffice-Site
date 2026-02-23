@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts (Google Fonts via CSS import) ── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+/* ── Base ── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-cream text-ink font-body;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    letter-spacing: -0.02em;
+  }
+
+  a { @apply transition-colors duration-200; }
+
+  ::selection {
+    background: #E8621A22;
+    color: #E8621A;
+  }
+}
+
+/* ── Components ── */
+@layer components {
+  /* Bouton CTA principal */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white text-sm
+           bg-electric hover:bg-electric-light active:bg-electric-dark
+           transition-all duration-200 shadow-lg shadow-electric/20 hover:shadow-electric/35
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Bouton secondaire */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-oak-700 text-sm
+           bg-oak-100 hover:bg-oak-200 border border-oak-200 hover:border-oak-300
+           transition-all duration-200;
+  }
+
+  /* Card produit */
+  .product-card {
+    @apply relative bg-white rounded-2xl overflow-hidden border border-oak-100
+           shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-pick {
+    @apply badge bg-electric text-white;
+  }
+  .badge-budget {
+    @apply badge bg-oak-100 text-oak-700;
+  }
+  .badge-premium {
+    @apply badge bg-ink text-cream;
+  }
+
+  /* Rating stars */
+  .stars {
+    @apply flex gap-0.5 text-amber-400;
+  }
+
+  /* Divider décoratif */
+  .divider {
+    @apply flex items-center gap-4 my-8;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    @apply flex-1 h-px bg-oak-200;
+  }
+
+  /* Affiliate disclosure */
+  .disclosure {
+    @apply text-xs text-ink-muted bg-oak-50 border border-oak-100 rounded-lg px-4 py-2;
+  }
+
+  /* Animation delay utilities */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
+
+/* ── Animations ── */
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

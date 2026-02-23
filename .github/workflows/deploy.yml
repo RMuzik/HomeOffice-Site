@@ -1,0 +1,63 @@
+name: 🌐 Build & Deploy Site
+
+on:
+  # Déclenché après le workflow BUILDER
+  workflow_run:
+    workflows: ["🏗️ Builder — Generate Pages"]
+    types: [completed]
+  # Manuel
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environnement de déploiement'
+        required: true
+        default: 'production'
+        type: choice
+        options: [production, staging]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: homeoffice-site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./homeoffice-site
+        run: npm ci
+
+      - name: Build Astro site
+        working-directory: ./homeoffice-site
+        env:
+          AFFILIATE_TAG: ${{ secrets.AFFILIATE_TAG }}
+          SITE_URL: ${{ secrets.SITE_URL || 'https://homeofficesetup.pro' }}
+        run: npm run build
+
+      - name: Deploy to Vercel (Production)
+        if: ${{ github.event.inputs.environment == 'production' || github.event_name == 'workflow_run' }}
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./homeoffice-site
+          vercel-args: '--prod'
+
+      - name: Notify Discord
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          EMOJI="✅"
+          if [ "$STATUS" != "success" ]; then EMOJI="❌"; fi
+          curl -s -X POST ${{ secrets.DISCORD_WEBHOOK_URL }} \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"$EMOJI **Site déployé** — homeofficesetup.pro\nStatus: \`$STATUS\`\nBranch: \`${{ github.ref_name }}\`\"}"

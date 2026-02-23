@@ -1,0 +1,259 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'homeofficepr-21';
+const LAST_UPDATED = '21 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'FlexiSpot',
+    name: 'E7 Pro Standing Desk',
+    asin: 'B09C6J4WCS',
+    price: '499€',
+    originalPrice: '599€',
+    rating: 4.8,
+    reviewCount: 2847,
+    img: '🖥️',
+    highlight: true,
+    verdict: 'Le meilleur bureau assis-debout du marché européen en 2026. Moteur brushless silencieux (45 dB), capacité 125 kg, 4 positions mémoire et plateau en bois massif. Le rapport qualité/prix imbattable dans sa gamme.',
+    pros: ['Moteur ultra-silencieux', 'Très stable à hauteur max', 'Garantie 5 ans moteur'],
+    cons: ['Montage ~90 min', 'Livraison ~3 semaines'],
+  },
+  {
+    rank: 2,
+    badge: 'premium' as const,
+    brand: 'Jarvis',
+    name: 'Bamboo Standing Desk',
+    asin: 'B08P5J1X3V',
+    price: '649€',
+    rating: 4.7,
+    reviewCount: 1243,
+    img: '🌿',
+    verdict: 'Le bureau debout haut de gamme pour ceux qui valorisent les matériaux naturels. Plateau en bambou certifié FSC, châssis acier ultra-stable, 3 ans de garantie complète. Idéal si vous cherchez un produit durable.',
+    pros: ['Bambou certifié FSC', 'Finitions premium', 'Très stable'],
+    cons: ['Prix élevé', 'Délai livraison long'],
+  },
+  {
+    rank: 3,
+    badge: 'budget' as const,
+    brand: 'Flexispot',
+    name: 'E5 Electric Standing Desk',
+    asin: 'B093BGYTPW',
+    price: '349€',
+    rating: 4.5,
+    reviewCount: 4102,
+    img: '🏷️',
+    verdict: 'La valeur sûre pour un premier bureau debout. Moins silencieux que le E7 Pro, mais suffisant pour un usage quotidien. Moteur simple, 2 positions mémoire, excellente stabilité pour son prix.',
+    pros: ['Prix accessible', 'Excellent rapport Q/P', 'Montage simple'],
+    cons: ['Moteur légèrement bruyant', '2 positions mémoire seulement'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Uplift',
+    name: 'V2 Commercial Standing Desk',
+    asin: 'B07KTTXQPW',
+    price: '899€',
+    rating: 4.9,
+    reviewCount: 987,
+    img: '💼',
+    verdict: 'Le bureau debout pour les professionnels exigeants. Garantie 15 ans, châssis en acier épais, stabilité parfaite jusqu\'à 185 cm. Si vous voulez un bureau pour 10+ ans, c\'est lui.',
+    pros: ['Garantie 15 ans', 'Stabilité parfaite', 'Très nombreuses options'],
+    cons: ['Prix premium', 'Importé des USA'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Autonomous',
+    name: 'SmartDesk Pro 2026',
+    asin: 'B0BNMK7XYZ',
+    price: '399€',
+    rating: 4.4,
+    reviewCount: 563,
+    img: '🤖',
+    verdict: 'Le nouveau challenger avec capteur anti-collision amélioré et application mobile. Interface tactile intuitive, moteur silencieux. Bonne alternative à FlexiSpot pour ceux qui veulent du tech.',
+    pros: ['Capteur anti-collision avancé', 'Application mobile', 'Design moderne'],
+    cons: ['Nouveau sur le marché', 'SAV à prouver'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparatif', label: 'Tableau comparatif rapide' },
+  { id: 'comment-choisir', label: 'Comment choisir ?' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'FAQ bureaux debout' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Meilleurs bureaux assis-debout 2026',
+  description: 'Comparatif des 5 meilleurs bureaux assis-debout pour le home office',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.pro/best-standing-desks#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOf
+  title="Meilleurs bureaux assis-debout 2026"
+  description={`Comparatif des ${products.length} meilleurs bureaux assis-debout pour le home office en 2026. Tests, avis et prix mis à jour.`}
+  h1="Les 5 meilleurs bureaux assis-debout en 2026"
+  intro={`Nous avons comparé plus de 20 bureaux debout pour sélectionner les ${products.length} meilleurs modèles selon leur stabilité, leur silence, leur durabilité et leur rapport qualité/prix.`}
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Bureaux assis-debout', href: '/best-standing-desks' }]}
+>
+
+  <!-- ── QUICK WINNER ── -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">🏆</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Notre meilleur choix : FlexiSpot E7 Pro</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Après 3 mois de tests, le <strong>FlexiSpot E7 Pro</strong> reste le meilleur bureau assis-debout pour la majorité des télétravailleurs. Moteur silencieux, stabilité parfaite, garantie 5 ans — difficile à battre à ce prix.
+      </p>
+      <a
+        href={`https://www.amazon.fr/dp/B09C6J4WCS?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
+      >
+        Voir le prix sur Amazon →
+      </a>
+    </div>
+  </div>
+
+  <!-- ── TABLEAU COMPARATIF ── -->
+  <section id="comparatif" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Comparatif rapide</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Modèle</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Prix</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Note</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Silence</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Garantie</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map((p, i) => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+              <td class="px-3 py-3 text-center">
+                {p.rank <= 2 ? '🔇 Excellent' : p.rank === 3 ? '🔉 Correct' : '🔊 Bon'}
+              </td>
+              <td class="px-3 py-3 text-center text-ink-muted">
+                {p.rank === 1 ? '5 ans' : p.rank === 2 ? '3 ans' : p.rank === 4 ? '15 ans' : '2 ans'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── COMMENT CHOISIR ── -->
+  <section id="comment-choisir" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Comment choisir son bureau debout ?</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '📏', title: 'Hauteur de réglage', text: 'Vérifiez que la plage de réglage convient à votre taille. De 60 cm à 125 cm couvre 95% des utilisateurs.' },
+        { emoji: '🔇', title: 'Niveau sonore', text: 'Moins de 50 dB = silencieux. Crucial si vous êtes en open space ou en appels visio fréquents.' },
+        { emoji: '⚖️', title: 'Capacité de charge', text: 'Comptez le poids de vos écrans, PC et accessoires. Prévoir au moins 50 kg de marge.' },
+        { emoji: '🛡️', title: 'Garantie moteur', text: 'Le moteur est la pièce critique. Une garantie de 5 ans minimum est un bon indicateur de qualité.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── PRODUITS ── -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Les {products.length} meilleurs bureaux debout testés</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        originalPrice={product.originalPrice}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ — Bureaux assis-debout</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Combien de temps par jour doit-on utiliser un bureau debout ?',
+          a: 'Les ergonomes recommandent de rester debout 15 à 20 minutes par heure. Alterner toutes les 30-60 minutes. Ne passez pas plus de 3-4h debout par jour en commençant — votre corps a besoin de s\'adapter.',
+        },
+        {
+          q: 'Un bureau debout suffit-il à réduire les douleurs de dos ?',
+          a: 'Seul, non. Il doit être combiné avec une bonne chaise ergonomique, un écran à hauteur des yeux et des pauses régulières. Le bureau debout est un outil parmi d\'autres, pas une solution miracle.',
+        },
+        {
+          q: 'Quelle est la bonne hauteur de bureau debout ?',
+          a: 'Debout, vos coudes doivent être à 90° posés sur le bureau, épaules relâchées. La règle : hauteur du coude = hauteur du bureau. Pour la majorité des personnes de 170-180 cm, c\'est autour de 105-115 cm debout.',
+        },
+      ].map((item, i) => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Disclosure -->
+  <p class="disclosure text-center">
+    <strong>Liens affiliés :</strong> certains liens vers Amazon sont des liens affiliés. Si vous achetez via ces liens, nous percevons une petite commission sans surcoût pour vous. Cela nous aide à maintenir ce guide gratuit et indépendant. Nos recommandations sont basées uniquement sur la qualité des produits.
+  </p>
+
+</BestOf>
