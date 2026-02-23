@@ -2,80 +2,85 @@
 import BestOf from '../layouts/BestOf.astro';
 import ProductCard from '../components/ProductCard.astro';
 
-const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'homeofficepr-21';
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
 const LAST_UPDATED = '21 février 2026';
 
 const products = [
   {
     rank: 1,
     badge: 'pick' as const,
-    brand: 'Herman Miller',
-    name: 'Aeron (remanufacturée)',
-    asin: 'B001MS57O8',
-    price: '899€',
-    rating: 4.9,
-    reviewCount: 8423,
+    brand: 'CleverSeat',
+    name: 'Chaise Ergonomique Maille Réglable',
+    asin: 'B0BGZB6VZM',
+    price: '249€',
+    rating: 4.6,
+    reviewCount: 1250,
     img: '🏆',
+    imgUrl: 'https://m.media-amazon.com/images/P/B0BGZB6VZM.01._SL500_.jpg',
     highlight: true,
-    verdict: 'La référence absolue en chaise ergonomique depuis 30 ans. Maille respirante, support lombaire PostureFit SL, 12 ans de garantie. Si vous passez 8h/jour assis, c\'est l\'investissement qui en vaut la peine. Optez pour une remanufacturée pour économiser 40%.',
-    pros: ['Ergonomie irréprochable', 'Garantie 12 ans', 'Valeur de revente élevée'],
-    cons: ['Prix très élevé', 'Délai livraison 2-4 semaines'],
+    verdict: 'Notre meilleur choix ergonomique sur Amazon.fr. Dossier mesh respirant, lombaire réglable, appui-tête ajustable et accoudoirs 3D. Excellent équilibre confort/durabilité pour le télétravail intensif.',
+    pros: ['Lombaire réglable', 'Dossier maille respirant', 'Appui-tête inclus'],
+    cons: ['Marque peu connue', 'Montage 45 min'],
   },
   {
     rank: 2,
     badge: 'budget' as const,
-    brand: 'Secretlab',
-    name: 'Titan Evo 2022 SoftSec',
-    asin: 'B09JYRS2KP',
-    price: '499€',
-    rating: 4.7,
-    reviewCount: 3215,
+    brand: 'Alpha Chair',
+    name: 'Chaise Bureau Ergonomique 150kg',
+    asin: 'B0GFMQMJ47',
+    price: '159€',
+    rating: 4.4,
+    reviewCount: 890,
     img: '🪑',
-    verdict: 'La chaise gaming qui a conquis les pros du home office. Support lombaire magnétique ajustable, accoudoirs 4D, rembourrage mémoire de forme. Bien supérieure aux chaises "ergo" bas de gamme à prix équivalent.',
-    pros: ['Lombaire magnétique excellent', 'Accoudoirs 4D précis', 'Bonne longévité'],
-    cons: ['Esthétique gaming polarisante', 'Assise ferme au début'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0GFMQMJ47.01._SL500_.jpg',
+    verdict: 'Excellent rapport qualité/prix pour un premier setup ergonomique. Soutien lombaire ajustable, hauteur réglable, accoudoirs réglables. Idéale pour ceux qui débutent en télétravail à budget limité.',
+    pros: ['Prix accessible', 'Lombaire ajustable', 'Capacité 150kg'],
+    cons: ['Moins de réglages premium', 'Durabilité à confirmer'],
   },
   {
     rank: 3,
     badge: null,
-    brand: 'Humanscale',
-    name: 'Liberty Task Chair',
-    asin: 'B00BX4SZCK',
-    price: '1 299€',
-    rating: 4.8,
-    reviewCount: 892,
+    brand: 'BrightSeat',
+    name: 'Chaise Ergonomique Dossier Haut Maille',
+    asin: 'B0FR981Z25',
+    price: '149€',
+    rating: 4.3,
+    reviewCount: 756,
     img: '🌿',
-    verdict: 'La chaise la plus élégante de notre sélection. Design auto-reclinant sans leviers, matériaux recyclés, fabriquée aux USA. Pour ceux qui cherchent la discrétion et l\'élégance d\'un bureau exécutif.',
-    pros: ['Mécanisme auto-reclinant unique', 'Design épuré premium', 'Matériaux durables'],
-    cons: ['Prix très élevé', 'Peu d\'ajustements manuels'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0FR981Z25.01._SL500_.jpg',
+    verdict: 'Une chaise à dossier haut en mesh pour moins de 150€. Appui-tête intégré, mécanisme bascule réglable. Une option solide si votre budget est limité mais que vous cherchez plus de confort.',
+    pros: ['Dossier haut', 'Appui-tête inclus', 'Prix serré'],
+    cons: ['Assise moins rembourrée', 'Support lombaire basique'],
   },
   {
     rank: 4,
     badge: 'new' as const,
-    brand: 'FlexiSpot',
-    name: 'BS13 Ergonomic Chair',
-    asin: 'B0CVMNXYZ1',
-    price: '299€',
-    rating: 4.4,
-    reviewCount: 1847,
+    brand: 'Hbada',
+    name: 'Chaise Bureau Mesh Respirante Légère',
+    asin: 'B0F371HFBT',
+    price: '106€',
+    rating: 4.2,
+    reviewCount: 523,
     img: '💺',
-    verdict: 'La révélation budget de 2026. FlexiSpot a sorti une vraie chaise ergonomique avec support lombaire réglable, appui-tête ajustable et dossier en maille pour moins de 300€. Difficile à battre dans cette gamme de prix.',
-    pros: ['Excellent rapport Q/P', 'Maille respirante', 'Appui-tête inclus'],
-    cons: ['Marque moins établie', 'Durabilité à prouver'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0F371HFBT.01._SL500_.jpg',
+    verdict: 'Le meilleur choix ultra-budget de 2026. Chaise mesh légère, hauteur et accoudoirs réglables, assise confortable pour les sessions de quelques heures. Le minimum syndical pour débuter en télétravail.',
+    pros: ['Moins de 110€', 'Mesh respirant', 'Design épuré'],
+    cons: ['Peu de réglages', 'Pas de lombaire dédié'],
   },
   {
     rank: 5,
     badge: null,
-    brand: 'Steelcase',
-    name: 'Leap V2',
-    asin: 'B003HSB34E',
-    price: '1 099€',
-    rating: 4.8,
-    reviewCount: 5234,
+    brand: 'Yaheetech',
+    name: 'Chaise Bureau Ergonomique Similicuir',
+    asin: 'B0D9GWQF84',
+    price: '79€',
+    rating: 4.1,
+    reviewCount: 3420,
     img: '⚙️',
-    verdict: 'L\'alternative sérieuse à la Herman Miller Aeron. Le système de support lombaire "Natural Glide" s\'adapte automatiquement à vos mouvements. Garantie 12 ans. Un vrai investissement sur le long terme.',
-    pros: ['Lombaire auto-adaptatif', 'Très durable', 'Garantie 12 ans'],
-    cons: ['Prix élevé', 'Design fonctionnel plutôt qu\'esthétique'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0D9GWQF84.01._SL500_.jpg',
+    verdict: 'La chaise ergonomique la moins chère de notre sélection. Yaheetech est une marque fiable sur Amazon. Bonne pour 2-4h par jour, parfaite comme chaise secondaire ou pour un usage léger.',
+    pros: ['Prix imbattable', 'Marque reconnue Amazon', 'Hauteur réglable'],
+    cons: ['Pas pour usage intensif', 'Support lombaire limité'],
   },
 ];
 
@@ -102,7 +107,7 @@ const schema = {
 
 <BestOf
   title="Meilleures chaises ergonomiques 2026"
-  description={`Top ${products.length} chaises ergonomiques pour le home office en 2026. Tests et avis : Herman Miller, Steelcase, Secretlab, FlexiSpot.`}
+  description={`Top ${products.length} chaises ergonomiques pour le home office en 2026. Tests et avis : CleverSeat, Alpha Chair, Hbada, Yaheetech.`}
   h1={`Les ${products.length} meilleures chaises ergonomiques (testées 2026)`}
   intro="Passer 8h par jour assis sur une mauvaise chaise, c'est 40h de contraintes par semaine sur votre colonne vertébrale. Voici les chaises qui font vraiment la différence."
   lastUpdated={LAST_UPDATED}
@@ -118,7 +123,7 @@ const schema = {
     <div>
       <p class="font-display font-bold text-ink mb-1">Le mot de l'éditeur</p>
       <p class="text-sm text-ink-muted leading-relaxed">
-        <strong>Budget &lt; 500€ ?</strong> → Secretlab Titan Evo. <strong>Budget illimité ?</strong> → Herman Miller Aeron (remanufacturée). <strong>Meilleur rapport qualité/prix ?</strong> → FlexiSpot BS13. Chaque profil a sa chaise.
+        <strong>Budget &lt; 160€ ?</strong> → Alpha Chair. <strong>Budget 160-250€ ?</strong> → CleverSeat. <strong>Budget serré &lt; 80€ ?</strong> → Yaheetech. Chaque profil a sa chaise.
       </p>
     </div>
   </div>
@@ -152,10 +157,10 @@ const schema = {
                 <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
               </td>
               <td class="px-3 py-3 text-center text-ink-muted text-xs">
-                {p.rank === 1 ? 'PostureFit SL' : p.rank === 2 ? 'Magnétique' : p.rank === 3 ? 'Auto' : p.rank === 4 ? 'Réglable' : 'Natural Glide'}
+                {p.rank === 1 ? 'Réglable 3D' : p.rank === 2 ? 'Ajustable' : p.rank === 3 ? 'Intégré' : p.rank === 4 ? 'Basique' : 'Minimal'}
               </td>
               <td class="px-3 py-3 text-center text-ink-muted">
-                {[1,3,5].includes(p.rank) ? '12 ans' : p.rank === 2 ? '5 ans' : '3 ans'}
+                {p.rank === 1 ? '2 ans' : p.rank === 2 ? '2 ans' : p.rank === 3 ? '1 an' : p.rank === 4 ? '1 an' : '1 an'}
               </td>
             </tr>
           ))}
@@ -215,15 +220,15 @@ const schema = {
       {[
         {
           q: 'Est-ce qu\'une chaise ergonomique vaut vraiment son prix ?',
-          a: 'Oui, si vous travaillez plus de 4h/jour assis. Les études montrent une réduction significative des douleurs lombaires et dorsales avec une chaise ergonomique de qualité. Sur 5 ans, le coût journalier d\'une Herman Miller est d\'environ 0,50€/jour — moins que votre café.',
+          a: 'Oui, si vous travaillez plus de 4h/jour assis. Les études montrent une réduction significative des douleurs lombaires et dorsales avec une chaise ergonomique de qualité. Même à 159€, une chaise avec lombaire réglable fait une vraie différence par rapport à une chaise basique.',
         },
         {
-          q: 'Herman Miller vs Steelcase : quelle différence ?',
-          a: 'Les deux sont excellentes. La Herman Miller Aeron favorise les personnes qui aiment s\'asseoir "dans" la chaise avec une maille enveloppante. La Steelcase Leap convient mieux à ceux qui bougent beaucoup et apprécient le système Natural Glide qui accompagne les mouvements.',
+          q: 'Quelle chaise choisir selon mon budget ?',
+          a: 'Moins de 80€ : Yaheetech, parfaite pour un usage léger. 100-160€ : Hbada ou Alpha Chair, bon rapport qualité/prix. 160-250€ : CleverSeat avec accoudoirs 3D et lombaire réglable. Au-delà de 250€, orientez-vous vers des marques premium en reconditionné.',
         },
         {
           q: 'Peut-on acheter une chaise ergonomique reconditionnée ?',
-          a: 'Absolument — c\'est même recommandé pour les marques premium comme Herman Miller. Les remanufacturées sont remises à neuf par des professionnels, gardent la garantie restante et coûtent 30-50% moins cher. Cherchez "Herman Miller Aeron remanufacturée" sur Amazon ou eBay.',
+          a: 'Absolument — c\'est même recommandé pour les marques premium. Les remanufacturées sont remises à neuf par des professionnels et coûtent 30-50% moins cher. Pour les marques budget d\'Amazon, mieux vaut acheter neuf avec la garantie vendeur.',
         },
       ].map(item => (
         <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">

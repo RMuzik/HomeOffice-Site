@@ -14,38 +14,41 @@ const recentPicks = [
   {
     href: '/best-standing-desks',
     tag: 'Meilleur rapport qualité/prix',
-    brand: 'FlexiSpot',
-    name: 'E7 Pro Standing Desk',
-    price: '499€',
+    brand: 'Desktronic',
+    name: 'Bureau Assis Debout 160x80cm',
+    price: '464€',
     rating: 4.8,
-    reviews: 2847,
+    reviews: 826,
     badge: 'pick',
-    desc: 'Le bureau assis-debout le plus vendu en Europe — moteur silencieux, plateau robuste, mémorisation de 4 positions.',
+    desc: 'Le bureau assis-debout le mieux noté sur Amazon.fr — moteur double silencieux, mémoire 4 positions, livraison rapide.',
     img: '🖥️',
+    imgUrl: 'https://m.media-amazon.com/images/P/B09TD87W1J.01._SL500_.jpg',
   },
   {
     href: '/best-ergonomic-chairs',
     tag: 'Choix éditeur',
-    brand: 'Secretlab',
-    name: 'Titan Evo 2022',
-    price: '449€',
-    rating: 4.7,
-    reviews: 1563,
-    badge: 'premium',
-    desc: 'La chaise gaming qui fait aussi office de chaise de bureau — soutien lombaire magnétique, accoudoirs 4D.',
+    brand: 'CleverSeat',
+    name: 'Chaise Ergonomique Maille Réglable',
+    price: '249€',
+    rating: 4.6,
+    reviews: 1250,
+    badge: 'pick',
+    desc: 'Notre meilleur choix ergonomique Amazon.fr — dossier mesh respirant, lombaire réglable, accoudoirs 3D.',
     img: '🪑',
+    imgUrl: 'https://m.media-amazon.com/images/P/B0BGZB6VZM.01._SL500_.jpg',
   },
   {
     href: '/best-monitors-home-office',
     tag: 'Meilleur achat 2026',
     brand: 'LG',
-    name: '27UK850-W 4K USB-C',
-    price: '399€',
+    name: '27UP850K-W 4K USB-C',
+    price: '273€',
     rating: 4.6,
-    reviews: 3102,
+    reviews: 1850,
     badge: 'budget',
-    desc: 'IPS 4K 27" avec USB-C 60W — le moniteur universel pour le home office, compatible Mac & PC.',
+    desc: 'IPS 4K 27" avec USB-C 96W — charge ton MacBook avec un seul câble, couverture DCI-P3 95%.',
     img: '📺',
+    imgUrl: 'https://m.media-amazon.com/images/P/B0DTQ9SKYF.01._SL500_.jpg',
   },
 ];
 ---
@@ -152,9 +155,12 @@ const recentPicks = [
              class="product-card group animate-on-scroll"
              style={`animation-delay: ${i * 100}ms`}>
 
-            <!-- Image placeholder -->
-            <div class="aspect-[4/3] bg-gradient-to-br from-oak-100 to-oak-200 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-500">
-              {product.img}
+            <!-- Image -->
+            <div class="aspect-[4/3] bg-gradient-to-br from-oak-100 to-oak-200 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
+              {product.imgUrl
+                ? <img src={product.imgUrl} alt={`${product.brand} ${product.name}`} class="w-full h-full object-contain p-4" loading="lazy" />
+                : <span class="text-6xl">{product.img}</span>
+              }
             </div>
 
             <div class="p-5">

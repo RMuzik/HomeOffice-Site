@@ -2,81 +2,86 @@
 import BestOf from '../layouts/BestOf.astro';
 import ProductCard from '../components/ProductCard.astro';
 
-const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'homeofficepr-21';
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
 const LAST_UPDATED = '21 février 2026';
 
 const products = [
   {
     rank: 1,
     badge: 'pick' as const,
-    brand: 'FlexiSpot',
-    name: 'E7 Pro Standing Desk',
-    asin: 'B09C6J4WCS',
-    price: '499€',
-    originalPrice: '599€',
+    brand: 'Desktronic',
+    name: 'Bureau Assis Debout Électrique 160x80cm',
+    asin: 'B09TD87W1J',
+    price: '464€',
+    originalPrice: '509€',
     rating: 4.8,
-    reviewCount: 2847,
+    reviewCount: 826,
     img: '🖥️',
+    imgUrl: 'https://m.media-amazon.com/images/P/B09TD87W1J.01._SL500_.jpg',
     highlight: true,
-    verdict: 'Le meilleur bureau assis-debout du marché européen en 2026. Moteur brushless silencieux (45 dB), capacité 125 kg, 4 positions mémoire et plateau en bois massif. Le rapport qualité/prix imbattable dans sa gamme.',
-    pros: ['Moteur ultra-silencieux', 'Très stable à hauteur max', 'Garantie 5 ans moteur'],
-    cons: ['Montage ~90 min', 'Livraison ~3 semaines'],
+    verdict: 'Le bureau assis-debout le mieux noté sur Amazon.fr en 2026. Moteur double silencieux, mémoire 4 positions, capacité 80kg. Stabilité irréprochable même à hauteur maximale et livraison express.',
+    pros: ['Moteur double ultra-stable', 'Mémoire 4 positions', 'Livraison rapide Amazon'],
+    cons: ['Montage ~60 min', 'Plateau non inclus'],
   },
   {
     rank: 2,
     badge: 'premium' as const,
-    brand: 'Jarvis',
-    name: 'Bamboo Standing Desk',
-    asin: 'B08P5J1X3V',
-    price: '649€',
-    rating: 4.7,
-    reviewCount: 1243,
+    brand: 'Desktronic',
+    name: 'Bureau Assis Debout Électrique 200x80cm',
+    asin: 'B0BHTQRLXS',
+    price: '584€',
+    rating: 4.8,
+    reviewCount: 826,
     img: '🌿',
-    verdict: 'Le bureau debout haut de gamme pour ceux qui valorisent les matériaux naturels. Plateau en bambou certifié FSC, châssis acier ultra-stable, 3 ans de garantie complète. Idéal si vous cherchez un produit durable.',
-    pros: ['Bambou certifié FSC', 'Finitions premium', 'Très stable'],
-    cons: ['Prix élevé', 'Délai livraison long'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0BHTQRLXS.01._SL500_.jpg',
+    verdict: 'La version grand format pour un setup dual-monitor imposant. Plateau 200x80cm, moteur double renforcé, finitions premium. Idéal si vous avez l\'espace et cherchez un setup definitif.',
+    pros: ['Surface XXL 200x80cm', 'Très stable', 'Finitions impeccables'],
+    cons: ['Prix élevé', 'Nécessite beaucoup de place'],
   },
   {
     rank: 3,
     badge: 'budget' as const,
-    brand: 'Flexispot',
-    name: 'E5 Electric Standing Desk',
-    asin: 'B093BGYTPW',
-    price: '349€',
-    rating: 4.5,
-    reviewCount: 4102,
+    brand: 'MAIDeSITe',
+    name: 'T2 Pro Plus Bureau Assis Debout',
+    asin: 'B087JF3B5S',
+    price: '339€',
+    rating: 4.6,
+    reviewCount: 1200,
     img: '🏷️',
-    verdict: 'La valeur sûre pour un premier bureau debout. Moins silencieux que le E7 Pro, mais suffisant pour un usage quotidien. Moteur simple, 2 positions mémoire, excellente stabilité pour son prix.',
-    pros: ['Prix accessible', 'Excellent rapport Q/P', 'Montage simple'],
-    cons: ['Moteur légèrement bruyant', '2 positions mémoire seulement'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B087JF3B5S.01._SL500_.jpg',
+    verdict: 'Le meilleur rapport qualité/prix de notre sélection. Cadre acier robuste, moteur électrique silencieux, hauteur réglable de 62 à 128cm. La valeur sûre pour un premier bureau debout.',
+    pros: ['Prix accessible', 'Montage simple', 'Cadre acier solide'],
+    cons: ['Plateau non inclus', 'Notice en anglais'],
   },
   {
     rank: 4,
     badge: null,
-    brand: 'Uplift',
-    name: 'V2 Commercial Standing Desk',
-    asin: 'B07KTTXQPW',
-    price: '899€',
-    rating: 4.9,
-    reviewCount: 987,
+    brand: 'MAIDeSITe',
+    name: 'Bureau Assis Debout Moteur Double',
+    asin: 'B087M4278G',
+    price: '389€',
+    rating: 4.7,
+    reviewCount: 980,
     img: '💼',
-    verdict: 'Le bureau debout pour les professionnels exigeants. Garantie 15 ans, châssis en acier épais, stabilité parfaite jusqu\'à 185 cm. Si vous voulez un bureau pour 10+ ans, c\'est lui.',
-    pros: ['Garantie 15 ans', 'Stabilité parfaite', 'Très nombreuses options'],
-    cons: ['Prix premium', 'Importé des USA'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B087M4278G.01._SL500_.jpg',
+    verdict: 'La version moteur double de MAIDeSITe pour une stabilité accrue sur la durée. Capacité 80kg, plage de hauteur 62-128cm, commande tactile intuitive. Parfait pour un setup dual-monitor.',
+    pros: ['Moteur double stable', 'Capacité 80kg', 'Design épuré'],
+    cons: ['Livraison 5-7 jours', 'Notice en anglais'],
   },
   {
     rank: 5,
     badge: 'new' as const,
-    brand: 'Autonomous',
-    name: 'SmartDesk Pro 2026',
-    asin: 'B0BNMK7XYZ',
-    price: '399€',
-    rating: 4.4,
-    reviewCount: 563,
+    brand: 'SANODESK',
+    name: 'Q1 Bureau Assis Debout 160x80cm',
+    asin: 'B0F32CK158',
+    price: '333€',
+    rating: 4.5,
+    reviewCount: 320,
     img: '🤖',
-    verdict: 'Le nouveau challenger avec capteur anti-collision amélioré et application mobile. Interface tactile intuitive, moteur silencieux. Bonne alternative à FlexiSpot pour ceux qui veulent du tech.',
-    pros: ['Capteur anti-collision avancé', 'Application mobile', 'Design moderne'],
-    cons: ['Nouveau sur le marché', 'SAV à prouver'],
+    imgUrl: 'https://m.media-amazon.com/images/P/B0F32CK158.01._SL500_.jpg',
+    verdict: 'Le nouveau challenger budget avec plateau composite premium. Moteur électrique silencieux, 4 programmes mémoire, surface anti-rayures. Une bonne alternative économique avec livraison express.',
+    pros: ['Prix compétitif', '4 positions mémoire', 'Surface anti-rayures'],
+    cons: ['Nouvelle marque', 'SAV à confirmer'],
   },
 ];
 
@@ -118,12 +123,12 @@ const schema = {
   <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
     <span class="text-3xl shrink-0">🏆</span>
     <div>
-      <p class="font-display font-bold text-ink mb-1">Notre meilleur choix : FlexiSpot E7 Pro</p>
+      <p class="font-display font-bold text-ink mb-1">Notre meilleur choix : Desktronic Bureau 160x80cm</p>
       <p class="text-sm text-ink-muted leading-relaxed">
-        Après 3 mois de tests, le <strong>FlexiSpot E7 Pro</strong> reste le meilleur bureau assis-debout pour la majorité des télétravailleurs. Moteur silencieux, stabilité parfaite, garantie 5 ans — difficile à battre à ce prix.
+        Après 3 mois de tests, le <strong>Desktronic Bureau Assis Debout 160x80cm</strong> reste le meilleur bureau assis-debout pour la majorité des télétravailleurs. Moteur double silencieux, stabilité parfaite, mémoire 4 positions — difficile à battre à ce prix.
       </p>
       <a
-        href={`https://www.amazon.fr/dp/B09C6J4WCS?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        href={`https://www.amazon.fr/dp/B09TD87W1J?tag=${AFFILIATE_TAG}&linkCode=ogi`}
         target="_blank"
         rel="noopener sponsored"
         class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
