@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://homeofficesetup.pro',
+  site: 'https://homeofficesetup.net',
   integrations: [
     tailwind(),
     sitemap({
@@ -17,7 +17,7 @@ export default defineConfig({
           return { ...item, priority: 0.9, changefreq: 'weekly' };
         }
         // Homepage = priorité max
-        if (item.url === 'https://homeofficesetup.pro/') {
+        if (item.url === 'https://homeofficesetup.net/') {
           return { ...item, priority: 1.0, changefreq: 'weekly' };
         }
         // Guides = priorité moyenne
