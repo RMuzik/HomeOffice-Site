@@ -1,0 +1,200 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
+const LAST_UPDATED = '26 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Logitech',
+    name: 'MX Brio 705 Webcam 4K',
+    asin: 'B0CX3LFGMH',
+    price: '149€',
+    originalPrice: '199€',
+    rating: 4.6,
+    reviewCount: 820,
+    img: '📷',
+    highlight: true,
+    verdict: 'La meilleure webcam pour le home office en 2026. Capteur Sony 4K, correction automatique de la lumière, réduction de bruit IA. Se connecte via USB-C. Idéale pour les visioconférences pros et le streaming.',
+    pros: ['4K 30fps / 1080p 60fps', 'Correction lumière IA', 'USB-C natif', 'Compatible Logi Tune'],
+    cons: ['Prix élevé', 'Pas de bague de mise au point manuelle'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'Logitech',
+    name: 'C920s HD Pro Webcam 1080p',
+    asin: 'B07K986YLL',
+    price: '69€',
+    originalPrice: '99€',
+    rating: 4.5,
+    reviewCount: 15600,
+    img: '📸',
+    verdict: 'La référence accessible. Capteur 1080p/30fps, autofocus rapide, double micro stéréo. La webcam la plus vendue d\'Amazon depuis des années — et pour cause. Parfaite pour 95% des télétravail.',
+    pros: ['Rapport Q/P imbattable', 'Autofocus fiable', 'Très bien supportée (Zoom, Meet...)', 'Cache confidentialité inclus'],
+    cons: ['Pas de 4K', 'USB-A seulement', 'Design vieillissant'],
+  },
+  {
+    rank: 3,
+    badge: 'premium' as const,
+    brand: 'Elgato',
+    name: 'Facecam Pro 4K60 Webcam',
+    asin: 'B0B4N2LVMW',
+    price: '199€',
+    rating: 4.4,
+    reviewCount: 420,
+    img: '🎥',
+    verdict: 'La webcam des streamers et créateurs. 4K 60fps, capteur Sony STARVIS 1/1.8", objectif en verre, pas d\'ISP intégré (contrôle total depuis Camera Hub). Rendu cinématique pour ceux qui ne font pas de compromis.',
+    pros: ['4K 60fps vrai', 'Optique en verre', 'Contrôle total via logiciel', 'Rendu naturel sans traitement'],
+    cons: ['Très cher', 'Courbe d\'apprentissage logiciel', 'Exige bonne luminosité'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Razer',
+    name: 'Kiyo Pro Ultra 4K',
+    asin: 'B0BKGXKBXP',
+    price: '179€',
+    rating: 4.3,
+    reviewCount: 310,
+    img: '⚡',
+    verdict: 'La webcam gaming/pro avec grande ouverture f/1.7 pour les environnements sombres. Sony IMX415 4K avec mise au point adaptative. Idéale si votre pièce manque de lumière naturelle.',
+    pros: ['Ouverture f/1.7 (faible luminosité)', '4K HDR', 'Mise au point adaptative', 'Sans fond logiciel'],
+    cons: ['Gros gabarit', 'Prix élevé', 'Logiciel Synapse requis'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Anker',
+    name: 'PowerConf C300 Webcam 1080p IA',
+    asin: 'B0BZKGHK7L',
+    price: '59€',
+    rating: 4.4,
+    reviewCount: 680,
+    img: '💡',
+    verdict: 'Le meilleur rapport qualité/prix en entrée de gamme. Correction IA de l\'exposition et de la mise au point, angle 78°, compatible Zoom/Teams/Meet sans installation. La valeur cachée du marché.',
+    pros: ['Prix très accessible', 'IA d\'exposition intégrée', 'Plug & play', 'Micro intégré correct'],
+    cons: ['1080p uniquement', 'Pas de 4K', 'Marque moins connue'],
+  },
+];
+
+const tocItems = [
+  { id: 'top5', label: 'Top 5 webcams home office', rank: 1 },
+  { id: 'logitech-mx-brio', label: 'Logitech MX Brio — Meilleur choix', rank: 1 },
+  { id: 'logitech-c920s', label: 'Logitech C920s — Rapport Q/P', rank: 2 },
+  { id: 'guide-achat', label: 'Choisir sa webcam en 2026' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const seo = {
+  title: 'Meilleures Webcams Home Office 2026 — Comparatif 4K & 1080p',
+  description: 'Comparatif des meilleures webcams pour le télétravail 2026 : Logitech MX Brio, C920s, Elgato Facecam. Tests, prix et avis sur Amazon.fr.',
+  h1: 'Meilleures Webcams Home Office 2026',
+  intro: 'Une bonne webcam change tout en visioconférence : image nette, corrections automatiques, micro intégré. Notre sélection testée pour le télétravail.',
+  lastUpdated: LAST_UPDATED,
+  productsCount: products.length,
+  tocItems,
+};
+---
+
+<BestOf {...seo}>
+
+  <!-- ── TOP 5 ── -->
+  <section id="top5" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Top {products.length} webcams pour le télétravail</h2>
+    {products.map((product) => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        originalPrice={product.originalPrice}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- ── GUIDE D'ACHAT ── -->
+  <section id="guide-achat" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Choisir sa webcam en 2026</h2>
+
+    <div class="space-y-6">
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">📊 1080p vs 4K : vraiment utile ?</h3>
+        <p class="text-ink-soft leading-relaxed">
+          En visioconférence, Zoom et Teams plafonnent à 1080p (et souvent 720p selon la bande passante).
+          La 4K est utile si vous <strong>enregistrez des vidéos ou streamer</strong> — sinon, une bonne webcam 1080p
+          comme la C920s donne des résultats identiques en appel vidéo.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">💡 Lumière : le critère oublié</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Même la meilleure webcam donne une mauvaise image sans éclairage. Une <strong>lampe d'appoint devant vous</strong>
+          (ring light, panneau LED) améliore 10× votre image avant même de changer de webcam. Si votre bureau est sombre,
+          investissez d'abord dans l'éclairage.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">🎙️ Micro intégré ou micro externe ?</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Les micros intégrés aux webcams ont progressé mais restent inférieurs à un micro USB dédié.
+          Pour des appels pro, <strong>un micro cardioïde USB (40-80€) change plus la perception de votre voix</strong>
+          que de passer à une webcam plus chère. Associez une bonne webcam à un micro correct.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ — Webcams home office</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Logitech C920 ou MX Brio 705 — que choisir ?',
+          a: 'Si vous faites uniquement des visioconférences, la C920s (69€) suffit largement. Si vous enregistrez des vidéos, streamez ou voulez la meilleure image possible en 2026, le MX Brio vaut son prix. Commencez avec la C920s et upgradez si besoin.',
+        },
+        {
+          q: 'La webcam de mon MacBook suffit-elle ?',
+          a: 'La caméra FaceTime des MacBook depuis 2021 (1080p avec Centre de scène) est honnête pour des appels occasionnels. Mais elle manque de profondeur de champ, et sa position en hauteur d\'écran n\'est pas idéale. Pour des réunions fréquentes, une webcam externe donne une meilleure image et un angle plus naturel.',
+        },
+        {
+          q: 'Peut-on utiliser son smartphone comme webcam ?',
+          a: 'Oui — iPhone avec iOS 16+ sur Mac (Continuity Camera), ou via DroidCam/EpocCam sur Android. La qualité est souvent supérieure à une webcam entrée de gamme. C\'est une bonne solution si vous avez déjà un récent smartphone plutôt que d\'acheter une nouvelle webcam.',
+        },
+      ].map((item) => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    <strong>Liens affiliés :</strong> certains liens vers Amazon sont des liens affiliés. Si vous achetez via ces liens, nous percevons une petite commission sans surcoût pour vous. Nos recommandations sont basées uniquement sur la qualité des produits.
+  </p>
+
+</BestOf>

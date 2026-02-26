@@ -1,0 +1,212 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
+const LAST_UPDATED = '26 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'LG',
+    name: '27UP850K-W Moniteur 4K USB-C 27"',
+    asin: 'B0DTQ9SKYF',
+    price: '273€',
+    originalPrice: '349€',
+    rating: 4.6,
+    reviewCount: 1850,
+    img: '📺',
+    imgUrl: '/products/B0DTQ9SKYF.jpg',
+    highlight: true,
+    verdict: 'Le meilleur moniteur home office en 2026. Dalle IPS 4K 27" avec USB-C 96W qui charge votre MacBook ou PC portable avec un seul câble. Couverture DCI-P3 95%, HDR400, réglage hauteur + pivot.',
+    pros: ['USB-C 96W (1 seul câble)', 'Dalle IPS 4K précise', 'Réglable en hauteur', 'VESA 100x100'],
+    cons: ['Pas de webcam intégrée', 'Pied large'],
+  },
+  {
+    rank: 2,
+    badge: 'premium' as const,
+    brand: 'Dell',
+    name: 'U2722D UltraSharp 27" QHD USB-C',
+    asin: 'B08X5X1H5P',
+    price: '399€',
+    rating: 4.7,
+    reviewCount: 2340,
+    img: '🖥️',
+    verdict: 'Le choix des professionnels. Dalle IPS QHD 2560×1440 avec USB-C 90W, hub USB-A intégré et couverture sRGB 100%. Couleurs d\'une précision remarquable, idéal pour le design et la photo.',
+    pros: ['sRGB 100% / DCI-P3 95%', 'Hub USB-C + 3x USB-A', 'Garantie 3 ans Dell', 'Châssis premium'],
+    cons: ['Prix élevé', 'Pas de 4K'],
+  },
+  {
+    rank: 3,
+    badge: 'budget' as const,
+    brand: 'Samsung',
+    name: 'S27A800UJU 27" 4K USB-C',
+    asin: 'B09MXKPZ8B',
+    price: '229€',
+    rating: 4.5,
+    reviewCount: 780,
+    img: '💰',
+    verdict: 'Le meilleur rapport qualité/prix en 4K. Dalle IPS 4K 27", USB-C 65W, AMD FreeSync. Moins précis en couleurs que le LG, mais suffisant pour 99% des usages bureautiques et développement.',
+    pros: ['4K à prix accessible', 'USB-C 65W', 'Design sans bordure'],
+    cons: ['USB-C 65W (pas 96W)', 'sRGB 99% (non certifié)'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'BenQ',
+    name: 'PD2705U DesignVue 27" 4K',
+    asin: 'B0BJKWT7KC',
+    price: '449€',
+    rating: 4.6,
+    reviewCount: 430,
+    img: '🎨',
+    verdict: 'Le moniteur de référence pour les créatifs. Couverture DCI-P3 95% avec mode CAD/CAM, Thunderbolt 4, hub USB-C. Animation fluide et rendu couleur professionnel. Idéal pour design graphique.',
+    pros: ['Thunderbolt 4', 'Modes couleur pro', 'KVM switch intégré', 'Calibration usine'],
+    cons: ['Prix premium', 'Pas de FreeSync'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'LG',
+    name: '32UN880-B Ergo 32" 4K avec bras',
+    asin: 'B08R5V3YRK',
+    price: '479€',
+    rating: 4.5,
+    reviewCount: 650,
+    img: '🦾',
+    verdict: 'Le seul moniteur 4K livré avec un bras articulé intégré. Élimine le besoin d\'un bras séparé, libère de l\'espace bureau. Dalle IPS 4K avec USB-C 60W. Parfait si vous manquez de place.',
+    pros: ['Bras articulé inclus', '4K IPS', 'USB-C 60W', 'Économise de l\'espace'],
+    cons: ['Pied encombrant', 'USB-C 60W limité'],
+  },
+];
+
+const tocItems = [
+  { id: 'top5', label: 'Top 5 moniteurs home office', rank: 1 },
+  { id: 'lg-27up850', label: 'LG 27UP850K-W — Meilleur choix', rank: 1 },
+  { id: 'dell-u2722d', label: 'Dell U2722D — Premium', rank: 2 },
+  { id: 'samsung-s27a800', label: 'Samsung S27A800 — Budget', rank: 3 },
+  { id: 'guide-achat', label: 'Guide d\'achat moniteur' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const seo = {
+  title: 'Meilleurs Moniteurs Home Office 2026 — Comparatif 4K USB-C',
+  description: 'Comparatif des meilleurs moniteurs pour le télétravail en 2026 : 4K, USB-C, 27 pouces. Tests, avis et prix sur Amazon.fr.',
+  h1: 'Meilleurs Moniteurs Home Office 2026',
+  intro: 'Un bon moniteur transforme votre setup : moins de fatigue visuelle, plus de productivité. Notre sélection des meilleurs écrans pour le télétravail, testés sur la durée.',
+  lastUpdated: LAST_UPDATED,
+  productsCount: products.length,
+  tocItems,
+};
+---
+
+<BestOf {...seo}>
+
+  <!-- ── TOP 5 ── -->
+  <section id="top5" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Top {products.length} moniteurs home office</h2>
+    {products.map((product) => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        originalPrice={product.originalPrice}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        imgUrl={product.imgUrl}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- ── GUIDE D'ACHAT ── -->
+  <section id="guide-achat" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Guide d'achat : comment choisir son moniteur ?</h2>
+
+    <div class="space-y-6">
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">📐 Taille : 27" est le sweet spot</h3>
+        <p class="text-ink-soft leading-relaxed">
+          En 27 pouces, la densité de pixels en 4K (163 PPI) est idéale — ni trop fine ni trop large. En dessous de 24",
+          un écran 4K est inutile car les pixels sont trop petits. Au-dessus de 32", il faut s'éloigner ou tourner la tête.
+          <strong>Notre recommandation : 27" pour la plupart des setups.</strong>
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">🔌 USB-C : le critère numéro 1 en 2026</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Un moniteur avec USB-C (90W+) vous permet de brancher votre laptop avec <strong>un seul câble</strong> : image + charge + hub USB.
+          Fini les câbles DisplayPort + chargeur + hub séparés. La puissance idéale est 90W+ pour MacBook Pro,
+          65W suffit pour la plupart des PC portables.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">🎨 Dalle IPS vs VA vs OLED</h3>
+        <p class="text-ink-soft leading-relaxed">
+          <strong>IPS</strong> : angles de vision parfaits, couleurs précises, idéal pour bureau. <strong>VA</strong> : meilleur contraste,
+          bon pour regarder des films mais moins précis pour le travail. <strong>OLED</strong> : le summum, mais cher et risque de burn-in
+          sur contenu statique (menus, dock). Pour le home office : <strong>IPS est le meilleur choix</strong>.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">💡 Réglage hauteur : indispensable</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Un moniteur à hauteur fixe force souvent à lever ou baisser la tête, causant des douleurs cervicales.
+          <strong>Choisissez toujours un moniteur avec réglage en hauteur (ergotilt)</strong> ou prévoyez un bras de moniteur séparé
+          (entre 25€ et 60€). Le haut de l'écran doit être à hauteur des yeux.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ — Moniteurs home office</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: '4K ou QHD (2560×1440) pour le home office ?',
+          a: 'En 27", le 4K est recommandé si vous avez un Mac (les Retina scales bien) ou si vous faites du design. Pour le développement ou bureautique pure, le QHD (2560×1440) offre un excellent équilibre netteté/performance GPU et coûte moins cher.',
+        },
+        {
+          q: 'Faut-il un deuxième écran ou un grand écran ?',
+          a: 'Un ultrawide 34" (3440×1440) remplace deux moniteurs standards avec l\'avantage de ne pas avoir de bézels au milieu. Mais un setup dual 27" offre plus de flexibilité pour isoler des applications. Tout dépend de votre workflow.',
+        },
+        {
+          q: 'USB-C 65W vs 90W vs 96W — quelle différence ?',
+          a: '65W charge la plupart des PC portables et MacBook Air. 90W charge les MacBook Pro 14". 96W (comme le LG 27UP850K-W) charge même les MacBook Pro 16" en légère sous-charge. Si vous avez un MacBook Pro 16", visez 96W ou 100W.',
+        },
+      ].map((item) => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Disclosure -->
+  <p class="disclosure text-center">
+    <strong>Liens affiliés :</strong> certains liens vers Amazon sont des liens affiliés. Si vous achetez via ces liens, nous percevons une petite commission sans surcoût pour vous. Cela nous aide à maintenir ce guide gratuit et indépendant. Nos recommandations sont basées uniquement sur la qualité des produits.
+  </p>
+
+</BestOf>

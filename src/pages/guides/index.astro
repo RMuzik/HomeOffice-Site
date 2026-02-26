@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const guides = [
+  {
+    href: '/guides/ergonomie-bureau',
+    emoji: '🦴',
+    title: 'Guide ergonomie complet',
+    desc: 'Posture, hauteur de bureau, position des écrans — comment éviter les TMS et travailler sans douleur.',
+    readTime: '8 min',
+    category: 'Ergonomie',
+  },
+  {
+    href: '/guides/lumiere-naturelle',
+    emoji: '☀️',
+    title: 'Optimiser son éclairage',
+    desc: 'Lumière naturelle vs artificielle, ring light, panneau LED, BenQ ScreenBar — tout savoir sur l\'éclairage home office.',
+    readTime: '6 min',
+    category: 'Éclairage',
+  },
+];
+
+const comparatifs = [
+  { href: '/best-standing-desks', emoji: '🖥️', title: 'Bureaux assis-debout', count: '12 modèles' },
+  { href: '/best-ergonomic-chairs', emoji: '🪑', title: 'Chaises ergonomiques', count: '10 modèles' },
+  { href: '/best-monitors-home-office', emoji: '📺', title: 'Moniteurs', count: '5 modèles' },
+  { href: '/best-webcams-home-office', emoji: '📷', title: 'Webcams', count: '5 modèles' },
+  { href: '/best-desk-lamps', emoji: '💡', title: 'Lampes de bureau', count: '5 modèles' },
+  { href: '/best-headsets-home-office', emoji: '🎧', title: 'Casques audio', count: '5 modèles' },
+];
+---
+
+<Base
+  title="Guides Home Office — Ergonomie, Éclairage & Setup"
+  description="Guides pratiques pour optimiser votre home office : ergonomie, éclairage, setup productif. Conseils testés par HomeOfficeSetup.net."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- Header -->
+    <div class="mb-10">
+      <div class="text-sm font-medium text-accent mb-2">📚 Bibliothèque</div>
+      <h1 class="font-display text-4xl font-bold text-ink mb-4">Guides Home Office</h1>
+      <p class="text-ink-soft text-lg leading-relaxed max-w-2xl">
+        Nos guides approfondis pour construire un setup productif, confortable et durable.
+        Ergonomie, éclairage, organisation — tout ce qu'il faut savoir.
+      </p>
+    </div>
+
+    <!-- Guides articles -->
+    <section class="mb-14">
+      <h2 class="font-display text-xl font-bold text-ink mb-5">Guides pratiques</h2>
+      <div class="grid gap-5">
+        {guides.map((guide) => (
+          <a href={guide.href} class="group flex gap-5 items-start bg-white border border-oak-100 rounded-2xl p-6 hover:border-oak-300 hover:shadow-md transition-all">
+            <div class="text-4xl shrink-0">{guide.emoji}</div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full">{guide.category}</span>
+                <span class="text-xs text-ink-muted">{guide.readTime} de lecture</span>
+              </div>
+              <h3 class="font-display text-lg font-bold text-ink group-hover:text-accent transition-colors mb-1">{guide.title}</h3>
+              <p class="text-ink-soft text-sm leading-relaxed">{guide.desc}</p>
+            </div>
+            <svg class="w-5 h-5 text-ink-muted group-hover:text-accent shrink-0 mt-1 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Comparatifs -->
+    <section>
+      <h2 class="font-display text-xl font-bold text-ink mb-5">Comparatifs produits</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {comparatifs.map((item) => (
+          <a href={item.href} class="group flex items-center gap-3 bg-oak-50 border border-oak-100 rounded-xl p-4 hover:border-oak-300 hover:bg-white hover:shadow-sm transition-all">
+            <span class="text-2xl">{item.emoji}</span>
+            <div>
+              <div class="font-semibold text-ink text-sm group-hover:text-accent transition-colors">{item.title}</div>
+              <div class="text-xs text-ink-muted">{item.count}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Back -->
+    <div class="mt-12 pt-8 border-t border-oak-100">
+      <a href="/" class="text-ink-muted hover:text-ink text-sm flex items-center gap-2 transition-colors">
+        ← Retour à l'accueil
+      </a>
+    </div>
+
+  </div>
+</Base>

@@ -1,0 +1,200 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
+const LAST_UPDATED = '26 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'BenQ',
+    name: 'ScreenBar Plus Lampe de bureau LED',
+    asin: 'B07QCMJVTK',
+    price: '139€',
+    originalPrice: '159€',
+    rating: 4.7,
+    reviewCount: 3200,
+    img: '💡',
+    highlight: true,
+    verdict: 'La meilleure lampe de bureau home office. Se clipse sur le haut de votre écran, éclaire uniquement le bureau sans reflet sur l\'écran. Contrôleur sans fil rotatif, détecteur de luminosité automatique. Un investissement qui dure.',
+    pros: ['Pas de reflet sur l\'écran', 'Contrôleur rotatif sans fil', 'Auto-dimming', 'Réglage teinte 2700K-6500K'],
+    cons: ['Prix élevé', 'Nécessite un moniteur avec bord plat'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'BenQ',
+    name: 'ScreenBar Lampe de bureau LED',
+    asin: 'B076CNFBHM',
+    price: '89€',
+    originalPrice: '109€',
+    rating: 4.6,
+    reviewCount: 8500,
+    img: '🔆',
+    verdict: 'La ScreenBar standard sans contrôleur sans fil. Même qualité d\'éclairage que la Plus, contrôle tactile sur la lampe directement. Idéal si vous changez rarement les réglages. Le meilleur rapport qualité/prix de notre sélection.',
+    pros: ['Pas de reflet', 'Contrôle tactile intuitif', 'Très populaire', 'Moins cher que la Plus'],
+    cons: ['Contrôleur sur la lampe (pas sans fil)', 'Pas de détecteur auto'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Elgato',
+    name: 'Key Light Air LED Panel',
+    asin: 'B082QHRZFW',
+    price: '89€',
+    rating: 4.5,
+    reviewCount: 4200,
+    img: '📸',
+    verdict: 'La référence pour les visioconférences et streamers. Panneau LED 1400 lux sur pied, contrôle via app ou bouton physique. Réglage 2900K-7000K. Idéal pour s\'éclairer le visage en appel vidéo.',
+    pros: ['Éclairage visage parfait', 'Contrôle app (iOS/Android)', 'Pied réglable', 'Compatible Control Center'],
+    cons: ['Encombrant', 'Pas adapté pour éclairer le bureau'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'TaoTronics',
+    name: 'TT-DL13 LED Desk Lamp',
+    asin: 'B07NV8D9VV',
+    price: '39€',
+    rating: 4.4,
+    reviewCount: 12400,
+    img: '🏷️',
+    verdict: 'La lampe de bureau classique à prix mini. 5 modes couleur, 5 niveaux de luminosité, port USB-A de charge, minuterie 1h. Parfaite pour un budget serré ou un bureau secondaire.',
+    pros: ['Prix très accessible', 'Port USB de charge', 'Minuterie intégrée', 'Bras articulé flexible'],
+    cons: ['Pas de clip écran', 'Lumière peut créer des reflets', 'Qualité de construction basique'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Elgato',
+    name: 'Ring Light 18" Panel Circulaire',
+    asin: 'B0967Y23KD',
+    price: '139€',
+    rating: 4.4,
+    reviewCount: 1200,
+    img: '⭕',
+    verdict: 'Le ring light professionnel pour créateurs. 18 pouces, 2900K-7000K, 40W, contrôle via app. Pour les streamers, YouTubers ou ceux qui veulent le meilleur éclairage visage possible en visioconférence.',
+    pros: ['Éclairage visage circulaire', 'Très puissant (40W)', 'Contrôle app complet', 'Pied de studio inclus'],
+    cons: ['Très encombrant', 'Prix élevé', 'Surdimensionné pour usage purement bureautique'],
+  },
+];
+
+const tocItems = [
+  { id: 'top5', label: 'Top 5 lampes de bureau', rank: 1 },
+  { id: 'benq-screenbar-plus', label: 'BenQ ScreenBar Plus — Meilleur choix', rank: 1 },
+  { id: 'benq-screenbar', label: 'BenQ ScreenBar — Rapport Q/P', rank: 2 },
+  { id: 'guide-achat', label: 'Guide d\'achat éclairage bureau' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const seo = {
+  title: 'Meilleures Lampes de Bureau 2026 — Éclairage Home Office',
+  description: 'Comparatif des meilleures lampes de bureau pour le home office 2026 : BenQ ScreenBar, Elgato Key Light, ring light. Tests et prix Amazon.fr.',
+  h1: 'Meilleures Lampes de Bureau 2026',
+  intro: 'Un bon éclairage réduit la fatigue visuelle, améliore votre image en visioconférence et transforme votre espace de travail. Notre sélection testée.',
+  lastUpdated: LAST_UPDATED,
+  productsCount: products.length,
+  tocItems,
+};
+---
+
+<BestOf {...seo}>
+
+  <!-- ── TOP 5 ── -->
+  <section id="top5" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Top {products.length} lampes de bureau home office</h2>
+    {products.map((product) => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        originalPrice={product.originalPrice}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- ── GUIDE D'ACHAT ── -->
+  <section id="guide-achat" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Guide d'achat : éclairage bureau en 2026</h2>
+
+    <div class="space-y-6">
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">🖥️ Lampe clip écran vs lampe classique</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Les lampes de type <strong>ScreenBar (clip sur écran)</strong> ont un avantage majeur : elles éclairent uniquement
+          le bureau sans créer de reflets sur l'écran. Les lampes classiques sur pied peuvent créer des éblouissements.
+          Si vous passez beaucoup de temps devant un écran, une ScreenBar vaut vraiment son prix.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">🎨 Température de couleur : 2700K vs 6500K</h3>
+        <p class="text-ink-soft leading-relaxed">
+          <strong>2700K-3000K</strong> (lumière chaude) : ambiance cozy, idéal pour la créativité et les fins de journée.
+          <strong>4000K-5000K</strong> (blanc neutre) : la plus proche de la lumière naturelle, idéale pour le travail.
+          <strong>6000K-6500K</strong> (lumière froide) : stimulante, parfaite le matin. Idéalement, choisissez une lampe réglable.
+        </p>
+      </div>
+
+      <div class="bg-oak-50 rounded-2xl p-6 border border-oak-100">
+        <h3 class="font-display text-lg font-bold text-ink mb-3">📹 Éclairage visioconférence : ring light ou panneau LED ?</h3>
+        <p class="text-ink-soft leading-relaxed">
+          Pour éclairer votre visage en appel vidéo, placez une source lumineuse devant vous, à la hauteur des yeux.
+          Un <strong>ring light</strong> donne un effet yeux brillants apprécié des créateurs. Un <strong>panneau LED</strong>
+          comme l'Elgato Key Light donne une lumière plus naturelle et diffuse. Les deux fonctionnent bien.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ — Lampes de bureau</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'BenQ ScreenBar ou ScreenBar Plus — quelle différence ?',
+          a: 'La différence principale est le contrôleur rotatif sans fil de la Plus, qui permet de changer luminosité et température sans toucher la lampe. La ScreenBar standard se contrôle directement sur la lampe. La Plus intègre aussi un capteur de luminosité automatique. Si vous changez souvent les réglages, la Plus vaut les 50€ de plus.',
+        },
+        {
+          q: 'La lumière naturelle suffit-elle ?',
+          a: 'La lumière naturelle est idéale, mais elle varie au cours de la journée et crée des reflets sur les écrans si mal orientée. L\'idéal est de travailler avec la fenêtre sur le côté (pas dans le dos ni devant), et de compléter avec une lampe LED pour les jours nuageux et les soirées.',
+        },
+        {
+          q: 'Un éclairage LED peut-il fatiguer les yeux ?',
+          a: 'Les LED modernes de qualité (index CRI 90+) ne fatiguent pas plus que la lumière naturelle. Évitez les LED bas de gamme qui peuvent avoir un flickering (scintillement) invisible à l\'œil nu mais détecté par le cerveau. BenQ et Elgato garantissent un éclairage sans flickering.',
+        },
+      ].map((item) => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    <strong>Liens affiliés :</strong> certains liens vers Amazon sont des liens affiliés. Si vous achetez via ces liens, nous percevons une petite commission sans surcoût pour vous. Nos recommandations sont basées uniquement sur la qualité des produits.
+  </p>
+
+</BestOf>

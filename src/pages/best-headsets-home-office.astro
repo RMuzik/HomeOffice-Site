@@ -1,0 +1,207 @@
+---
+import BestOf from '../layouts/BestOf.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG || 'zeroalc-21';
+const LAST_UPDATED = '26 février 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Jabra',
+    name: 'Evolve2 55 MS Stéréo Bluetooth',
+    asin: 'B099MVLDNZ',
+    price: '299€',
+    originalPrice: '379€',
+    rating: 4.6,
+    reviewCount: 980,
+    img: '🎧',
+    highlight: true,
+    verdict: 'Le meilleur casque pour le télétravail intensif. ANC professionnel, micro certifié Microsoft Teams, autonomie 56h. Conçu pour les appels toute la journée. La référence des casques pro en home office.',
+    pros: ['ANC top de gamme', 'Micro certifié Teams/Zoom', 'Autonomie 56h', 'Ultra confortable (8h+)'],
+    cons: ['Prix élevé', 'Design sobre sans fioritures'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'Logitech',
+    name: 'H390 Casque USB avec micro antibruit',
+    asin: 'B000UXZQ42',
+    price: '29€',
+    rating: 4.4,
+    reviewCount: 28000,
+    img: '🎤',
+    verdict: 'La référence accessible. USB plug & play, micro unidirectionnel avec réduction de bruit, contrôles sur le câble. Le casque le plus vendu au monde pour le télétravail. Parfait pour les visios occasionnelles.',
+    pros: ['Prix imbattable', 'USB plug & play', 'Micro antibruit correct', 'Léger et confortable'],
+    cons: ['Son stéréo basique', 'Pas de Bluetooth', 'Pas d\'ANC'],
+  },
+  {
+    rank: 3,
+    badge: 'premium' as const,
+    brand: 'Sony',
+    name: 'WH-1000XM5 Casque Bluetooth ANC',
+    asin: 'B09XS7JWHH',
+    price: '279€',
+    originalPrice: '349€',
+    rating: 4.7,
+    reviewCount: 14200,
+    img: '🔇',
+    verdict: 'Le meilleur ANC du marché, période. Idéal si vous travaillez dans un open space ou avec des distractions. Qualité audio musicale excellente, confort exceptionnel. Le choix si vous mixez travail et musique.',
+    pros: ['Meilleur ANC du marché', 'Qualité audio musicale', 'Confort premium', '30h d\'autonomie'],
+    cons: ['Micro correct mais pas certifié pro', 'Prix élevé', 'Non pliable à plat'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Plantronics',
+    name: 'Poly Voyager Focus 2 UC Stéréo',
+    asin: 'B09BSJXJQ4',
+    price: '199€',
+    rating: 4.5,
+    reviewCount: 760,
+    img: '💼',
+    verdict: 'Le professionnel abordable. Micro boom certifié UC (Teams, Zoom, Webex), ANC actif, Bluetooth + dongle USB. Autonomie 19h. La valeur sûre pour les entreprises qui cherchent un casque certifié sans payer Jabra.',
+    pros: ['Certifié UC Teams/Zoom', 'ANC actif', 'Dongle USB inclus', 'Micro boom orientable'],
+    cons: ['Design pro sans charme', 'Autonomie 19h (moins que Jabra)', 'Poids moyen'],
+  },
+  {
+    rank: 5,
+    badge: null,
+    brand: 'Logitech',
+    name: 'Zone Wired USB Casque Teams',
+    asin: 'B08BVWSCBZ',
+    price: '99€',
+    rating: 4.4,
+    reviewCount: 1850,
+    img: '🔌',
+    verdict: 'Le meilleur rapport qualité/prix en filaire pro. Certifié Teams et Zoom, micro antibruit double, USB-A + adaptateur USB-C. Aucune batterie à gérer, son constant. Pour les télétravailleurs qui préfèrent le filaire.',
+    pros: ['Certifié Teams/Zoom', 'Micro antibruit double', 'USB-C inclus', 'Pas de batterie'],
+    cons: ['Filaire uniquement', 'Design assez basique', 'Câble peut gêner'],
+  },
+];
+
+const tocItems = [
+  { id: 'top5', label: 'Top 5 casques home office', rank: 1 },
+  { id: 'jabra-evolve2', label: 'Jabra Evolve2 55 — Pro', rank: 1 },
+  { id: 'logitech-h390', label: 'Logitech H390 — Budget', rank: 2 },
+  { id: 'sony-xm5', label: 'Sony WH-1000XM5 — ANC', rank: 3 },
+  { id: 'guide-achat', label: 'Filaire vs Bluetooth vs ANC' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const seo = {
+  title: 'Meilleurs Casques Home Office 2026 — Comparatif Bluetooth & USB',
+  description: 'Comparatif des meilleurs casques pour le télétravail 2026 : Jabra Evolve2, Sony XM5, Logitech. Tests micro, ANC et confort. Prix Amazon.fr.',
+  h1: 'Meilleurs Casques Home Office 2026',
+  intro: 'Pour le télétravail, un casque fait la différence : réduction de bruit, micro professionnel, confort sur la durée. Notre sélection des meilleurs modèles testés.',
+  lastUpdated: LAST_UPDATED,
+  productsCount: products.length,
+  tocItems,
+};
+---
+
+<BestOf {...seo}>
+
+  <!-- ── TOP 5 ── -->
+  <section id="top5" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Top {products.length} casques pour le télétravail</h2>
+    {products.map((product) => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        originalPrice={product.originalPrice}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+      />
+    ))}
+  </section>
+
+  <!-- ── GUIDE D'ACHAT ── -->
+  <section id="guide-achat" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Filaire, Bluetooth ou ANC — que choisir ?</h2>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-oak-50 rounded-2xl p-5 border border-oak-100">
+        <div class="text-2xl mb-2">🔌</div>
+        <h3 class="font-display font-bold text-ink mb-2">Casque filaire USB</h3>
+        <p class="text-ink-soft text-sm leading-relaxed">
+          Son constant, pas de batterie, prix accessible. Idéal si vous restez assis à votre bureau.
+          <strong>Recommandé pour : télétravail sédentaire.</strong>
+        </p>
+      </div>
+      <div class="bg-oak-50 rounded-2xl p-5 border border-oak-100">
+        <div class="text-2xl mb-2">📡</div>
+        <h3 class="font-display font-bold text-ink mb-2">Bluetooth</h3>
+        <p class="text-ink-soft text-sm leading-relaxed">
+          Liberté de mouvement, prendre des appels en marchant. Batterie à gérer (30-56h d'autonomie sur les bons modèles).
+          <strong>Recommandé pour : ceux qui bougent souvent.</strong>
+        </p>
+      </div>
+      <div class="bg-oak-50 rounded-2xl p-5 border border-oak-100">
+        <div class="text-2xl mb-2">🔇</div>
+        <h3 class="font-display font-bold text-ink mb-2">ANC (réduction active)</h3>
+        <p class="text-ink-soft text-sm leading-relaxed">
+          Isole du bruit ambiant sans bouchons. Essentiel en open space ou si vous habitez en ville.
+          <strong>Recommandé pour : environnements bruyants.</strong>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 bg-amber-50 rounded-2xl p-5 border border-amber-100">
+      <p class="text-ink-soft leading-relaxed">
+        <strong>💡 Notre conseil :</strong> Pour le télétravail pur, le micro est plus important que la qualité d'écoute.
+        Un casque certifié Teams/Zoom avec bon micro boom est préférable à un casque HiFi avec micro médiocre.
+        Vos interlocuteurs entendent votre voix — ils n'entendent pas votre musique.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">FAQ — Casques home office</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Casque gaming vs casque bureau professionnel — quelle différence ?',
+          a: 'Les casques gaming privilégient la spatialisation audio et les basses (pour les jeux). Les casques pro bureau sont optimisés pour les voix et la clareté en visioconférence. Pour le télétravail, un casque pro (Jabra, Plantronics) est préférable : micro certifié, confort 8h+, certifié Teams/Zoom.',
+        },
+        {
+          q: 'Le Jabra Evolve2 55 vaut-il vraiment 300€ ?',
+          a: 'Oui, si vous passez plus de 4h par jour en appel vidéo. La qualité du micro (vos collègues vous entendent parfaitement même dans un environnement bruyant), le confort exceptionnel et l\'autonomie 56h justifient le prix pour une utilisation professionnelle intensive.',
+        },
+        {
+          q: 'Un casque avec micro ou un micro externe séparé ?',
+          a: 'Pour un setup minimaliste, un bon casque avec micro boom (Jabra, Logitech Zone) suffit. Pour la qualité maximale en streaming ou podcast, un micro USB cardioïde séparé (Blue Yeti, Rode NT-USB) est supérieur. Pour le télétravail standard, le casque intégré est largement suffisant.',
+        },
+      ].map((item) => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    <strong>Liens affiliés :</strong> certains liens vers Amazon sont des liens affiliés. Si vous achetez via ces liens, nous percevons une petite commission sans surcoût pour vous. Nos recommandations sont basées uniquement sur la qualité des produits.
+  </p>
+
+</BestOf>
