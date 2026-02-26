@@ -9,7 +9,7 @@ export interface Props {
   productsCount?: number;
 }
 
-const { items, lastUpdated, productsCount = items.length } = Astro.props;
+const { items = [], lastUpdated, productsCount = items.length } = Astro.props;
 ---
 
 <div class="rounded-2xl bg-oak-50 border border-oak-200 overflow-hidden">
