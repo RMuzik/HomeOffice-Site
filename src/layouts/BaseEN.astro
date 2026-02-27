@@ -18,6 +18,7 @@ const {
 // Strip /en prefix for canonical URL on homeofficesetup.net
 const rawPath = Astro.url.pathname.replace(/^\/en/, '') || '/';
 const canonicalURL = canonical ?? `https://homeofficesetup.net${rawPath}`;
+const hreflangFR = `https://homeofficesetup.pro${rawPath}`;
 const siteTitle = title === 'Home'
   ? 'HomeOfficeSetup.net — The Perfect Home Office, Tested & Reviewed'
   : `${title} — HomeOfficeSetup.net`;
@@ -34,6 +35,11 @@ const siteTitle = title === 'Home'
   <title>{siteTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+
+  <!-- Hreflang — EN/FR cross-domain -->
+  <link rel="alternate" hreflang="en" href={canonicalURL} />
+  <link rel="alternate" hreflang="fr" href={hreflangFR} />
+  <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
   <!-- Open Graph -->
   <meta property="og:title" content={siteTitle} />

@@ -1,12 +1,13 @@
 User-agent: *
 Allow: /
 
-# Bloquer les pages utilitaires
-Disallow: /sitemap
-Disallow: /affiliate-disclosure
+# Block internal EN routing paths (Vercel handles these transparently)
+Disallow: /en/
 
-# Sitemap
+# EN domain sitemap (homeofficesetup.net)
+Sitemap: https://homeofficesetup.net/sitemap.xml
+
+# FR domain sitemap (homeofficesetup.pro)
 Sitemap: https://homeofficesetup.pro/sitemap-index.xml
 
-# Crawl-delay raisonnable
 Crawl-delay: 1
