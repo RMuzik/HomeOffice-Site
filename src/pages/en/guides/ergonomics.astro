@@ -1,0 +1,198 @@
+---
+import BaseEN from '../../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Office Ergonomics Guide 2026 — Set Up Your Workstation Correctly"
+  description="Complete ergonomics guide for your home office. Correct monitor height, chair settings, keyboard position, and lighting to prevent pain and boost productivity."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <a href="/guides" class="hover:text-ink transition-colors">Guides</a>
+        <span class="opacity-40">/</span>
+        <span>Ergonomics</span>
+      </nav>
+      <div class="max-w-3xl">
+        <span class="badge bg-electric/10 text-electric border border-electric/20 mb-4">Guide · 8 min read</span>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight mb-4">
+          The Complete Home Office Ergonomics Guide
+        </h1>
+        <p class="text-lg text-ink-muted leading-relaxed">
+          Poor ergonomics cause back pain, neck stiffness, wrist injuries, and eye strain — problems that compound over years of remote work. Here's exactly how to set up your workstation to work comfortably for the long term.
+        </p>
+        <div class="flex items-center gap-2 mt-4 text-sm text-ink-muted">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Updated February 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid lg:grid-cols-[1fr_280px] gap-10 items-start">
+
+      <!-- Main content -->
+      <div class="min-w-0 space-y-12">
+
+        <!-- Monitor -->
+        <section id="monitor">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🖥️</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Monitor Position</h2>
+          </div>
+          <div class="bg-oak-50 rounded-2xl p-6 mb-5">
+            <p class="font-semibold text-ink mb-3">The rules:</p>
+            <ul class="space-y-2 text-sm text-ink-muted">
+              {[
+                'Top of the screen at eye level or 1–2 inches below',
+                'Distance: 20–28 inches (arm\'s length) from your face',
+                'Slight downward tilt (10–20°) to reduce neck extension',
+                'Center of screen should be slightly below eye level',
+                'Avoid placing monitor where it catches window glare',
+              ].map(rule => (
+                <li class="flex items-start gap-2">
+                  <span class="text-electric shrink-0 mt-0.5">→</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p class="text-ink-muted leading-relaxed">
+            If you're using a laptop, its built-in screen is almost always too low. A monitor arm or laptop stand combined with an external keyboard solves this immediately. Even a $15 laptop stand makes a visible difference in posture.
+          </p>
+          <div class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-ink-muted">
+            <strong>💡 Tip:</strong> Put a sticky note at eye level on your wall. If your monitor top is below it, raise your monitor. This simple check takes 10 seconds.
+          </div>
+        </section>
+
+        <!-- Chair -->
+        <section id="chair">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🪑</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Chair Setup</h2>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4 mb-5">
+            {[
+              { label: 'Seat height', text: 'Feet flat on floor, thighs parallel to ground (or slight downward slope). Knees at 90–100°.' },
+              { label: 'Seat depth', text: '2–3 fingers of space between the seat edge and the back of your knees. Too deep = pressure on thighs.' },
+              { label: 'Lumbar support', text: 'Position lumbar support to fill the curve of your lower back. You should feel gentle support, not a push.' },
+              { label: 'Armrests', text: 'Set at elbow height when shoulders are relaxed. They should support your forearms without raising your shoulders.' },
+            ].map(item => (
+              <div class="bg-oak-50 rounded-xl p-4">
+                <p class="font-semibold text-ink text-sm mb-1">{item.label}</p>
+                <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <p class="text-ink-muted leading-relaxed">
+            If your feet don't reach the floor after raising your chair to the correct height, use a footrest. This is cheaper than buying a new chair and resolves the issue completely.
+          </p>
+        </section>
+
+        <!-- Keyboard & Mouse -->
+        <section id="keyboard">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">⌨️</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Keyboard & Mouse</h2>
+          </div>
+          <div class="bg-oak-50 rounded-2xl p-6 mb-5">
+            <ul class="space-y-2 text-sm text-ink-muted">
+              {[
+                'Keyboard at elbow height — forearms nearly parallel to the floor',
+                'Slight negative tilt (keyboard angled away from you) is better for wrists than positive tilt',
+                'Mouse directly beside the keyboard at the same height — reaching forward strains the shoulder',
+                'Wrists neutral while typing — not bent up, down, or sideways',
+                'Consider a wrist rest for breaks between typing, but don\'t rest wrists while actively typing',
+              ].map(rule => (
+                <li class="flex items-start gap-2">
+                  <span class="text-electric shrink-0 mt-0.5">→</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p class="text-ink-muted leading-relaxed">
+            A wireless keyboard and mouse also let you position them independently of your laptop's position — which is important if you're using a laptop stand to raise your screen.
+          </p>
+        </section>
+
+        <!-- Desk -->
+        <section id="desk">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🪵</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Desk Height</h2>
+          </div>
+          <p class="text-ink-muted leading-relaxed mb-4">
+            Desk height should be set so your elbows are at roughly 90° when your hands rest on the keyboard. For most adults, this is between 27–30 inches (68–76 cm). If your desk is fixed at the wrong height, a monitor arm, keyboard tray, or adjustable chair can compensate.
+          </p>
+          <div class="p-4 bg-electric/5 border border-electric/20 rounded-xl text-sm">
+            <strong class="text-electric">Standing desk tip:</strong> <span class="text-ink-muted">When standing, raise the desk so elbows remain at 90°. This is typically 3–5 inches higher than your sitting position. Alternate every 30–60 minutes — don't stand all day.</span>
+          </div>
+        </section>
+
+        <!-- Eyes -->
+        <section id="eyes">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">👁️</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Eye Strain Prevention</h2>
+          </div>
+          <div class="bg-oak-50 rounded-2xl p-6">
+            <ul class="space-y-2 text-sm text-ink-muted">
+              {[
+                '20-20-20 rule: every 20 minutes, look 20 feet away for 20 seconds',
+                'Monitor brightness should match ambient room brightness (not brighter, not darker)',
+                'Enable Night Shift / f.lux / dark mode in evenings to reduce blue light',
+                'Position monitor perpendicular to windows — not facing them, not with them directly behind you',
+                'Blink consciously — screen work reduces blink rate by 50–70%',
+              ].map(rule => (
+                <li class="flex items-start gap-2">
+                  <span class="text-electric shrink-0 mt-0.5">→</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-ink text-cream rounded-2xl p-8">
+          <h2 class="font-display text-xl font-bold mb-3">Ready to upgrade your chair or desk?</h2>
+          <p class="text-cream/70 text-sm mb-5">We've tested and ranked the best ergonomic products at every budget.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/best-ergonomic-chairs" class="btn-primary text-sm py-2 px-4">Best Ergonomic Chairs →</a>
+            <a href="/best-standing-desks" class="btn-secondary text-sm py-2 px-4 bg-white/10 text-cream border-white/20 hover:bg-white/20">Best Standing Desks →</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block sticky top-24 space-y-4">
+        <div class="bg-oak-50 rounded-2xl p-5">
+          <p class="font-display font-bold text-ink text-sm mb-3">In this guide</p>
+          <ul class="space-y-2 text-sm">
+            {[
+              { href: '#monitor', label: '🖥️ Monitor Position' },
+              { href: '#chair', label: '🪑 Chair Setup' },
+              { href: '#keyboard', label: '⌨️ Keyboard & Mouse' },
+              { href: '#desk', label: '🪵 Desk Height' },
+              { href: '#eyes', label: '👁️ Eye Strain' },
+            ].map(item => (
+              <li>
+                <a href={item.href} class="text-ink-muted hover:text-electric transition-colors">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-amber-50 border border-amber-200 p-4">
+          <p class="text-xs text-amber-800 leading-relaxed">
+            <strong>💡 Quick win:</strong> The single highest-impact change for most people is raising their monitor. A $30 monitor arm delivers more ergonomic benefit than most expensive chairs.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseEN>

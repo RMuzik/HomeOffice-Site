@@ -1,0 +1,89 @@
+---
+import BaseEN from '../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Affiliate Disclosure — HomeOfficeSetup.net"
+  description="Affiliate disclosure for HomeOfficeSetup.net. We participate in Amazon's affiliate program and earn commissions on qualifying purchases."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <span>Affiliate Disclosure</span>
+      </nav>
+      <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink leading-tight mb-4">
+        Affiliate Disclosure
+      </h1>
+      <p class="text-sm text-ink-muted">Last updated: February 2026</p>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <div class="space-y-8 text-ink-muted leading-relaxed">
+
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+        <p class="font-semibold text-ink mb-1">In plain English:</p>
+        <p>
+          Some links on this site are affiliate links. If you click them and make a purchase, we earn a small commission — at no extra cost to you. This helps fund our work. Our recommendations are always independent.
+        </p>
+      </div>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Amazon Associates Program</h2>
+        <p>
+          HomeOfficeSetup.net is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.
+        </p>
+        <p class="mt-3">
+          As an Amazon Associate, we earn from qualifying purchases. This means that when you click on certain links on our site and make a purchase on Amazon, we receive a small commission.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">How This Affects Our Recommendations</h2>
+        <p>
+          Our editorial process is entirely independent of our affiliate relationships. We do not:
+        </p>
+        <ul class="mt-3 space-y-1 list-none">
+          {[
+            'Rank products based on commission rates',
+            'Accept payment for product placement',
+            'Receive free products in exchange for positive reviews',
+            'Modify our recommendations based on affiliate partner requests',
+          ].map(item => (
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 shrink-0 mt-0.5">✗</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">
+          We may earn identical commissions on all Amazon products (the rate is category-based, not product-specific), which means recommending a cheaper product earns us less — yet we consistently do so when it's the better value for you.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Identifying Affiliate Links</h2>
+        <p>
+          Affiliate links on this site are labeled with <code class="bg-oak-100 px-1 rounded text-sm">rel="sponsored"</code> in the HTML. All "View on Amazon" or "Check price on Amazon" buttons are affiliate links. Prices displayed are indicative and may differ from the current Amazon price.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">FTC Compliance</h2>
+        <p>
+          In accordance with the Federal Trade Commission's guidelines (16 CFR Part 255), we disclose that we have material connections with Amazon through the affiliate program described above. This disclosure appears at the bottom of all relevant pages and within this dedicated disclosure page.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Questions</h2>
+        <p>
+          If you have any questions about our affiliate relationships or how they may affect our content, please contact us at <strong>hello@homeofficesetup.net</strong>.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</BaseEN>

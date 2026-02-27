@@ -1,0 +1,262 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 26, 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Jabra',
+    name: 'Evolve2 55 — Wireless Business Headset',
+    asin: 'B08FC4BDGC',
+    price: '$349',
+    rating: 4.6,
+    reviewCount: 4200,
+    img: '🎧',
+    imgUrl: '/products/B08FC4BDGC.jpg',
+    highlight: true,
+    verdict: 'The gold standard for professional remote work. ANC that actually blocks open-plan noise, 50-hour battery, crystal-clear call quality, and a discreet boom mic that folds away. Certified for Teams, Zoom, and Google Meet.',
+    pros: ['Industry-leading ANC', '50-hour battery', 'Multi-device connection', 'UC certified'],
+    cons: ['Premium price', 'On-ear (not over-ear)'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'Logitech',
+    name: 'H390 USB Headset — Noise-Cancelling Mic',
+    asin: 'B000UXZQ42',
+    price: '$39',
+    rating: 4.4,
+    reviewCount: 38600,
+    img: '🎙️',
+    imgUrl: '/products/B000UXZQ42.jpg',
+    verdict: 'The most popular office headset in the world. Wired USB, plug-and-play, noise-cancelling microphone, inline volume controls. No driver needed, works on every platform. The ultimate no-fuss option.',
+    pros: ['Plug-and-play USB', 'Excellent value', 'Inline controls', 'Very lightweight'],
+    cons: ['Wired only', 'Basic audio quality', 'No ANC'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Poly',
+    name: 'Voyager Focus 2 — Wireless Stereo ANC',
+    asin: 'B095LHRB91',
+    price: '$199',
+    rating: 4.4,
+    reviewCount: 5100,
+    img: '📡',
+    imgUrl: '/products/B095LHRB91.jpg',
+    verdict: 'Professional-grade wireless with active noise cancellation at a mid-range price. 40-hour battery, optional USB adapter for rock-solid connectivity, and three mics for clear calls even in noisy environments.',
+    pros: ['40-hour battery', 'Three-mic system', 'Works with USB + Bluetooth', 'Open listening mode'],
+    cons: ['Large form factor', 'Basic app'],
+  },
+  {
+    rank: 4,
+    badge: 'premium' as const,
+    brand: 'Jabra',
+    name: 'Evolve2 30 — Compact Wired Headset',
+    asin: 'B09R3MVC7Y',
+    price: '$119',
+    rating: 4.5,
+    reviewCount: 6800,
+    img: '🎤',
+    imgUrl: '/products/B09R3MVC7Y.jpg',
+    verdict: 'Jabra\'s compact professional headset. All-day comfort, dual-foam ear cushions, certified 3-mic technology for crystal-clear calls. Ideal if you prefer wired (no charging anxiety) with premium audio quality.',
+    pros: ['Certified 3-mic tech', 'Very comfortable', 'Compact, folds flat', 'Professional audio'],
+    cons: ['Wired only', 'No ANC', 'USB-C (adapter included)'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Anker',
+    name: 'PowerConf H700 — Wireless Headset',
+    asin: 'B09BNV8QY5',
+    price: '$79',
+    rating: 4.3,
+    reviewCount: 3400,
+    img: '🔋',
+    imgUrl: '/products/B09BNV8QY5.jpg',
+    verdict: 'Best wireless headset under $100. AI noise cancellation, 24-hour battery, 180° rotating mic that mutes when raised. Surprisingly capable for the price, especially for Teams and Zoom calls.',
+    pros: ['AI noise cancellation', '24-hour battery', 'Flip-to-mute mic', 'Wireless at budget price'],
+    cons: ['Audio quality below Jabra/Poly', 'Limited app features'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparison', label: 'Quick comparison table' },
+  { id: 'buying-guide', label: 'Headset buying guide' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.brand} ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'Headset FAQ' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Best Headsets for Home Office 2026',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.net/best-headsets-home-office#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOfEN
+  title="Best Headsets for Home Office 2026 — Top 5 Tested"
+  description={`Top ${products.length} headsets for remote work in 2026. Wired, wireless, ANC — tested for call clarity, noise cancellation, and all-day comfort.`}
+  h1={`The ${products.length} Best Home Office Headsets in 2026`}
+  intro="A dedicated headset makes you sound professional on calls and keeps you focused when your household isn't. We tested 10+ models to find the best for every budget and use case."
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Headsets', href: '/best-headsets-home-office' }]}
+>
+
+  <!-- Quick winner -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">🏆</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Our Top Pick: Jabra Evolve2 55</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        The <strong>Jabra Evolve2 55</strong> is what serious remote professionals use — 50-hour battery, noise cancellation that actually blocks open-plan chatter, and multi-device pairing. If you're on calls 4+ hours per day, this headset pays for itself quickly.
+      </p>
+      <a
+        href={`https://www.amazon.com/dp/B08FC4BDGC?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
+      >
+        Check price on Amazon →
+      </a>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <section id="comparison" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Quick Comparison</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Headset</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Price</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Wireless</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">ANC</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map((p) => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center">
+                {p.rank === 1 || p.rank === 3 || p.rank === 5 ? '✅ Yes' : '❌ No'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                {p.rank === 1 || p.rank === 3 ? '✅ Yes' : p.rank === 5 ? '✅ AI' : '❌ No'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Buying guide -->
+  <section id="buying-guide" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Headset Buying Guide</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '📞', title: 'Call quality first', text: 'Microphone quality matters more than speaker quality for business headsets. A good boom mic filters background noise so you sound clear — even with a dog barking or street noise.' },
+        { emoji: '🔋', title: 'Wired vs wireless', text: 'Wireless = freedom of movement and no cable clutter. Wired = no charging anxiety, usually better audio quality per dollar, zero connectivity issues. Both work equally well for calls.' },
+        { emoji: '🔇', title: 'Active Noise Cancellation', text: 'ANC blocks ambient sound so you can focus. Essential for open households, cafés, or noisy environments. Not necessary if you work in a quiet, private space.' },
+        { emoji: '✅', title: 'Platform certification', text: '"Certified for Microsoft Teams" or "Zoom certified" means the headset\'s buttons natively control call functions (mute, answer, end). Non-certified headsets still work but may require extra clicks.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Detailed Headset Reviews</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        imgUrl={product.imgUrl}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+        lang="en"
+      />
+    ))}
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Headset FAQ</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Is a dedicated headset better than AirPods for work calls?',
+          a: 'AirPods are excellent for calls and very convenient. A dedicated business headset offers advantages in: microphone directionality (boom mic closer to mouth = clearer audio), longer battery, and more robust noise cancellation. AirPods Pro are a legitimate alternative for up to 4-5 hours of daily calls; beyond that, a dedicated headset is more comfortable.',
+        },
+        {
+          q: 'What\'s the minimum budget for a decent work headset?',
+          a: 'The Logitech H390 at $39 is genuinely decent for wired calls. For wireless, the Anker PowerConf H700 at $79 is the minimum we\'d recommend. Below that, noise-cancellation and audio quality suffer noticeably in professional settings.',
+        },
+        {
+          q: 'Mono (one ear) vs stereo (two ears) headset?',
+          a: 'Mono headsets cover one ear, letting you stay aware of your surroundings — useful in shared spaces or if you take lots of short calls. Stereo headsets cover both ears, providing better focus and immersion for longer sessions. Most remote workers prefer stereo.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

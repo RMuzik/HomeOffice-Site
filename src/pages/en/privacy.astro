@@ -1,0 +1,87 @@
+---
+import BaseEN from '../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Privacy Policy — HomeOfficeSetup.net"
+  description="Privacy policy for HomeOfficeSetup.net. How we handle your data, cookies, and analytics."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <span>Privacy Policy</span>
+      </nav>
+      <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink leading-tight mb-4">
+        Privacy Policy
+      </h1>
+      <p class="text-sm text-ink-muted">Last updated: February 2026</p>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <div class="space-y-8 text-ink-muted leading-relaxed">
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Overview</h2>
+        <p>
+          HomeOfficeSetup.net ("we", "our", "the site") is a static content site. We are committed to protecting your privacy. This policy explains what limited data we may collect and how it is used.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Data We Collect</h2>
+        <p class="mb-3">We collect minimal data:</p>
+        <ul class="space-y-2">
+          {[
+            { title: 'Analytics', text: 'We may use anonymous, aggregate analytics (page views, traffic sources) to understand which content is useful. No personally identifiable information is collected.' },
+            { title: 'Server logs', text: 'Standard server logs (IP address, browser type, referring URL) may be automatically collected by our hosting provider (Vercel). These are used solely for security and performance purposes.' },
+            { title: 'No registration', text: 'We do not offer user accounts, newsletters, or any form that collects personal information.' },
+          ].map(item => (
+            <li class="flex items-start gap-2">
+              <span class="text-electric shrink-0 mt-0.5">→</span>
+              <span><strong class="text-ink">{item.title}:</strong> {item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Cookies</h2>
+        <p>
+          We do not place our own cookies. Third-party services we use (Amazon affiliate links, analytics) may set cookies according to their own privacy policies. When you click an Amazon link, Amazon's cookie policy applies.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Third-Party Links</h2>
+        <p>
+          This site contains links to Amazon and other third-party websites. We are not responsible for the privacy practices of those sites. We recommend reviewing the privacy policy of any external site you visit.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Amazon Affiliate Program</h2>
+        <p>
+          As an Amazon Associate, when you click our affiliate links, Amazon may track your purchase using cookies. This allows them to attribute any resulting commission to us. Amazon's privacy policy governs this tracking: <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496" class="text-electric hover:underline" target="_blank" rel="noopener">Amazon Privacy Notice</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Your Rights</h2>
+        <p>
+          Since we do not collect personal data, there is generally nothing to access, correct, or delete. If you have questions about data held by our hosting provider (Vercel), please review <a href="https://vercel.com/legal/privacy-policy" class="text-electric hover:underline" target="_blank" rel="noopener">Vercel's Privacy Policy</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-display text-xl font-bold text-ink mb-3">Contact</h2>
+        <p>
+          For privacy-related questions: <strong>hello@homeofficesetup.net</strong>
+        </p>
+      </section>
+
+    </div>
+  </div>
+</BaseEN>

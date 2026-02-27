@@ -1,0 +1,102 @@
+---
+import BaseEN from '../../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Home Office Guides 2026 — Expert Tips & How-Tos"
+  description="Expert guides to optimize your home office: ergonomics, lighting, cable management, productivity setups and more."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <span>Guides</span>
+      </nav>
+      <div class="max-w-2xl">
+        <span class="badge bg-electric/10 text-electric border border-electric/20 mb-4">Expert Guides</span>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight mb-4">
+          Home Office Guides
+        </h1>
+        <p class="text-lg text-ink-muted leading-relaxed">
+          In-depth guides to help you optimize every aspect of your workspace — from ergonomics and lighting to cable management and productivity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">All Guides</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {[
+        {
+          href: '/guides/ergonomics',
+          emoji: '🪑',
+          title: 'Complete Ergonomics Guide',
+          description: 'How to set up your workstation to prevent pain, fatigue, and long-term injury. Monitor height, chair depth, keyboard angle — everything explained.',
+          tags: ['Ergonomics', 'Health'],
+          readTime: '8 min read',
+        },
+        {
+          href: '/guides/natural-lighting',
+          emoji: '💡',
+          title: 'Optimize Your Workspace Lighting',
+          description: 'The right lighting reduces eye strain, improves focus, and makes video calls look professional. Here\'s the exact setup we recommend.',
+          tags: ['Lighting', 'Productivity'],
+          readTime: '6 min read',
+        },
+        {
+          href: '/home-office-setup',
+          emoji: '🏡',
+          title: 'Complete Home Office Setup Guide',
+          description: 'From zero to fully equipped: the complete guide to building a productive home office at every budget level.',
+          tags: ['Setup', 'All levels'],
+          readTime: '12 min read',
+        },
+        {
+          href: '/budget-home-office-setup',
+          emoji: '💰',
+          title: 'Budget Home Office Under $500',
+          description: 'Build a professional-grade home office for under $500. Prioritized shopping list with the biggest-impact items first.',
+          tags: ['Budget', 'Beginners'],
+          readTime: '7 min read',
+        },
+      ].map(guide => (
+        <a
+          href={guide.href}
+          class="group bg-white rounded-2xl border border-oak-100 p-6 hover:shadow-md hover:border-electric/30 transition-all"
+        >
+          <div class="text-4xl mb-4">{guide.emoji}</div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            {guide.tags.map(tag => (
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-oak-50 text-ink-muted uppercase tracking-wide">{tag}</span>
+            ))}
+          </div>
+          <h3 class="font-display text-lg font-bold text-ink mb-2 group-hover:text-electric transition-colors leading-tight">
+            {guide.title}
+          </h3>
+          <p class="text-sm text-ink-muted leading-relaxed mb-3">{guide.description}</p>
+          <p class="text-xs text-ink-muted">{guide.readTime}</p>
+        </a>
+      ))}
+    </div>
+
+    <section class="bg-electric/5 rounded-2xl p-8 text-center">
+      <p class="text-2xl mb-3">🏆</p>
+      <h2 class="font-display text-2xl font-bold text-ink mb-3">Looking for product recommendations?</h2>
+      <p class="text-ink-muted mb-5 max-w-md mx-auto">
+        Our buying guides cover the best products in every category, tested and ranked.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {[
+          { href: '/best-standing-desks', label: 'Standing Desks' },
+          { href: '/best-ergonomic-chairs', label: 'Ergonomic Chairs' },
+          { href: '/best-monitors-home-office', label: 'Monitors' },
+        ].map(link => (
+          <a href={link.href} class="btn-primary text-sm py-2 px-4">{link.label} →</a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseEN>

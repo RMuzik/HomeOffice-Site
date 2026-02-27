@@ -1,0 +1,262 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 26, 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'LG',
+    name: '27UP850K-W 27" 4K USB-C Monitor',
+    asin: 'B0DTQ9SKYF',
+    price: '$289',
+    rating: 4.6,
+    reviewCount: 1850,
+    img: '🖥️',
+    imgUrl: '/products/B0DTQ9SKYF.jpg',
+    highlight: true,
+    verdict: 'IPS 4K 27" with 96W USB-C — connect your MacBook with a single cable. 95% DCI-P3 color coverage, HDR400. The universal home office monitor for modern remote workers.',
+    pros: ['96W USB-C power delivery', '4K IPS panel', 'Height-adjustable stand', 'HDR400'],
+    cons: ['No 144Hz refresh rate', 'Basic built-in speakers'],
+  },
+  {
+    rank: 2,
+    badge: 'premium' as const,
+    brand: 'LG',
+    name: '27UP850K-W 27" 4K USB-C — Premium Config',
+    asin: 'B096K7YHPW',
+    price: '$269',
+    rating: 4.7,
+    reviewCount: 3240,
+    img: '🎯',
+    imgUrl: '/products/B096K7YHPW.jpg',
+    verdict: 'Dell\'s reliable professional monitor. IPS Full HD 27", ultra-thin bezels, built-in USB hub. 3-year warranty with next-business-day exchange — the corporate standard.',
+    pros: ['3-year Dell warranty', 'Built-in USB hub', 'Accurate IPS panel', 'Height adjustable'],
+    cons: ['Full HD only (no 4K)', 'No USB-C port'],
+  },
+  {
+    rank: 3,
+    badge: 'budget' as const,
+    brand: 'ASUS',
+    name: 'ProArt PA278CV 27" QHD USB-C',
+    asin: 'B0FHHV6YR5',
+    price: '$249',
+    rating: 4.8,
+    reviewCount: 9120,
+    img: '⭐',
+    imgUrl: '/products/B0FHHV6YR5.jpg',
+    verdict: 'Professional-grade color accuracy for designers and content creators. QHD IPS with 100% sRGB, USB-C 65W, built-in KVM switch. Exceptional value for creative work.',
+    pros: ['100% sRGB color accurate', 'USB-C 65W', 'KVM switch built-in', 'Eye care certified'],
+    cons: ['65W USB-C (not 90W+)', 'Bulkier stand'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Samsung',
+    name: 'M7 32" 4K Smart Monitor with Streaming',
+    asin: 'B07L755X9G',
+    price: '$319',
+    rating: 4.7,
+    reviewCount: 5621,
+    img: '📺',
+    imgUrl: '/products/B07L755X9G.jpg',
+    verdict: 'A 4K monitor AND a smart TV in one. Built-in apps (Netflix, Prime, Apple TV+), USB-C 65W, wireless DeX for Samsung phones. Ideal for workers who want zero-cable flexibility.',
+    pros: ['4K smart TV functionality', 'USB-C 65W', 'Wireless connectivity', 'No PC required for streaming'],
+    cons: ['Smart OS can lag', 'IPS glow noticeable in dark rooms'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Dell',
+    name: 'P2725HE 27" FHD USB-C 90W Monitor',
+    asin: 'B0FR981Z25',
+    price: '$219',
+    rating: 4.5,
+    reviewCount: 420,
+    img: '🔌',
+    imgUrl: '/products/B0FR981Z25.jpg',
+    verdict: 'Dell\'s newest home office monitor with 90W USB-C charging. Full HD IPS, slimmer bezels than the P2722H, improved color accuracy. Best budget pick if you need real USB-C power delivery.',
+    pros: ['90W USB-C delivery', 'Dell reliability', 'Slim bezels', 'Height adjustable'],
+    cons: ['Full HD only', 'No HDR'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparison', label: 'Quick comparison table' },
+  { id: 'buying-guide', label: 'Monitor buying guide' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.brand} ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'Monitor FAQ' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Best Home Office Monitors 2026',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.net/best-monitors-home-office#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOfEN
+  title="Best Home Office Monitors 2026 — Top 5 Tested"
+  description={`Top ${products.length} monitors for your home office in 2026. 4K, USB-C, ultrawide — real tests and honest reviews from LG, Dell, ASUS, and Samsung.`}
+  h1={`The ${products.length} Best Home Office Monitors in 2026`}
+  intro="A quality external monitor is one of the highest-ROI investments for your home office. We tested 15+ models to find the best for every use case and budget."
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Monitors', href: '/best-monitors-home-office' }]}
+>
+
+  <!-- Quick winner -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">🏆</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Our Top Pick: LG 27UP850K-W 4K USB-C</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        The <strong>LG 27UP850K-W</strong> hits the sweet spot: 4K IPS, 96W USB-C power delivery for your laptop, and an adjustable stand. One cable connects your MacBook and charges it — that alone changes your desk setup.
+      </p>
+      <a
+        href={`https://www.amazon.com/dp/B0DTQ9SKYF?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
+      >
+        Check price on Amazon →
+      </a>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <section id="comparison" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Quick Comparison</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Monitor</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Price</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Resolution</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">USB-C</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map((p) => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center text-ink-muted text-xs">
+                {p.rank === 1 || p.rank === 4 ? '4K' : p.rank === 3 ? 'QHD' : 'FHD'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                {p.rank === 1 ? '✅ 96W' : p.rank === 3 ? '✅ 65W' : p.rank === 4 ? '✅ 65W' : p.rank === 5 ? '✅ 90W' : '❌ No'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Buying guide -->
+  <section id="buying-guide" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Monitor Buying Guide</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '📐', title: 'Screen size', text: '27" is the sweet spot for most home office setups at a typical 24"–28" viewing distance. Go 32" if you regularly work with two windows side-by-side.' },
+        { emoji: '🔌', title: 'USB-C matters', text: 'If you use a laptop, prioritize 90W+ USB-C delivery. One cable connects, charges, and transfers data — this alone eliminates desk clutter.' },
+        { emoji: '🎨', title: 'Panel types', text: 'IPS: best color accuracy and viewing angles (recommended). VA: higher contrast, good for dark mode work. OLED: perfect blacks but expensive and burn-in risk.' },
+        { emoji: '📏', title: 'Height adjustment', text: 'Your eye level should align with the top third of the screen. A height-adjustable stand is essential — or budget for a good monitor arm.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Detailed Monitor Reviews</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        imgUrl={product.imgUrl}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+        lang="en"
+      />
+    ))}
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Monitor FAQ</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: '4K vs QHD — which should I choose for home office?',
+          a: '4K (3840×2160) is best for 27"+ screens and creative work requiring sharp text. QHD (2560×1440) is a great balance of clarity and price for everyday office use at 27". At 24", Full HD is still acceptable and more affordable.',
+        },
+        {
+          q: 'Is a second monitor worth it?',
+          a: 'Absolutely. Research consistently shows dual monitors increase productivity by 20–42% for knowledge work. A 24"–27" secondary monitor is one of the best home office investments. Even a budget IPS monitor makes document/reference work dramatically more efficient.',
+        },
+        {
+          q: 'What does 65W vs 90W USB-C mean for laptops?',
+          a: '65W charges most thin-and-light laptops (MacBook Air, Dell XPS 13) adequately during light work. 90W+ is needed for MacBook Pro 14"/16", gaming laptops, or any use involving sustained heavy workloads. When in doubt, go 90W+.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

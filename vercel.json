@@ -21,7 +21,12 @@
     }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml" }
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml" },
+    {
+      "has": [{ "type": "host", "value": "homeofficesetup.net" }],
+      "source": "/(.*)",
+      "destination": "/en/$1"
+    }
   ],
   "trailingSlash": false
 }

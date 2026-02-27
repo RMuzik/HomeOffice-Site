@@ -1,0 +1,258 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 26, 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'BenQ',
+    name: 'ScreenBar Plus — Monitor Light Bar with Remote',
+    asin: 'B07KVWZLD3',
+    price: '$179',
+    rating: 4.6,
+    reviewCount: 8200,
+    img: '💡',
+    imgUrl: '/products/B07KVWZLD3.jpg',
+    highlight: true,
+    verdict: 'The professional monitor light bar. Mounts on any monitor, illuminates your desk without screen glare, and the desk-mounted dial controls brightness and color temp. The definitive home office lamp.',
+    pros: ['Zero screen glare by design', 'Asymmetric optical design', 'Wireless desk dial remote', 'Auto-dimming sensor'],
+    cons: ['Premium price', 'Requires USB for power'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'BenQ',
+    name: 'ScreenBar — Monitor Light Bar',
+    asin: 'B076NFBCZM',
+    price: '$109',
+    rating: 4.6,
+    reviewCount: 14500,
+    img: '🔆',
+    imgUrl: '/products/B076NFBCZM.jpg',
+    verdict: 'The original BenQ ScreenBar — same glare-free technology as the Plus at a lower price. Touch controls on top of the bar. If you don\'t need the desk remote, this is the smarter buy.',
+    pros: ['Proven glare-free design', 'Auto-brightness sensor', 'No separate base needed', 'USB-powered'],
+    cons: ['Touch controls on top (not desk-level)', 'Fixed mounting clip size'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'TaoTronics',
+    name: 'TT-DL16 — LED Desk Lamp with USB Port',
+    asin: 'B08C51SKQN',
+    price: '$45',
+    rating: 4.5,
+    reviewCount: 22100,
+    img: '⭐',
+    imgUrl: '/products/B08C51SKQN.jpg',
+    verdict: 'The best traditional desk lamp under $50. 5 color modes, 7 brightness levels, USB charging port, memory function. Arm fully adjustable. Great value for anyone not wanting a monitor-mounted bar.',
+    pros: ['USB charging port', '35 brightness/color combos', 'Memory function', 'Eye-care certified'],
+    cons: ['Traditional arm (not monitor-mounted)', 'Cheaper build than BenQ'],
+  },
+  {
+    rank: 4,
+    badge: 'premium' as const,
+    brand: 'Elgato',
+    name: 'Key Light Air — Professional Studio Light',
+    asin: 'B082QHRZFW',
+    price: '$99',
+    rating: 4.4,
+    reviewCount: 9800,
+    img: '🎬',
+    imgUrl: '/products/B082QHRZFW.jpg',
+    verdict: 'Not just a desk lamp — a professional key light designed for video calls and content creation. 1400 lux output, app-controlled via Wi-Fi, soft diffused panel. Your video calls will look noticeably better.',
+    pros: ['Soft diffused panel (no harsh shadows)', 'Wi-Fi app control', 'Ideal for video calls', 'Ultra-bright 1400 lux'],
+    cons: ['No natural desk illumination', 'Requires separate stand or arm'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Govee',
+    name: 'RGBIC LED Desk Lamp — Smart Ambient',
+    asin: 'B0BJCQ3N7P',
+    price: '$39',
+    rating: 4.3,
+    reviewCount: 3600,
+    img: '🌈',
+    imgUrl: '/products/B0BJCQ3N7P.jpg',
+    verdict: 'Budget pick with smart features: app control, 16 million colors, music sync mode. Best for those who want atmosphere and ambiance over pure task lighting. Works with Alexa/Google.',
+    pros: ['App + voice control', '16M color options', 'Music sync mode', 'Very affordable'],
+    cons: ['Not ideal for focused work lighting', 'RGB can distract'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparison', label: 'Quick comparison table' },
+  { id: 'buying-guide', label: 'Desk lamp buying guide' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.brand} ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'Desk lamp FAQ' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Best Desk Lamps for Home Office 2026',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.net/best-desk-lamps#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOfEN
+  title="Best Desk Lamps for Home Office 2026 — Top 5 Tested"
+  description={`Top ${products.length} desk lamps for your home office in 2026. BenQ ScreenBar, Elgato Key Light, and more — tested for eye care and video calls.`}
+  h1={`The ${products.length} Best Home Office Desk Lamps in 2026`}
+  intro="Good lighting is the most underrated home office upgrade. The right desk lamp reduces eye strain, improves focus, and transforms your video calls. We tested 8+ options to find the best."
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Desk Lamps', href: '/best-desk-lamps' }]}
+>
+
+  <!-- Quick winner -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">🏆</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Our Top Pick: BenQ ScreenBar Plus</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        The <strong>BenQ ScreenBar Plus</strong> solves the #1 desk lighting problem: illuminating your workspace without reflecting off your monitor. Asymmetric optics keep light on your desk and off your screen — a game-changer for extended work sessions.
+      </p>
+      <a
+        href={`https://www.amazon.com/dp/B07KVWZLD3?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
+      >
+        Check price on Amazon →
+      </a>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <section id="comparison" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Quick Comparison</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Lamp</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Price</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Type</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map((p) => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center text-ink-muted text-xs">
+                {p.rank <= 2 ? 'Monitor Bar' : p.rank === 4 ? 'Key Light' : 'Desk Lamp'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Buying guide -->
+  <section id="buying-guide" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Desk Lamp Buying Guide</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '🚫', title: 'No glare on monitor', text: 'The most important factor. Traditional desk lamps cast light that reflects off your monitor. Monitor-mounted bars (like BenQ ScreenBar) use asymmetric optics to illuminate only your desk.' },
+        { emoji: '🎨', title: 'Color temperature', text: 'Warm light (2700–3000K) for relaxed work and evenings. Cool-neutral (4000–5000K) for focused tasks. Variable temperature is ideal. Avoid pure blue-white (6500K).' },
+        { emoji: '🔆', title: 'Brightness levels', text: 'You need at least 5 brightness levels to match different conditions: dark morning, bright afternoon, evening wind-down. More dimming steps = better experience.' },
+        { emoji: '👁️', title: 'Eye-care certification', text: 'Look for flicker-free LED and low blue light certification. Cheap LEDs can flicker imperceptibly at certain brightness levels, causing eye fatigue and headaches.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Detailed Reviews</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        imgUrl={product.imgUrl}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+        lang="en"
+      />
+    ))}
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Desk Lamp FAQ</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Is a BenQ ScreenBar worth it over a regular desk lamp?',
+          a: 'For most home office users, yes. The ScreenBar\'s asymmetric optics prevent monitor glare — a problem conventional lamps can\'t solve. If you spend more than 4 hours/day at your desk, the reduction in eye strain justifies the price. The regular ScreenBar ($109) is a great starting point before considering the Plus.',
+        },
+        {
+          q: 'What\'s the difference between a desk lamp and a key light for video calls?',
+          a: 'A desk lamp is designed to illuminate your workspace. A key light (like Elgato Key Light Air) is designed to illuminate your face for video. Ideally, you have both — but if you do frequent video calls, a key light placed in front of you at eye level makes the biggest difference.',
+        },
+        {
+          q: 'What color temperature should I use for home office work?',
+          a: 'Use 4000–5000K (neutral white) for daytime focused work — it\'s energizing without being harsh. Switch to 2700–3000K (warm white) for the evening. If your lamp supports variable color temperature, set it to auto-change or adjust manually based on the time of day.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

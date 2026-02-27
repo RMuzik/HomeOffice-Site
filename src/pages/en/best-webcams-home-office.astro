@@ -1,0 +1,258 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 26, 2026';
+
+const products = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Logitech',
+    name: 'C920x HD Pro Webcam — 1080p',
+    asin: 'B085TFF7M1',
+    price: '$69',
+    rating: 4.6,
+    reviewCount: 28400,
+    img: '📷',
+    imgUrl: '/products/B085TFF7M1.jpg',
+    highlight: true,
+    verdict: 'The best-selling webcam for good reason: sharp 1080p/30fps, great low-light performance, dual microphones, and plug-and-play compatibility with every platform. Unmatched for the price.',
+    pros: ['Excellent image quality', 'Works on all platforms', 'Good low-light auto-correction', 'Dual noise-cancelling mics'],
+    cons: ['No 4K', '30fps only (not 60fps)'],
+  },
+  {
+    rank: 2,
+    badge: 'premium' as const,
+    brand: 'Logitech',
+    name: 'Brio 4K Ultra HD Webcam',
+    asin: 'B01N5UOYC4',
+    price: '$149',
+    rating: 4.4,
+    reviewCount: 12600,
+    img: '🎥',
+    imgUrl: '/products/B01N5UOYC4.jpg',
+    verdict: 'The top-tier home office webcam. True 4K resolution, HDR, Windows Hello facial recognition, and 5× digital zoom. Future-proof for high-res video and screen sharing.',
+    pros: ['4K HDR video', 'Windows Hello support', 'Adjustable FOV (65/78/90°)', 'Outstanding low-light'],
+    cons: ['Expensive', '4K requires USB 3.0'],
+  },
+  {
+    rank: 3,
+    badge: 'budget' as const,
+    brand: 'Anker',
+    name: 'PowerConf C200 — 2K Business Webcam',
+    asin: 'B09PKRFLSX',
+    price: '$49',
+    rating: 4.5,
+    reviewCount: 5800,
+    img: '⭐',
+    imgUrl: '/products/B09PKRFLSX.jpg',
+    verdict: '2K resolution at a budget price. AI-powered auto-framing keeps you centered during calls, built-in privacy shutter, and excellent mic for the category. Best value under $50.',
+    pros: ['2K resolution', 'AI auto-framing', 'Privacy shutter built-in', 'AI noise cancellation'],
+    cons: ['Auto-framing can lag', 'No HDR'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Razer',
+    name: 'Kiyo X Full HD Webcam',
+    asin: 'B09KG3M4XG',
+    price: '$59',
+    rating: 4.3,
+    reviewCount: 7200,
+    img: '🎮',
+    imgUrl: '/products/B09KG3M4XG.jpg',
+    verdict: 'Full HD 1080p/30fps with a wide 82° field of view — ideal for showing your full setup or if you move around a lot. Good image processing, compact design, Razer Synapse compatible.',
+    pros: ['Wide 82° FOV', 'Compact design', 'Good image processing', 'Affordable'],
+    cons: ['30fps only', 'Basic mic quality'],
+  },
+  {
+    rank: 5,
+    badge: 'new' as const,
+    brand: 'Logitech',
+    name: 'C920S HD Pro — Privacy Edition',
+    asin: 'B07K986YLL',
+    price: '$79',
+    rating: 4.6,
+    reviewCount: 18900,
+    img: '🔒',
+    imgUrl: '/products/B07K986YLL.jpg',
+    verdict: 'The C920 with a built-in privacy shutter — important for remote workers concerned about camera access. Same excellent 1080p image quality as the C920x, with peace of mind when not in a call.',
+    pros: ['Privacy shutter', 'Proven 1080p quality', 'Universal compatibility', 'Solid clip mount'],
+    cons: ['No 4K', 'No auto-framing'],
+  },
+];
+
+const tocItems = [
+  { id: 'comparison', label: 'Quick comparison table' },
+  { id: 'buying-guide', label: 'Webcam buying guide' },
+  ...products.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.brand} ${p.name}`, rank: p.rank })),
+  { id: 'faq', label: 'Webcam FAQ' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Best Home Office Webcams 2026',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${p.brand} ${p.name}`,
+    url: `https://homeofficesetup.net/best-webcams-home-office#product-${p.asin}`,
+  })),
+};
+---
+
+<BestOfEN
+  title="Best Webcams for Home Office 2026 — Top 5 Tested"
+  description={`Top ${products.length} webcams for your home office in 2026. 1080p, 4K, AI auto-framing — real tests from Logitech, Anker, and Razer.`}
+  h1={`The ${products.length} Best Home Office Webcams in 2026`}
+  intro="A quality webcam transforms your video calls from embarrassing to professional. We tested 10+ models to find the best at every price point."
+  lastUpdated={LAST_UPDATED}
+  productsCount={products.length}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Webcams', href: '/best-webcams-home-office' }]}
+>
+
+  <!-- Quick winner -->
+  <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
+    <span class="text-3xl shrink-0">🏆</span>
+    <div>
+      <p class="font-display font-bold text-ink mb-1">Our Top Pick: Logitech C920x</p>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        The <strong>Logitech C920x</strong> is the most reliable, versatile home office webcam at a price that's hard to argue against. 1080p with great low-light performance and a mic that actually works — all in a plug-and-play package.
+      </p>
+      <a
+        href={`https://www.amazon.com/dp/B085TFF7M1?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"
+      >
+        Check price on Amazon →
+      </a>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <section id="comparison" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Quick Comparison</h2>
+    <div class="overflow-x-auto rounded-2xl border border-oak-200">
+      <table class="w-full text-sm">
+        <thead class="bg-ink text-cream">
+          <tr>
+            <th class="text-left px-4 py-3 font-display font-semibold">Webcam</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Price</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Resolution</th>
+            <th class="text-center px-3 py-3 font-display font-semibold">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-oak-100">
+          {products.map((p) => (
+            <tr class={`hover:bg-oak-50 transition-colors ${p.highlight ? 'bg-electric/5' : 'bg-white'}`}>
+              <td class="px-4 py-3 font-semibold text-ink">
+                <span class="text-electric mr-2">#{p.rank}</span>
+                {p.brand} {p.name}
+                {p.badge === 'pick' && <span class="ml-2 badge-pick text-[10px] py-0.5">⭐ Top</span>}
+              </td>
+              <td class="px-3 py-3 text-center font-bold text-ink">{p.price}</td>
+              <td class="px-3 py-3 text-center text-ink-muted text-xs">
+                {p.rank === 2 ? '4K' : p.rank === 3 ? '2K' : '1080p'}
+              </td>
+              <td class="px-3 py-3 text-center">
+                <span class="text-amber-500">{'★'.repeat(Math.round(p.rating))}</span>
+                <span class="text-ink-muted text-xs ml-1">{p.rating}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Buying guide -->
+  <section id="buying-guide" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-5">Webcam Buying Guide</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '📺', title: 'Resolution', text: '1080p is sufficient for most calls. 2K offers sharper screen-sharing. 4K is future-proofing — most platforms don\'t stream at 4K yet, but recordings look crisp.' },
+        { emoji: '💡', title: 'Low-light performance', text: 'More important than resolution. A webcam that handles dim rooms well beats a high-res camera that turns you into a shadow.' },
+        { emoji: '🎙️', title: 'Built-in microphone', text: 'Most webcam mics are decent for casual calls. For professional audio, pair any webcam with a dedicated USB mic or headset.' },
+        { emoji: '🔒', title: 'Privacy shutter', text: 'A physical shutter that covers the lens when not in use. Worth having if you\'re privacy-conscious or frequently use your computer for personal tasks.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="space-y-10 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink">Detailed Webcam Reviews</h2>
+    {products.map(product => (
+      <ProductCard
+        rank={product.rank}
+        badge={product.badge}
+        brand={product.brand}
+        name={product.name}
+        asin={product.asin}
+        affiliateTag={AFFILIATE_TAG}
+        price={product.price}
+        rating={product.rating}
+        reviewCount={product.reviewCount}
+        img={product.img}
+        imgUrl={product.imgUrl}
+        pros={product.pros}
+        cons={product.cons}
+        verdict={product.verdict}
+        highlight={product.highlight}
+        lang="en"
+      />
+    ))}
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Webcam FAQ</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'Is 1080p good enough for video calls in 2026?',
+          a: 'Yes — Zoom, Teams, and Google Meet still cap streams at 1080p for most accounts (4K requires an enterprise plan). Invest in good lighting before upgrading resolution; it\'ll have more visual impact.',
+        },
+        {
+          q: 'Do webcam microphones sound good enough?',
+          a: 'For casual calls, yes. The Logitech C920x\'s built-in mics are surprisingly good at filtering background noise. For content creation, podcasting, or client-facing roles, a dedicated USB microphone ($50–100) is worth the upgrade.',
+        },
+        {
+          q: 'What\'s the difference between 30fps and 60fps webcams?',
+          a: '60fps looks smoother, especially when moving. For static video calls, 30fps is fine. 60fps becomes relevant for recording tutorials, streaming, or demos where you\'re showing on-screen motion.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

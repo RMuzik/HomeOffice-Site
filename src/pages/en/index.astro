@@ -1,0 +1,315 @@
+---
+import BaseEN from '../../layouts/BaseEN.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+
+const categories = [
+  {
+    href: '/best-standing-desks',
+    emoji: '🪵',
+    title: 'Standing Desks',
+    desc: 'Top electric sit-stand desks tested for stability, motors, and value.',
+    badge: '5 tested',
+  },
+  {
+    href: '/best-ergonomic-chairs',
+    emoji: '🪑',
+    title: 'Ergonomic Chairs',
+    desc: 'From $100 to $500 — the chairs that protect your back all day.',
+    badge: '5 tested',
+  },
+  {
+    href: '/best-monitors-home-office',
+    emoji: '🖥️',
+    title: 'Monitors',
+    desc: 'FHD, QHD, 4K — the best screens for home office work in 2026.',
+    badge: '5 tested',
+  },
+  {
+    href: '/best-webcams-home-office',
+    emoji: '📷',
+    title: 'Webcams',
+    desc: 'Look professional on every call — from $49 to 4K Logitech Brio.',
+    badge: '5 tested',
+  },
+  {
+    href: '/best-headsets-home-office',
+    emoji: '🎧',
+    title: 'Headsets',
+    desc: 'ANC, wired, wireless — the best headsets for calls and focus.',
+    badge: '5 tested',
+  },
+  {
+    href: '/best-desk-lamps',
+    emoji: '💡',
+    title: 'Desk Lamps',
+    desc: 'BenQ ScreenBar, Elgato Key Light, and more — tested for eye care.',
+    badge: '5 tested',
+  },
+  {
+    href: '/budget-home-office-setup',
+    emoji: '💰',
+    title: 'Budget Setups',
+    desc: 'Complete setups at $400, $700, and $1,500 — best value at each tier.',
+    badge: 'Guide',
+  },
+  {
+    href: '/home-office-setup',
+    emoji: '🏡',
+    title: 'Complete Setup Guide',
+    desc: 'Everything you need — desks, chairs, monitors, and accessories.',
+    badge: 'Full Guide',
+  },
+];
+
+const recentPicks = [
+  {
+    asin: 'B09TD87W1J',
+    brand: 'FlexiSpot',
+    name: 'E7 Pro Standing Desk',
+    price: '$489',
+    badge: '⭐ Top Pick',
+    desc: 'Dual motor, 355 lbs capacity, 15-year warranty. The most reliable electric desk at this price.',
+    category: 'Standing Desk',
+    imgUrl: '/products/B09TD87W1J.jpg',
+  },
+  {
+    asin: 'B0BGZB6VZM',
+    brand: 'Hbada',
+    name: 'E3 Ergonomic Chair',
+    price: '$259',
+    badge: '⭐ Top Pick',
+    desc: 'Full adjustability, 4D armrests, breathable mesh. The sweet spot for full-time remote workers.',
+    category: 'Ergonomic Chair',
+    imgUrl: '/products/B0BGZB6VZM.jpg',
+  },
+  {
+    asin: 'B0DTQ9SKYF',
+    brand: 'LG',
+    name: '27UP850K 4K USB-C Monitor',
+    price: '$299',
+    badge: '⭐ Top Pick',
+    desc: '4K IPS, USB-C 65W charging, 95% DCI-P3. One cable to your laptop — changes everything.',
+    category: 'Monitor',
+    imgUrl: '/products/B0DTQ9SKYF.jpg',
+  },
+];
+
+const guides = [
+  {
+    href: '/guides/ergonomics',
+    emoji: '🪑',
+    title: 'Complete Ergonomics Guide',
+    desc: 'Monitor height, chair setup, keyboard position — the science of pain-free remote work.',
+    time: '8 min',
+  },
+  {
+    href: '/guides/natural-lighting',
+    emoji: '💡',
+    title: 'Optimize Your Workspace Lighting',
+    desc: 'Reduce eye strain, improve focus, and look better on video calls with proper lighting.',
+    time: '6 min',
+  },
+  {
+    href: '/home-office-setup',
+    emoji: '🏡',
+    title: 'Complete Home Office Setup',
+    desc: 'From zero to fully equipped — the complete guide at every budget level.',
+    time: '12 min',
+  },
+];
+
+const stats = [
+  { value: '30+', label: 'Products tested' },
+  { value: '100%', label: 'Independent recommendations' },
+  { value: '2026', label: 'Updated for this year' },
+  { value: '0', label: 'Sponsored reviews' },
+];
+---
+
+<BaseEN
+  title="Best Home Office Setup 2026 — Tested Recommendations for Remote Workers"
+  description="Expert home office equipment recommendations for 2026. Standing desks, ergonomic chairs, monitors, webcams, and more — all tested, ranked, and updated for remote workers."
+>
+
+  <!-- Hero -->
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 mb-5">
+          <span class="badge bg-electric/10 text-electric border border-electric/20">Updated February 2026</span>
+          <span class="badge bg-oak-100 text-ink-muted border border-oak-200">homeofficesetup.net</span>
+        </div>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight mb-6">
+          Build Your Perfect<br />
+          <span class="text-electric">Home Office</span> in 2026
+        </h1>
+        <p class="text-xl text-ink-muted leading-relaxed mb-8">
+          Expert-tested product recommendations for remote workers. Standing desks, ergonomic chairs, monitors, webcams — all ranked by real use, not by sponsored deals.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/home-office-setup" class="btn-primary">
+            Full Setup Guide →
+          </a>
+          <a href="/budget-home-office-setup" class="btn-secondary">
+            💰 Budget Options
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <div class="border-b border-oak-100 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {stats.map(stat => (
+          <div class="text-center py-2">
+            <p class="font-display text-2xl font-bold text-electric">{stat.value}</p>
+            <p class="text-xs text-ink-muted">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+
+    <!-- Categories grid -->
+    <section class="mb-16">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink">Browse by Category</h2>
+          <p class="text-ink-muted mt-1">Every major home office category — tested, ranked, and updated for 2026.</p>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {categories.map(cat => (
+          <a
+            href={cat.href}
+            class="group bg-white rounded-2xl border border-oak-100 p-5 hover:shadow-md hover:border-electric/30 transition-all flex flex-col"
+          >
+            <div class="flex items-start justify-between mb-3">
+              <span class="text-3xl">{cat.emoji}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-oak-50 text-ink-muted uppercase tracking-wide">{cat.badge}</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-ink mb-1.5 group-hover:text-electric transition-colors leading-tight">
+              {cat.title}
+            </h3>
+            <p class="text-xs text-ink-muted leading-relaxed flex-1">{cat.desc}</p>
+            <span class="text-xs font-semibold text-electric mt-3 opacity-0 group-hover:opacity-100 transition-opacity">View →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Top picks -->
+    <section class="mb-16">
+      <div class="mb-8">
+        <h2 class="font-display text-2xl font-bold text-ink">Our Top Picks for 2026</h2>
+        <p class="text-ink-muted mt-1">The three products we recommend without hesitation — best value in each category.</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {recentPicks.map(pick => (
+          <div class="bg-white rounded-2xl border border-oak-100 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="aspect-[4/3] bg-oak-50 flex items-center justify-center overflow-hidden">
+              {pick.imgUrl ? (
+                <img
+                  src={pick.imgUrl}
+                  alt={`${pick.brand} ${pick.name}`}
+                  class="w-full h-full object-contain p-4"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="text-5xl">📦</span>
+              )}
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-electric/10 text-electric uppercase tracking-wide">{pick.category}</span>
+                <span class="text-xs font-bold text-ink">{pick.price}</span>
+              </div>
+              <p class="text-xs font-semibold text-electric mb-1">{pick.badge}</p>
+              <h3 class="font-display font-bold text-ink text-sm mb-2 leading-tight">
+                {pick.brand} {pick.name}
+              </h3>
+              <p class="text-xs text-ink-muted leading-relaxed mb-4">{pick.desc}</p>
+              <a
+                href={`https://www.amazon.com/dp/${pick.asin}?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+                target="_blank"
+                rel="noopener sponsored"
+                class="btn-primary text-xs py-2 px-3 w-full text-center block"
+              >
+                View on Amazon →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Featured guide CTA -->
+    <section class="mb-16 bg-ink text-cream rounded-2xl p-8 sm:p-10">
+      <div class="max-w-2xl">
+        <span class="badge bg-white/10 text-cream border border-white/20 mb-4">Complete Guide</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold mb-3 leading-tight">
+          Build Your Home Office from Scratch
+        </h2>
+        <p class="text-cream/70 leading-relaxed mb-6">
+          Our complete setup guide covers every category — what to buy first, how much to spend at each budget level, and the ergonomics rules that prevent injury. 8 products, 3 budget tiers, one guide.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/home-office-setup" class="btn-primary">
+            Read the Full Guide →
+          </a>
+          <a href="/budget-home-office-setup" class="bg-white/10 hover:bg-white/20 text-cream border border-white/20 font-semibold px-4 py-2 rounded-xl text-sm transition-colors">
+            💰 Budget Version
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guides section -->
+    <section class="mb-16">
+      <div class="mb-8">
+        <h2 class="font-display text-2xl font-bold text-ink">Setup & Ergonomics Guides</h2>
+        <p class="text-ink-muted mt-1">Practical guides to optimize every aspect of your workspace.</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-5">
+        {guides.map(guide => (
+          <a
+            href={guide.href}
+            class="group bg-white rounded-2xl border border-oak-100 p-6 hover:shadow-md hover:border-electric/30 transition-all"
+          >
+            <span class="text-3xl block mb-4">{guide.emoji}</span>
+            <h3 class="font-display text-base font-bold text-ink mb-2 group-hover:text-electric transition-colors leading-tight">
+              {guide.title}
+            </h3>
+            <p class="text-sm text-ink-muted leading-relaxed mb-3">{guide.desc}</p>
+            <span class="text-xs text-ink-muted">📖 {guide.time} read</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Why trust us -->
+    <section class="bg-oak-50 rounded-2xl p-8">
+      <h2 class="font-display text-xl font-bold text-ink mb-6 text-center">Why Trust Our Recommendations?</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {[
+          { emoji: '🔍', title: 'Real testing', text: 'We spend weeks with each product before ranking it. No reviews based on specs sheets alone.' },
+          { emoji: '💸', title: 'No sponsorships', text: 'We\'re never paid to feature a product. Rankings are based purely on quality and value.' },
+          { emoji: '🔄', title: 'Updated regularly', text: 'Rankings are reviewed every 3 months. New products are added when they outperform existing picks.' },
+          { emoji: '🎯', title: 'Remote work focus', text: 'Every recommendation is evaluated specifically for home office use — not gaming, not offices.' },
+        ].map(item => (
+          <div class="text-center">
+            <span class="text-3xl block mb-3">{item.emoji}</span>
+            <h3 class="font-semibold text-ink text-sm mb-2">{item.title}</h3>
+            <p class="text-xs text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseEN>

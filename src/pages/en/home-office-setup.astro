@@ -1,0 +1,455 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 27, 2026';
+
+const standingDesks = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'FlexiSpot',
+    name: 'E7 Pro — Dual Motor Electric Standing Desk',
+    asin: 'B09TD87W1J',
+    price: '$489',
+    rating: 4.7,
+    reviewCount: 6200,
+    img: '🪵',
+    imgUrl: '/products/B09TD87W1J.jpg',
+    highlight: true,
+    verdict: 'The most reliable electric standing desk in its price range. Dual motor, 355 lbs weight capacity, anti-collision system, and a 15-year warranty. FlexiSpot\'s E7 Pro is the desk that will still be running in 10 years — with the same smooth, quiet motor.',
+    pros: ['Dual motor (very stable)', 'Memory presets', 'Anti-collision protection', '15-year warranty'],
+    cons: ['Tabletop sold separately', 'Heavier assembly'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'FlexiSpot',
+    name: 'E2 — Electric Standing Desk (Entry Level)',
+    asin: 'B087JF3B5S',
+    price: '$349',
+    rating: 4.5,
+    reviewCount: 3800,
+    img: '📋',
+    imgUrl: '/products/B087JF3B5S.jpg',
+    verdict: 'The smart entry-level electric standing desk. Single motor, 3 memory positions, solid at standing height. If the E7 Pro is out of budget, this delivers the same sit-stand benefit at 30% less — with a small trade-off in stability at max height.',
+    pros: ['Best value electric desk', '3 height presets', 'USB charging port', 'Easy assembly'],
+    cons: ['Single motor (less stable at max height)', 'Lower 154 lbs capacity'],
+  },
+];
+
+const ergonomicChairs = [
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Hbada',
+    name: 'E3 — Full Mesh Ergonomic Office Chair',
+    asin: 'B0BGZB6VZM',
+    price: '$259',
+    rating: 4.5,
+    reviewCount: 2100,
+    img: '🪑',
+    imgUrl: '/products/B0BGZB6VZM.jpg',
+    verdict: 'A well-engineered mid-range ergonomic chair with full adjustability: seat height, depth, 4D armrests, lumbar support, and headrest. Breathable mesh back prevents heat buildup. The sweet spot for full-time remote workers who won\'t compromise on comfort.',
+    pros: ['Full adjustment range', '4D armrests', 'Breathable mesh', 'Solid lumbar support'],
+    cons: ['Assembly takes ~30 min', 'Headrest feels firm initially'],
+  },
+  {
+    rank: 4,
+    badge: 'budget' as const,
+    brand: 'Smug',
+    name: 'Ergonomic Mesh Office Chair — Height Adjustable',
+    asin: 'B0GFMQMJ47',
+    price: '$169',
+    rating: 4.3,
+    reviewCount: 1450,
+    img: '💺',
+    imgUrl: '/products/B0GFMQMJ47.jpg',
+    verdict: 'The best ergonomic chair under $200. Adjustable lumbar support, breathable mesh, 360° swivel, and solid build quality. Ideal for 4–6 hours of daily use. Won\'t match a Herman Miller, but holds its own at a fraction of the price for part-time remote work.',
+    pros: ['Excellent value under $200', 'Adjustable lumbar', 'Breathable mesh back', 'Easy assembly'],
+    cons: ['Not for 10+ hour sessions', 'Armrests less precise than premium'],
+  },
+];
+
+const monitors = [
+  {
+    rank: 5,
+    badge: 'pick' as const,
+    brand: 'LG',
+    name: '27UP850K-W — 27" 4K USB-C IPS Monitor',
+    asin: 'B0DTQ9SKYF',
+    price: '$299',
+    rating: 4.6,
+    reviewCount: 3200,
+    img: '🖥️',
+    imgUrl: '/products/B0DTQ9SKYF.jpg',
+    verdict: 'The best 27" monitor for serious remote work. 4K IPS panel, USB-C 65W charging (one cable from laptop), 95% DCI-P3 color accuracy, and HDR. The single-cable workflow changes everything. Once you go 4K, going back is impossible.',
+    pros: ['4K IPS panel', 'USB-C 65W power delivery', '95% DCI-P3 color accuracy', 'Thin bezels'],
+    cons: ['Needs 4K-capable laptop for full benefit', 'Stand adjustment limited to tilt'],
+  },
+  {
+    rank: 6,
+    badge: null,
+    brand: 'Dell',
+    name: 'S2722DGM — 27" QHD 165Hz Monitor',
+    asin: 'B096K7YHPW',
+    price: '$249',
+    rating: 4.5,
+    reviewCount: 4100,
+    img: '📺',
+    imgUrl: '/products/B096K7YHPW.jpg',
+    verdict: 'Dell\'s reliable workhorse monitor for productivity. 2560×1440 QHD IPS, 165Hz, AMD FreeSync Premium. Accurate colors out of the box, height-adjustable stand, and Dell\'s 3-year warranty. A safe, dependable choice that won\'t let you down.',
+    pros: ['QHD resolution (2560×1440)', 'Height-adjustable stand', '3-year Dell warranty', 'Accurate out of box'],
+    cons: ['Not 4K', 'No USB-C'],
+  },
+];
+
+const accessories = [
+  {
+    rank: 7,
+    badge: 'pick' as const,
+    brand: 'Logitech',
+    name: 'MX Keys S — Advanced Wireless Keyboard',
+    asin: 'B0FHHV6YR5',
+    price: '$99',
+    rating: 4.6,
+    reviewCount: 5800,
+    img: '⌨️',
+    imgUrl: '/products/B0FHHV6YR5.jpg',
+    verdict: 'The keyboard serious remote workers swear by. Spherical key caps guide your fingers naturally, backlit, 10-day battery, connects to 3 devices. Pairs perfectly with MX Master 3S for a complete wireless setup. Your wrists and fingers will thank you within a week.',
+    pros: ['Spherical key caps (natural fit)', 'Backlit adaptive keys', '3-device Bluetooth', '10-day battery'],
+    cons: ['Premium price', 'No tenkey version in same line'],
+  },
+  {
+    rank: 8,
+    badge: null,
+    brand: 'Logitech',
+    name: 'MX Master 3S — Advanced Wireless Mouse',
+    asin: 'B07L755X9G',
+    price: '$99',
+    rating: 4.7,
+    reviewCount: 18500,
+    img: '🖱️',
+    imgUrl: '/products/B07L755X9G.jpg',
+    verdict: 'Widely considered the best productivity mouse ever made. MagSpeed scroll wheel, ergonomic shape, 8000 DPI, connects to 3 devices. The side scroll wheel alone saves hours per year. Pairs perfectly with MX Keys S.',
+    pros: ['MagSpeed scroll wheel', 'Ergonomic shape', '3-device Bluetooth', '70-day battery'],
+    cons: ['Right-hand only', 'Premium price'],
+  },
+];
+
+const budgetTiers = [
+  {
+    label: '$600–900',
+    title: 'Starter Remote Setup',
+    desc: 'Everything you need to work productively from home, without overspending.',
+    color: 'bg-green-50 border-green-200',
+    items: [
+      { name: 'FlexiSpot E2 standing desk', price: '$349', role: 'Sit-stand desk' },
+      { name: 'Budget ergonomic chair', price: '$169', role: 'Ergonomic chair' },
+      { name: 'Dell S2722DGM 27" QHD', price: '$249', role: 'Monitor' },
+      { name: 'Logitech Pebble 2 Combo', price: '$45', role: 'Keyboard + Mouse' },
+    ],
+    total: '~$812',
+  },
+  {
+    label: '$1,200–1,800',
+    title: 'Full Professional Setup',
+    desc: 'The sweet spot — ergonomics + performance + quality for 8h/day use.',
+    color: 'bg-electric/5 border-electric/30',
+    recommended: true,
+    items: [
+      { name: 'FlexiSpot E7 Pro standing desk', price: '$489', role: 'Sit-stand desk' },
+      { name: 'Hbada E3 ergonomic chair', price: '$259', role: 'Ergonomic chair' },
+      { name: 'LG 27UP850K 4K USB-C', price: '$299', role: '4K monitor' },
+      { name: 'Logitech MX Keys S + MX Master 3S', price: '$180', role: 'Pro peripherals' },
+    ],
+    total: '~$1,227',
+  },
+  {
+    label: '$3,000+',
+    title: 'Premium Workstation',
+    desc: 'For those who invest in their workspace as a long-term productivity asset.',
+    color: 'bg-oak-50 border-oak-200',
+    items: [
+      { name: 'Premium standing desk + tabletop', price: '$800', role: 'Sit-stand desk' },
+      { name: 'Herman Miller Aeron', price: '$1,700', role: 'Premium chair' },
+      { name: 'Dual 4K monitors', price: '$600', role: 'Dual monitor setup' },
+      { name: 'Full audio/webcam setup', price: '$500', role: 'Video & audio' },
+    ],
+    total: '~$3,600',
+  },
+];
+
+const tocItems = [
+  { id: 'budget-overview', label: 'Budget breakdowns' },
+  { id: 'standing-desks', label: 'Standing Desks' },
+  { id: 'ergonomic-chairs', label: 'Ergonomic Chairs' },
+  { id: 'monitors', label: 'Monitors' },
+  { id: 'accessories', label: 'Accessories' },
+  { id: 'ergonomics', label: 'Ergonomics checklist' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Build a Home Office Setup in 2026',
+  description: 'Complete guide to building a productive home office: standing desk, ergonomic chair, monitor, and accessories — from $600 to $3,000+.',
+  step: [
+    { '@type': 'HowToStep', name: 'Choose your standing desk', text: 'Pick a sit-stand desk that fits your budget and space.' },
+    { '@type': 'HowToStep', name: 'Choose your ergonomic chair', text: 'Select a chair with adjustable lumbar support and seat height.' },
+    { '@type': 'HowToStep', name: 'Choose your monitor', text: 'Get a 27" monitor at eye level — FHD for budget, 4K for maximum quality.' },
+    { '@type': 'HowToStep', name: 'Add essential accessories', text: 'Wireless keyboard, mouse, headset, and desk lamp complete the setup.' },
+  ],
+};
+---
+
+<BestOfEN
+  title="Home Office Setup Guide 2026 — Best Products at Every Budget"
+  description="Complete guide to building a productive home office in 2026. Standing desks, ergonomic chairs, monitors, and accessories — tested and ranked at every budget level."
+  h1="The Complete Home Office Setup Guide 2026"
+  intro="Building a productive home office is about getting the right four things right: a standing desk, an ergonomic chair, an external monitor, and the accessories that complete the picture. Here's exactly what to buy at every budget."
+  lastUpdated={LAST_UPDATED}
+  productsCount={8}
+  tocItems={tocItems}
+  schema={schema}
+  breadcrumb={[{ label: 'Home Office Setup', href: '/home-office-setup' }]}
+>
+
+  <!-- Budget overview -->
+  <section id="budget-overview" class="mb-14 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-8">Complete setups by budget</h2>
+    <div class="space-y-6">
+      {budgetTiers.map((tier) => (
+        <div class={`rounded-2xl border-2 p-6 ${tier.color} relative overflow-hidden`}>
+          {tier.recommended && (
+            <div class="absolute top-0 right-0 bg-electric text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+              ⭐ Recommended
+            </div>
+          )}
+          <div class="mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-ink text-cream text-xs font-bold mb-2">
+              Budget {tier.label}
+            </span>
+            <h3 class="font-display text-xl font-bold text-ink">{tier.title}</h3>
+            <p class="text-sm text-ink-muted mt-1">{tier.desc}</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-2 mb-4">
+            {tier.items.map(item => (
+              <div class="flex items-center justify-between bg-white/60 rounded-xl px-4 py-2.5">
+                <div>
+                  <p class="text-xs text-ink-muted">{item.role}</p>
+                  <p class="font-medium text-ink text-sm">{item.name}</p>
+                </div>
+                <span class="font-bold text-ink shrink-0 ml-3">{item.price}</span>
+              </div>
+            ))}
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-black/10">
+            <span class="text-sm text-ink-muted">Estimated total</span>
+            <span class="font-display text-2xl font-bold text-ink">{tier.total}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Standing Desks -->
+  <section id="standing-desks" class="mb-14 scroll-mt-24">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🪵</span>
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink">Standing Desks</h2>
+        <p class="text-sm text-ink-muted">The most impactful upgrade for long workdays — alternate sitting and standing</p>
+      </div>
+    </div>
+    <div class="space-y-10">
+      {standingDesks.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          imgUrl={product.imgUrl}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          highlight={product.highlight}
+          lang="en"
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Ergonomic Chairs -->
+  <section id="ergonomic-chairs" class="mb-14 scroll-mt-24">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🪑</span>
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink">Ergonomic Chairs</h2>
+        <p class="text-sm text-ink-muted">Your chair is your most critical investment — it directly impacts your posture and health</p>
+      </div>
+    </div>
+    <div class="space-y-10">
+      {ergonomicChairs.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          imgUrl={product.imgUrl}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          lang="en"
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Monitors -->
+  <section id="monitors" class="mb-14 scroll-mt-24">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">🖥️</span>
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink">Monitors</h2>
+        <p class="text-sm text-ink-muted">A quality external display reduces eye strain and immediately boosts productivity</p>
+      </div>
+    </div>
+    <div class="space-y-10">
+      {monitors.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          imgUrl={product.imgUrl}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          highlight={product.highlight}
+          lang="en"
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Accessories -->
+  <section id="accessories" class="mb-14 scroll-mt-24">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="w-10 h-10 rounded-xl bg-electric/10 text-electric flex items-center justify-center text-xl">⌨️</span>
+      <div>
+        <h2 class="font-display text-2xl font-bold text-ink">Essential Accessories</h2>
+        <p class="text-sm text-ink-muted">The finishing touches that complete a professional, comfortable setup</p>
+      </div>
+    </div>
+    <div class="space-y-10">
+      {accessories.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          imgUrl={product.imgUrl}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          highlight={product.highlight}
+          lang="en"
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Ergonomics checklist -->
+  <section id="ergonomics" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Ergonomics Setup Checklist</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {[
+        { emoji: '🖥️', title: 'Monitor height', text: 'Top of the screen at eye level or 1–2 inches below. Distance: 20–28 inches from your face. Prevents neck strain and forward head posture.' },
+        { emoji: '🪑', title: 'Chair height', text: 'Feet flat on the floor, thighs parallel to the ground. Knees at 90–100°. Lumbar support should fill the natural curve of your lower back.' },
+        { emoji: '⌨️', title: 'Keyboard position', text: 'Keyboard at elbow height. Forearms nearly parallel to the floor. Wrists neutral — not bent up, down, or sideways. Mouse directly beside the keyboard.' },
+        { emoji: '👁️', title: 'Eye strain', text: 'Apply the 20-20-20 rule: every 20 min, look 20 feet away for 20 seconds. Enable Night Shift or f.lux in the evening to reduce blue light exposure.' },
+      ].map(item => (
+        <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+          <span class="text-2xl shrink-0">{item.emoji}</span>
+          <div>
+            <h3 class="font-semibold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-4 p-4 bg-electric/5 border border-electric/20 rounded-xl text-sm">
+      <strong class="text-electric">Standing desk tip:</strong>
+      <span class="text-ink-muted"> When standing, elbows should remain at 90° — typically 3–5 inches higher than your sitting position. Alternate every 30–60 minutes. Standing all day is just as bad as sitting all day.</span>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'What\'s the priority order for building a home office from scratch?',
+          a: 'Follow this order: 1) Chair (most critical for posture and health), 2) Monitor (biggest productivity impact), 3) Desk (ergonomic height matters, but a fixed desk works fine), 4) Accessories (keyboard, mouse, headset, lamp). Many people overspend on the desk and skimp on the chair — that\'s backwards.',
+        },
+        {
+          q: 'Is a standing desk really necessary?',
+          a: 'Not strictly necessary, but strongly recommended for anyone working 6+ hours daily. The main benefit isn\'t "standing more" — it\'s alternating positions throughout the day. Even 15 minutes standing per hour makes a measurable difference in energy and back health. A good ergonomic chair is still the priority if you\'re on a tight budget.',
+        },
+        {
+          q: 'Is one monitor or two better for remote work?',
+          a: 'For most remote workers, one high-quality 27" monitor (QHD or 4K) beats two cheap 24" FHD monitors. Dual monitors are excellent for specific workflows: coding (docs + code side by side), design (working + reference), or video editing. Start with one quality screen and add a second if you find yourself constantly switching between apps.',
+        },
+        {
+          q: 'How much should I spend on an ergonomic chair?',
+          a: 'For occasional use (< 4 hours/day): $100–200. For regular full-time use (6–8 hours/day): $200–400. For intensive long-term use: $400–800. Premium chairs like Herman Miller ($1,400+) are excellent but not necessary for most people. A $259 chair with proper adjustments will serve 90% of remote workers well.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

@@ -1,0 +1,99 @@
+---
+import BaseEN from '../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Our Method — How We Test & Recommend"
+  description="How HomeOfficeSetup.net tests and selects home office products. Independent methodology, no sponsored content, real user data."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <span>Our Method</span>
+      </nav>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight mb-4">
+        Our Testing Method
+      </h1>
+      <p class="text-lg text-ink-muted leading-relaxed">
+        Independent buying guides, built on real testing and honest opinions — never sponsored content.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <div class="prose prose-lg max-w-none">
+
+      <h2 class="font-display text-2xl font-bold text-ink mb-4">Who We Are</h2>
+      <p class="text-ink-muted leading-relaxed mb-6">
+        HomeOfficeSetup.net is an independent buying guide dedicated to helping remote workers, freelancers, and hybrid professionals build a productive, comfortable home office. We have no brand partnerships, no sponsored slots, and no manufacturer relationships that influence our recommendations.
+      </p>
+
+      <h2 class="font-display text-2xl font-bold text-ink mb-4 mt-10">How We Select Products</h2>
+      <div class="grid sm:grid-cols-2 gap-4 mb-8">
+        {[
+          {
+            emoji: '📊',
+            title: 'Amazon review analysis',
+            text: 'We analyze verified purchase reviews (minimum 500 reviews) for recurring themes: durability, ergonomics, setup ease, and value for money.',
+          },
+          {
+            emoji: '🔬',
+            title: 'Spec verification',
+            text: 'We cross-reference manufacturer specs against independent tests from established tech publications to filter out marketing claims.',
+          },
+          {
+            emoji: '💰',
+            title: 'Price-to-value ratio',
+            text: 'Every product must justify its price point. We actively look for budget options that punch above their weight class.',
+          },
+          {
+            emoji: '🔄',
+            title: 'Regular updates',
+            text: 'Our guides are reviewed and updated regularly. When better products launch or prices change significantly, we update our rankings.',
+          },
+        ].map(item => (
+          <div class="bg-oak-50 rounded-xl p-4 flex gap-3">
+            <span class="text-2xl shrink-0">{item.emoji}</span>
+            <div>
+              <h3 class="font-semibold text-ink mb-1 text-base">{item.title}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="font-display text-2xl font-bold text-ink mb-4 mt-10">What We Don't Do</h2>
+      <ul class="space-y-2 mb-8">
+        {[
+          'Accept payment for product placement or "sponsored" reviews',
+          'Recommend products we haven\'t thoroughly researched',
+          'Inflate ratings to generate more affiliate clicks',
+          'Recommend products with poor long-term reliability records',
+        ].map(item => (
+          <li class="flex items-start gap-2 text-ink-muted">
+            <span class="text-red-500 shrink-0 mt-0.5">✗</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="font-display text-2xl font-bold text-ink mb-4 mt-10">Affiliate Transparency</h2>
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-8">
+        <p class="text-ink-muted leading-relaxed">
+          We participate in the Amazon Associates program. When you purchase through our links, we earn a small commission — at no extra cost to you. These commissions fund our research and site maintenance. However, <strong>our recommendations are entirely independent of affiliate relationships</strong>. We recommend the best product for your needs, not the one that generates the highest commission.
+        </p>
+        <a href="/affiliate-disclosure" class="inline-block mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors">
+          Read full affiliate disclosure →
+        </a>
+      </div>
+
+      <h2 class="font-display text-2xl font-bold text-ink mb-4 mt-10">Contact</h2>
+      <p class="text-ink-muted leading-relaxed">
+        Questions, corrections, or product suggestions? We take reader feedback seriously — especially reports of products that have degraded in quality or are no longer available. Reach us at <strong>hello@homeofficesetup.net</strong>.
+      </p>
+
+    </div>
+  </div>
+</BaseEN>

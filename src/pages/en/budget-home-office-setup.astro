@@ -1,0 +1,259 @@
+---
+import BestOfEN from '../../layouts/BestOfEN.astro';
+import ProductCard from '../../components/ProductCard.astro';
+
+const AFFILIATE_TAG = import.meta.env.AFFILIATE_TAG_EN || 'zeroalc-21';
+const LAST_UPDATED = 'February 26, 2026';
+
+const setups = [
+  {
+    budget: '$400',
+    title: 'Minimal functional setup',
+    desc: 'Everything you need to work comfortably without overspending.',
+    color: 'bg-green-50 border-green-200',
+    items: [
+      { name: 'IKEA Linnmon/Adils desk', price: '$60', role: 'Desk' },
+      { name: 'Yaheetech Ergonomic Chair', price: '$82', role: 'Chair' },
+      { name: 'Lenovo 27" FHD Monitor', price: '$115', role: '27" screen' },
+      { name: 'Logitech Pebble 2 Combo', price: '$45', role: 'Keyboard + Mouse' },
+    ],
+    total: '~$302',
+  },
+  {
+    budget: '$700',
+    title: 'Balanced productive setup',
+    desc: 'The comfort/ergonomics/budget sweet spot for full-time remote work.',
+    color: 'bg-electric/5 border-electric/30',
+    recommended: true,
+    items: [
+      { name: 'Standing desk frame (budget)', price: '$230', role: 'Sit-stand desk' },
+      { name: 'Mid-range ergonomic chair', price: '$160', role: 'Ergonomic chair' },
+      { name: 'LG 27" IPS Monitor', price: '$180', role: '27" FHD monitor' },
+      { name: 'Logitech MK470 Wireless Combo', price: '$60', role: 'Keyboard + Mouse' },
+    ],
+    total: '~$630',
+  },
+  {
+    budget: '$1,500',
+    title: 'Professional optimized setup',
+    desc: 'For 8 hours/day at your desk — an investment that pays for itself.',
+    color: 'bg-oak-50 border-oak-200',
+    items: [
+      { name: 'FlexiSpot E7 Standing Desk', price: '$500', role: 'Standing desk' },
+      { name: 'Mid-range mesh ergonomic chair', price: '$260', role: 'Ergonomic chair' },
+      { name: 'LG 27UP850K-W 4K USB-C', price: '$289', role: '4K monitor' },
+      { name: 'Logitech MX Keys + MX Master 3S', price: '$200', role: 'Pro peripherals' },
+    ],
+    total: '~$1,249',
+  },
+];
+
+const budgetProducts = [
+  {
+    rank: 1,
+    badge: 'pick' as const,
+    brand: 'Yaheetech',
+    name: 'Ergonomic Office Chair — Height Adjustable',
+    asin: 'B0D9GWQF84',
+    price: '$82',
+    rating: 4.1,
+    reviewCount: 3420,
+    img: '🪑',
+    imgUrl: '/products/B0D9GWQF84.jpg',
+    highlight: true,
+    verdict: 'The most accessible ergonomic chair in our selection. Yaheetech is a recognized brand on Amazon with real quality control. Adjustable height, adjustable armrests, padded seat. Ideal for 3–5 hours of use per day.',
+    pros: ['Unbeatable price', 'Adjustable height', 'Stable base', 'Easy assembly'],
+    cons: ['Limited lumbar support', 'Not for 8h/day intensive use'],
+  },
+  {
+    rank: 2,
+    badge: 'budget' as const,
+    brand: 'Lenovo',
+    name: 'L27i-4B 27" Full HD IPS Monitor',
+    asin: 'B0DK51HDGB',
+    price: '$115',
+    rating: 4.4,
+    reviewCount: 520,
+    img: '📺',
+    imgUrl: '/products/B0DK51HDGB.jpg',
+    verdict: 'The best 27" monitor under $120. IPS Full HD panel, thin bezels, eye-care certified. For everyday office work — a solid, reliable choice from a trusted brand.',
+    pros: ['Great value for 27" IPS', 'Accurate panel', 'Trusted brand', 'Low blue light mode'],
+    cons: ['60Hz only', 'Limited stand adjustment'],
+  },
+  {
+    rank: 3,
+    badge: null,
+    brand: 'Logitech',
+    name: 'Pebble 2 Combo — Silent Keyboard + Mouse',
+    asin: 'B0CFR34FDB',
+    price: '$45',
+    rating: 4.5,
+    reviewCount: 1850,
+    img: '⌨️',
+    imgUrl: '/products/B0CFR34FDB.jpg',
+    verdict: 'The quietest wireless combo at this price. 90% quieter typing, 36-month keyboard battery, Bluetooth + USB dongle. Ideal for shared homes, apartments, or offices with thin walls.',
+    pros: ['Ultra-silent keystrokes', 'Record battery life', 'Bluetooth + dongle USB', 'Multi-device capable'],
+    cons: ['No backlight', 'Compact layout (no numpad)'],
+  },
+  {
+    rank: 4,
+    badge: null,
+    brand: 'Jabra',
+    name: 'Speak 410 — USB Speakerphone',
+    asin: 'B004ELA7TA',
+    price: '$109',
+    rating: 4.5,
+    reviewCount: 6200,
+    img: '🎙️',
+    imgUrl: '/products/B004ELA7TA.jpg',
+    verdict: 'The reference USB speakerphone for video conferencing. Plug & play, 360° microphone, compatible with Zoom, Teams, and Google Meet. Jabra is the brand professionals trust for conference calls.',
+    pros: ['Plug & play USB', '360° certified mic', 'Works with all platforms', 'Travel-friendly size'],
+    cons: ['No Bluetooth', 'Less accurate than a standalone mic for recording'],
+  },
+];
+
+const tocItems = [
+  { id: 'setups', label: 'Budget breakdowns' },
+  ...budgetProducts.map(p => ({ id: `product-${p.asin}`, label: `${p.rank}. ${p.brand} ${p.name}`, rank: p.rank })),
+  { id: 'tips', label: '5 money-saving tips' },
+  { id: 'faq', label: 'FAQ' },
+];
+---
+
+<BestOfEN
+  title="Budget Home Office Setup 2026 — Full Guide"
+  description="How to build a complete, productive home office for $400, $700, or $1,500. Budget buying guide with the best tested options at every price point."
+  h1="Budget Home Office Setup: The Complete 2026 Guide"
+  intro="Building a productive home office doesn't require spending a fortune. Here's how to maximize every dollar — from $400 starter setups to $1,500 professional builds."
+  lastUpdated={LAST_UPDATED}
+  productsCount={budgetProducts.length}
+  tocItems={tocItems}
+  breadcrumb={[{ label: 'Budget Setup', href: '/budget-home-office-setup' }]}
+>
+
+  <!-- Budget setups -->
+  <section id="setups" class="mb-14 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-8">Complete setups by budget</h2>
+    <div class="space-y-6">
+      {setups.map((setup) => (
+        <div class={`rounded-2xl border-2 p-6 ${setup.color} relative overflow-hidden`}>
+          {setup.recommended && (
+            <div class="absolute top-0 right-0 bg-electric text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+              ⭐ Recommended
+            </div>
+          )}
+          <div class="mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-ink text-cream text-xs font-bold mb-2">
+              Budget {setup.budget}
+            </span>
+            <h3 class="font-display text-xl font-bold text-ink">{setup.title}</h3>
+            <p class="text-sm text-ink-muted mt-1">{setup.desc}</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-2 mb-4">
+            {setup.items.map(item => (
+              <div class="flex items-center justify-between bg-white/60 rounded-xl px-4 py-2.5">
+                <div>
+                  <p class="text-xs text-ink-muted">{item.role}</p>
+                  <p class="font-medium text-ink text-sm">{item.name}</p>
+                </div>
+                <span class="font-bold text-ink shrink-0 ml-3">{item.price}</span>
+              </div>
+            ))}
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-black/10">
+            <span class="text-sm text-ink-muted">Estimated total</span>
+            <span class="font-display text-2xl font-bold text-ink">{setup.total}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Budget products -->
+  <section class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-2">The 4 best bang-for-buck products</h2>
+    <p class="text-ink-muted mb-8">Products that give you the most for your money.</p>
+    <div class="space-y-10">
+      {budgetProducts.map(product => (
+        <ProductCard
+          rank={product.rank}
+          badge={product.badge}
+          brand={product.brand}
+          name={product.name}
+          asin={product.asin}
+          affiliateTag={AFFILIATE_TAG}
+          price={product.price}
+          rating={product.rating}
+          reviewCount={product.reviewCount}
+          img={product.img}
+          imgUrl={product.imgUrl}
+          pros={product.pros}
+          cons={product.cons}
+          verdict={product.verdict}
+          highlight={product.highlight}
+          lang="en"
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Tips -->
+  <section id="tips" class="mb-12 scroll-mt-24">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">5 tips to maximize your home office budget</h2>
+    <div class="space-y-4">
+      {[
+        { n: '01', title: 'Invest in your chair first', text: 'You sit in it 8 hours a day. A good ergonomic chair ($150–300) protects your back. Save money on accessories, not on what contacts your body.' },
+        { n: '02', title: 'Buy refurbished', text: 'A certified refurbished premium monitor or chair costs 40–60% less. Amazon Renewed offers a 90-day guarantee. For ergonomic chairs, look for "remanufactured" — professionally restored.' },
+        { n: '03', title: 'IKEA for furniture, quality for electronics', text: 'An IKEA desk ($50–100) works perfectly well. But don\'t compromise on your monitor, chair, or keyboard — these directly affect your productivity and health.' },
+        { n: '04', title: 'Add accessories gradually', text: 'Start with desk + chair + monitor. Add keyboard, webcam, and lighting over time as you identify what actually limits you.' },
+        { n: '05', title: 'Watch Prime Day and Black Friday', text: 'Amazon typically offers 20–40% off electronics in July and November. Create a wishlist in advance and wait for the deals to hit.' },
+      ].map(item => (
+        <div class="flex gap-5 p-5 bg-oak-50 rounded-2xl border border-oak-100">
+          <span class="font-display text-3xl font-bold text-oak-300 shrink-0 leading-none">{item.n}</span>
+          <div>
+            <h3 class="font-display font-bold text-ink mb-1">{item.title}</h3>
+            <p class="text-sm text-ink-muted leading-relaxed">{item.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="scroll-mt-24 mb-12">
+    <h2 class="font-display text-2xl font-bold text-ink mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      {[
+        {
+          q: 'What\'s the minimum budget for a decent home office setup?',
+          a: 'Budget at minimum $300–400: a basic desk ($50–80), an entry-level ergonomic chair ($100–150), and a 24" monitor ($130–170). Below this, you\'ll make compromises on comfort that impact long-term productivity and health.',
+        },
+        {
+          q: 'Should I buy everything at once or gradually?',
+          a: 'Gradually, in this order: chair → monitor → desk → accessories. The chair is the absolute priority — it directly impacts your posture and long-term back health. Once those three are in place, add peripherals as you identify your specific pain points.',
+        },
+        {
+          q: 'Are refurbished products reliable for a home office?',
+          a: 'Yes, especially through Amazon Renewed (90-day guarantee) or certified refurbished programs. For monitors, refurbished is excellent value. For chairs, look for remanufactured options from known brands — reprofessionally restored to original specs with new foam and fabric.',
+        },
+      ].map(item => (
+        <details class="group rounded-2xl bg-oak-50 border border-oak-100 overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-ink select-none hover:bg-oak-100 transition-colors">
+            {item.q}
+            <svg class="w-5 h-5 shrink-0 text-ink-muted group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink-muted leading-relaxed border-t border-oak-200 pt-4">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <p class="disclosure text-center">
+    Amazon affiliate links — we earn small commissions at no extra cost to you. All recommendations are 100% independent.
+  </p>
+
+</BestOfEN>

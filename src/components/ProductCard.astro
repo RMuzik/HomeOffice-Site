@@ -22,6 +22,7 @@ export interface Props {
   cons?: string[];
   verdict?: string;
   highlight?: boolean;    // Mise en avant visuelle (border electric)
+  lang?: 'fr' | 'en';    // Langue (fr = amazon.fr, en = amazon.com)
 }
 
 const {
@@ -42,11 +43,19 @@ const {
   cons = [],
   verdict,
   highlight = false,
+  lang = 'fr',
 } = Astro.props;
 
-const amazonUrl = `https://www.amazon.fr/dp/${asin}?tag=${affiliateTag}&linkCode=ogi&th=1&psc=1`;
+const isEN = lang === 'en';
+const amazonDomain = isEN ? 'amazon.com' : 'amazon.fr';
+const amazonUrl = `https://www.${amazonDomain}/dp/${asin}?tag=${affiliateTag}&linkCode=ogi&th=1&psc=1`;
 const starsCount = Math.round(rating);
-const badgeLabels: Record<string, string> = {
+const badgeLabels: Record<string, string> = isEN ? {
+  pick: badgeLabel || '🏆 Best Choice',
+  premium: badgeLabel || '✨ Premium',
+  budget: badgeLabel || '💰 Best Value',
+  new: badgeLabel || '🆕 New 2026',
+} : {
   pick: badgeLabel || '🏆 Meilleur choix',
   premium: badgeLabel || '✨ Premium',
   budget: badgeLabel || '💰 Meilleur rapport qualité/prix',
@@ -96,7 +105,7 @@ const badgeLabels: Record<string, string> = {
         {'★'.repeat(starsCount)}{'☆'.repeat(5 - starsCount)}
       </div>
       <span class="font-semibold text-ink">{rating}</span>
-      <span class="text-sm text-ink-muted">({reviewCount.toLocaleString('fr-FR')} avis)</span>
+      <span class="text-sm text-ink-muted">({reviewCount.toLocaleString(isEN ? 'en-US' : 'fr-FR')} {isEN ? 'reviews' : 'avis'})</span>
     </div>
 
     <!-- Verdict -->
@@ -143,7 +152,7 @@ const badgeLabels: Record<string, string> = {
         class="btn-primary text-sm py-2.5 px-5 shrink-0"
         data-asin={asin}
       >
-        Voir sur Amazon
+        {isEN ? 'View on Amazon' : 'Voir sur Amazon'}
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
         </svg>

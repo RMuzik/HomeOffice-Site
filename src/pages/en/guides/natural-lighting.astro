@@ -1,0 +1,215 @@
+---
+import BaseEN from '../../../layouts/BaseEN.astro';
+---
+
+<BaseEN
+  title="Home Office Lighting Guide 2026 — Optimize Your Workspace Light"
+  description="How to optimize your home office lighting: natural light positioning, desk lamp setup, video call lighting, and eye strain prevention."
+>
+  <section class="bg-cream-dark border-b border-oak-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+      <nav class="flex items-center gap-2 text-xs text-ink-muted mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-ink transition-colors">Home</a>
+        <span class="opacity-40">/</span>
+        <a href="/guides" class="hover:text-ink transition-colors">Guides</a>
+        <span class="opacity-40">/</span>
+        <span>Lighting Guide</span>
+      </nav>
+      <div class="max-w-3xl">
+        <span class="badge bg-electric/10 text-electric border border-electric/20 mb-4">Guide · 6 min read</span>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold text-ink leading-tight mb-4">
+          Optimize Your Home Office Lighting
+        </h1>
+        <p class="text-lg text-ink-muted leading-relaxed">
+          Poor lighting is the most overlooked source of eye strain, fatigue, and bad video calls. Here's how to get it right — whether you're working with natural light or setting up artificial lighting from scratch.
+        </p>
+        <div class="flex items-center gap-2 mt-4 text-sm text-ink-muted">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Updated February 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid lg:grid-cols-[1fr_280px] gap-10 items-start">
+
+      <div class="min-w-0 space-y-12">
+
+        <!-- Natural light -->
+        <section id="natural">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">☀️</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Natural Light: Position Matters</h2>
+          </div>
+          <p class="text-ink-muted leading-relaxed mb-4">
+            Natural light is the best source of light for a workspace — but only when positioned correctly. The relationship between your desk, monitor, and windows determines whether it helps or hurts.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-4 mb-5">
+            {[
+              {
+                label: '✅ Best: Window to the side',
+                text: 'Natural light from the side illuminates your workspace without creating glare on your monitor or backlighting you in video calls.',
+                good: true,
+              },
+              {
+                label: '⚠️ Avoid: Window behind monitor',
+                text: 'Bright window behind your monitor creates painful contrast between the screen and background, straining your eyes.',
+                good: false,
+              },
+              {
+                label: '⚠️ Avoid: Window behind you',
+                text: 'For video calls, you become a silhouette. Your face is in shadow and hard to see. Also creates screen glare.',
+                good: false,
+              },
+            ].map(item => (
+              <div class={`rounded-xl p-4 ${item.good ? 'bg-green-50 border border-green-100' : 'bg-red-50 border border-red-100'}`}>
+                <p class="font-semibold text-ink text-sm mb-1">{item.label}</p>
+                <p class="text-xs text-ink-muted leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-ink-muted">
+            <strong>💡 Quick fix:</strong> If you can't reposition your desk, a sheer curtain or frosted window film diffuses harsh sunlight and eliminates glare without blocking light.
+          </div>
+        </section>
+
+        <!-- Desk lamp -->
+        <section id="desk-lamp">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">🔆</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Desk Lamp Setup</h2>
+          </div>
+          <p class="text-ink-muted leading-relaxed mb-4">
+            A good desk lamp supplements natural light when needed and provides consistent illumination when working in the evening. The most important consideration: no glare on your monitor.
+          </p>
+          <div class="bg-oak-50 rounded-2xl p-6 mb-5">
+            <p class="font-semibold text-ink mb-3">Desk lamp rules:</p>
+            <ul class="space-y-2 text-sm text-ink-muted">
+              {[
+                'Position at 90° to your line of sight — to the side, not in front',
+                'Angle the lamp down toward your desk surface, not toward the monitor',
+                'Match brightness to ambient room light — the screen shouldn\'t be the brightest thing in the room',
+                'Color temperature: 4000–5000K (neutral white) for focus work. 2700–3000K (warm) for evenings.',
+                'Flicker-free LED — cheap LED strips and bulbs can flicker imperceptibly and cause headaches',
+              ].map(rule => (
+                <li class="flex items-start gap-2">
+                  <span class="text-electric shrink-0 mt-0.5">→</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p class="text-ink-muted leading-relaxed">
+            If you're buying a desk lamp, look for one with adjustable color temperature and brightness — BenQ's ScreenBar series mounts directly on your monitor and eliminates glare by design.
+          </p>
+        </section>
+
+        <!-- Video calls -->
+        <section id="video-calls">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">🎥</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Lighting for Video Calls</h2>
+          </div>
+          <p class="text-ink-muted leading-relaxed mb-4">
+            Your video call background lighting matters. Even an expensive webcam looks poor in bad lighting — and even a budget webcam looks good in good lighting.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4 mb-5">
+            {[
+              {
+                emoji: '✅',
+                title: 'Front-facing light source',
+                text: 'A light source facing you (ring light, lamp in front) evenly illuminates your face. This is the single biggest improvement for most video callers.',
+              },
+              {
+                emoji: '✅',
+                title: 'Neutral background brightness',
+                text: 'Avoid bright windows behind you. If unavoidable, a backlight behind you can balance the exposure.',
+              },
+              {
+                emoji: '❌',
+                title: 'Strong overhead lighting',
+                text: 'Overhead lights create harsh shadows under your eyes and nose. Softening with a diffuser or bouncing off a white ceiling helps.',
+              },
+              {
+                emoji: '❌',
+                title: 'Colored lighting behind you',
+                text: 'RGB gaming lights look great in photos but create color casts in video calls and are distracting to viewers.',
+              },
+            ].map(item => (
+              <div class="bg-oak-50 rounded-xl p-4">
+                <p class="font-semibold text-ink text-sm mb-1">{item.emoji} {item.title}</p>
+                <p class="text-xs text-ink-muted leading-relaxed">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div class="p-4 bg-electric/5 border border-electric/20 rounded-xl text-sm">
+            <strong class="text-electric">Pro tip:</strong> <span class="text-ink-muted">The Elgato Key Light Air ($99) and Logitech Litra Glow ($59) are the two most popular options for video call lighting among remote professionals. Both connect via USB and are adjustable in brightness and color temperature.</span>
+          </div>
+        </section>
+
+        <!-- Evening -->
+        <section id="evening">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">🌙</span>
+            <h2 class="font-display text-2xl font-bold text-ink">Evening & Blue Light</h2>
+          </div>
+          <p class="text-ink-muted leading-relaxed mb-4">
+            Blue light from screens suppresses melatonin production. If you work in the evenings, this directly affects sleep quality.
+          </p>
+          <div class="bg-oak-50 rounded-2xl p-6">
+            <ul class="space-y-2 text-sm text-ink-muted">
+              {[
+                'Enable Night Shift (macOS/iOS) or Night Light (Windows) after 6 PM',
+                'f.lux is a free app that automatically warms your display at sunset',
+                'Switch desk lamp to warm white (2700K) in the evening',
+                'Dim overall room lighting to match the dimmer screen',
+                'Blue light blocking glasses are debated — good lighting habits have more impact',
+              ].map(rule => (
+                <li class="flex items-start gap-2">
+                  <span class="text-electric shrink-0 mt-0.5">→</span>
+                  {rule}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="bg-ink text-cream rounded-2xl p-8">
+          <h2 class="font-display text-xl font-bold mb-3">Need a new desk lamp or webcam?</h2>
+          <p class="text-cream/70 text-sm mb-5">We've tested the best options for home office lighting and video calls.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/best-monitors-home-office" class="btn-primary text-sm py-2 px-4">Best Monitors →</a>
+            <a href="/home-office-setup" class="btn-secondary text-sm py-2 px-4 bg-white/10 text-cream border-white/20 hover:bg-white/20">Full Setup Guide →</a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block sticky top-24 space-y-4">
+        <div class="bg-oak-50 rounded-2xl p-5">
+          <p class="font-display font-bold text-ink text-sm mb-3">In this guide</p>
+          <ul class="space-y-2 text-sm">
+            {[
+              { href: '#natural', label: '☀️ Natural Light Position' },
+              { href: '#desk-lamp', label: '🔆 Desk Lamp Setup' },
+              { href: '#video-calls', label: '🎥 Video Call Lighting' },
+              { href: '#evening', label: '🌙 Evening & Blue Light' },
+            ].map(item => (
+              <li>
+                <a href={item.href} class="text-ink-muted hover:text-electric transition-colors">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="rounded-2xl bg-amber-50 border border-amber-200 p-4">
+          <p class="text-xs text-amber-800 leading-relaxed">
+            <strong>⚡ Quick win:</strong> Move your desk so the window is to your side (not behind or in front of your monitor). Free upgrade, immediate improvement.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseEN>
