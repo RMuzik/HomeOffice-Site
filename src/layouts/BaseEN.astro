@@ -61,6 +61,10 @@ const siteTitle = title === 'Home'
   <!-- Pinterest -->
   <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFY_CODE" />
 
+  <!-- Plausible Analytics — GDPR compliant, no cookies, no banner needed -->
+  <script defer data-domain="homeofficesetup.net" src="https://plausible.io/js/script.outbound-links.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+
   <!-- JSON-LD Site -->
   <script type="application/ld+json">
   {
@@ -196,11 +200,25 @@ const siteTitle = title === 'Home'
     </div>
   </footer>
 
-  <!-- Mobile menu JS -->
+  <!-- Mobile menu JS + Plausible custom events -->
   <script>
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
     btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+    // Amazon affiliate click tracking → Plausible "Amazon Click" event
+    document.addEventListener('click', function(e) {
+      const el = (e.target as Element).closest('[data-track="amazon"]') as HTMLElement | null;
+      if (el && typeof (window as any).plausible !== 'undefined') {
+        (window as any).plausible('Amazon Click', {
+          props: {
+            asin:    el.dataset.asin    || '',
+            product: el.dataset.name    || '',
+            price:   el.dataset.price   || '',
+          }
+        });
+      }
+    });
 
     // Animate on scroll
     const observer = new IntersectionObserver((entries) => {

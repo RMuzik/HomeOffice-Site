@@ -151,6 +151,9 @@ const badgeLabels: Record<string, string> = isEN ? {
         rel="noopener noreferrer sponsored"
         class="btn-primary text-sm py-2.5 px-5 shrink-0"
         data-asin={asin}
+        data-track="amazon"
+        data-name={`${brand} ${name}`}
+        data-price={price}
       >
         {isEN ? 'View on Amazon' : 'Voir sur Amazon'}
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
