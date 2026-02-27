@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Analytics } from '@vercel/analytics/astro';
 
 export interface Props {
   title: string;
@@ -62,9 +63,8 @@ const siteTitle = title === 'Home' ? 'HomeOfficeSetup.pro — Setup Productif, T
   <!-- Pinterest -->
   <meta name="p:domain_verify" content="YOUR_PINTEREST_VERIFY_CODE" />
 
-  <!-- Plausible Analytics — GDPR compliant, no cookies, no banner needed -->
-  <script defer data-domain="homeofficesetup.pro" src="https://plausible.io/js/script.outbound-links.js"></script>
-  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+  <!-- Vercel Analytics — free, GDPR compliant, no cookies, no banner needed -->
+  <Analytics />
 
   <!-- JSON-LD Site -->
   <script type="application/ld+json">
@@ -207,15 +207,16 @@ const siteTitle = title === 'Home' ? 'HomeOfficeSetup.pro — Setup Productif, T
     const menu = document.getElementById('mobile-menu');
     btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
 
-    // Amazon affiliate click tracking → Plausible "Amazon Click" event
+    // Amazon affiliate click tracking → Vercel Analytics custom event
     document.addEventListener('click', function(e) {
       const el = e.target.closest('[data-track="amazon"]');
-      if (el && typeof window.plausible !== 'undefined') {
-        window.plausible('Amazon Click', {
-          props: {
-            asin:    el.dataset.asin    || '',
-            product: el.dataset.name    || '',
-            price:   el.dataset.price   || '',
+      if (el && typeof window.va !== 'undefined') {
+        window.va('event', {
+          name: 'Amazon Click',
+          data: {
+            asin:    el.dataset.asin  || '',
+            product: el.dataset.name  || '',
+            price:   el.dataset.price || '',
           }
         });
       }
