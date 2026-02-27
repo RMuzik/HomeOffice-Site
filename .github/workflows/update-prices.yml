@@ -1,0 +1,44 @@
+name: 🔄 Update Amazon Prices
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Every Monday 06:00 UTC
+  workflow_dispatch:       # Manual trigger from GitHub UI → Actions tab
+
+permissions:
+  contents: write          # Needed to commit & push price changes
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Fetch & update prices
+        env:
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+        run: node scripts/update-prices.mjs
+
+      - name: Commit & push (if any price changed)
+        run: |
+          git config user.name  "price-bot"
+          git config user.email "bot@homeofficesetup.pro"
+          git add src/pages/
+          git diff --staged --quiet \
+            && echo "✅ No price changes this week." \
+            || (
+              git commit -m "chore(prices): auto-update $(date -u +%Y-%m-%d) [skip ci]" &&
+              git push
+            )
