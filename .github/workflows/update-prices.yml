@@ -28,7 +28,10 @@ jobs:
 
       - name: Fetch & update prices
         env:
-          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
+          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
+          AMAZON_TAG_FR: ${{ secrets.AMAZON_TAG_FR }}
+          AMAZON_TAG_EN: ${{ secrets.AMAZON_TAG_EN }}
         run: node scripts/update-prices.mjs
 
       - name: Commit & push (if any price changed)
