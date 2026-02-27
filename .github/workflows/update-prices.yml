@@ -28,10 +28,10 @@ jobs:
 
       - name: Fetch & update prices
         env:
-          AMAZON_ACCESS_KEY: ${{ secrets.AMAZON_ACCESS_KEY }}
-          AMAZON_SECRET_KEY: ${{ secrets.AMAZON_SECRET_KEY }}
-          AMAZON_TAG_FR: ${{ secrets.AMAZON_TAG_FR }}
-          AMAZON_TAG_EN: ${{ secrets.AMAZON_TAG_EN }}
+          AMAZON_CLIENT_ID:     ${{ secrets.AMAZON_CLIENT_ID }}
+          AMAZON_CLIENT_SECRET: ${{ secrets.AMAZON_CLIENT_SECRET }}
+          AMAZON_TAG_FR:        ${{ secrets.AMAZON_TAG_FR }}
+          AMAZON_TAG_EN:        ${{ secrets.AMAZON_TAG_EN }}
         run: node scripts/update-prices.mjs
 
       - name: Commit & push (if any price changed)

@@ -1,28 +1,28 @@
 /**
  * update-prices.mjs
  * ─────────────────────────────────────────────────────────────────────────────
- * Fetches current Amazon prices via the official Amazon Product Advertising
- * API v5 (PA-API) and updates the price fields in the Astro product pages.
+ * Fetches current Amazon prices via the Amazon Creators API and updates the
+ * price fields in the Astro product pages.
  *
- * PA-API is FREE for all Amazon Associates — no extra subscription needed.
+ * The Creators API replaces PA-API (deprecated April 30, 2026).
+ * Auth uses OAuth2 client_credentials — no AWS SigV4 needed.
  *
  * Setup (one-time, ~5 minutes):
  *   1. Go to: https://affiliate-program.amazon.fr
- *      → Tools → Product Advertising API → Manage Your Credentials
- *   2. Click "Add credentials" → copy Access Key ID + Secret Access Key
+ *      → Tools → Creators API → Manage Your Credentials
+ *   2. Copy Client ID (amzn1.application-oa2-client.3...) + Client Secret
  *   3. Add 4 secrets to GitHub repo:
  *      Settings → Secrets and variables → Actions → New repository secret
- *        AMAZON_ACCESS_KEY  = your Access Key ID
- *        AMAZON_SECRET_KEY  = your Secret Access Key
- *        AMAZON_TAG_FR      = zeroalc-21
- *        AMAZON_TAG_EN      = your .com associate tag (or same tag)
+ *        AMAZON_CLIENT_ID     = amzn1.application-oa2-client.3...
+ *        AMAZON_CLIENT_SECRET = your Client Secret
+ *        AMAZON_TAG_FR        = zeroalc-21
+ *        AMAZON_TAG_EN        = your .com associate tag (or same tag)
  *
  * Run manually:
- *   AMAZON_ACCESS_KEY=xxx AMAZON_SECRET_KEY=yyy AMAZON_TAG_FR=zeroalc-21 \
- *   AMAZON_TAG_EN=zeroalc-21 node scripts/update-prices.mjs
+ *   AMAZON_CLIENT_ID=amzn1.application-oa2-client.3... AMAZON_CLIENT_SECRET=xxx \
+ *   AMAZON_TAG_FR=zeroalc-21 AMAZON_TAG_EN=zeroalc-21 node scripts/update-prices.mjs
  */
 
-import { createHmac, createHash } from 'crypto';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -32,16 +32,16 @@ const ROOT = join(__dirname, '..');
 
 // ── Config ────────────────────────────────────────────────────────────────────
 
-const ACCESS_KEY = process.env.AMAZON_ACCESS_KEY;
-const SECRET_KEY = process.env.AMAZON_SECRET_KEY;
-const TAG_FR     = process.env.AMAZON_TAG_FR || 'zeroalc-21';
-const TAG_EN     = process.env.AMAZON_TAG_EN || 'zeroalc-21';
+const CLIENT_ID     = process.env.AMAZON_CLIENT_ID;
+const CLIENT_SECRET = process.env.AMAZON_CLIENT_SECRET;
+const TAG_FR        = process.env.AMAZON_TAG_FR || 'zeroalc-21';
+const TAG_EN        = process.env.AMAZON_TAG_EN || 'zeroalc-21';
 
-if (!ACCESS_KEY || !SECRET_KEY) {
-  console.error('❌  AMAZON_ACCESS_KEY or AMAZON_SECRET_KEY not set.');
+if (!CLIENT_ID || !CLIENT_SECRET) {
+  console.error('❌  AMAZON_CLIENT_ID or AMAZON_CLIENT_SECRET not set.');
   console.error('    1. Go to: https://affiliate-program.amazon.fr');
-  console.error('       → Tools → Product Advertising API → Manage Your Credentials');
-  console.error('    2. Add AMAZON_ACCESS_KEY + AMAZON_SECRET_KEY to GitHub Secrets.');
+  console.error('       → Tools → Creators API → Manage Your Credentials');
+  console.error('    2. Add AMAZON_CLIENT_ID + AMAZON_CLIENT_SECRET to GitHub Secrets.');
   process.exit(1);
 }
 
@@ -83,96 +83,106 @@ const EN_ASINS = {
   'B07L755X9G': ['src/pages/en/home-office-setup.astro'],
 };
 
-// ── Amazon PA-API v5 — AWS SigV4 signing ─────────────────────────────────────
+// ── Amazon Creators API — OAuth2 ──────────────────────────────────────────────
 
-const PA_API = {
-  fr:  { host: 'webservices.amazon.fr',  region: 'eu-west-1', tag: TAG_FR, marketplace: 'www.amazon.fr'  },
-  com: { host: 'webservices.amazon.com', region: 'us-east-1', tag: TAG_EN, marketplace: 'www.amazon.com' },
+const CREATORS_API = {
+  fr: {
+    // v3.x EU credentials → token via api.amazon.co.uk
+    tokenUrl:    'https://api.amazon.co.uk/auth/o2/token',
+    apiUrl:      'https://creatorsapi.amazon/catalog/v1/getItems',
+    marketplace: 'www.amazon.fr',
+    tag:         TAG_FR,
+  },
+  com: {
+    // For Amazon.com — try US token endpoint
+    // Note: if your credentials are EU-only, .com market may be skipped automatically
+    tokenUrl:    'https://api.amazon.com/auth/o2/token',
+    apiUrl:      'https://creatorsapi.amazon/catalog/v1/getItems',
+    marketplace: 'www.amazon.com',
+    tag:         TAG_EN,
+  },
 };
-const PA_PATH   = '/paapi5/getitems';
-const PA_TARGET = 'com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems';
-const PA_SVC    = 'ProductAdvertisingAPI';
 
-function hmac(key, data, enc) {
-  return createHmac('sha256', key).update(data, 'utf8').digest(enc);
-}
-function sha256(data, enc) {
-  return createHash('sha256').update(data, 'utf8').digest(enc);
-}
-function signingKey(secret, date, region, service) {
-  return hmac(hmac(hmac(hmac('AWS4' + secret, date), region), service), 'aws4_request');
-}
+/** Token cache: { market → { token, expiresAt } } */
+const tokenCache = {};
 
 /**
- * Fetch prices for up to 10 ASINs in one PA-API request.
- * Returns { ASIN: priceNumber, ... }
+ * Get an OAuth2 Bearer token for the given market.
+ * Caches the token for its lifetime (3600s), refreshes 1 min before expiry.
+ * Returns null if auth fails (allows graceful skip of that market).
  */
-async function fetchPAAIPrices(asins, market) {
-  const cfg = PA_API[market];
+async function getBearerToken(market) {
+  const cfg = CREATORS_API[market];
+  const now = Date.now();
 
-  const body = JSON.stringify({
-    ItemIds:     asins,
-    PartnerTag:  cfg.tag,
-    PartnerType: 'Associates',
-    Marketplace: cfg.marketplace,
-    Resources:   ['Offers.Listings.Price'],
-  });
+  if (tokenCache[market] && tokenCache[market].expiresAt > now + 60_000) {
+    return tokenCache[market].token;
+  }
 
-  const now       = new Date();
-  const amzDate   = now.toISOString().replace(/[:\-]|\.\d{3}/g, '').replace('T', 'T').slice(0, 16) + '00Z';
-  const dateStamp = amzDate.slice(0, 8);
-
-  const payloadHash = sha256(body, 'hex');
-
-  const canonHeaders =
-    `content-encoding:amz-1.0\n` +
-    `content-type:application/json; charset=utf-8\n` +
-    `host:${cfg.host}\n` +
-    `x-amz-date:${amzDate}\n` +
-    `x-amz-target:${PA_TARGET}\n`;
-
-  const signedHeaders = 'content-encoding;content-type;host;x-amz-date;x-amz-target';
-
-  const canonRequest =
-    `POST\n${PA_PATH}\n\n${canonHeaders}\n${signedHeaders}\n${payloadHash}`;
-
-  const credScope  = `${dateStamp}/${cfg.region}/${PA_SVC}/aws4_request`;
-  const strToSign  = `AWS4-HMAC-SHA256\n${amzDate}\n${credScope}\n${sha256(canonRequest, 'hex')}`;
-  const signature  = hmac(signingKey(SECRET_KEY, dateStamp, cfg.region, PA_SVC), strToSign, 'hex');
-
-  const authHeader =
-    `AWS4-HMAC-SHA256 Credential=${ACCESS_KEY}/${credScope}, ` +
-    `SignedHeaders=${signedHeaders}, Signature=${signature}`;
-
-  const res = await fetch(`https://${cfg.host}${PA_PATH}`, {
-    method: 'POST',
-    headers: {
-      'Content-Encoding': 'amz-1.0',
-      'Content-Type':     'application/json; charset=utf-8',
-      'Host':             cfg.host,
-      'X-Amz-Date':      amzDate,
-      'X-Amz-Target':    PA_TARGET,
-      'Authorization':   authHeader,
-    },
-    body,
+  const res = await fetch(cfg.tokenUrl, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      grant_type:    'client_credentials',
+      client_id:     CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      scope:         'creatorsapi::default',
+    }),
   });
 
   if (!res.ok) {
     const txt = await res.text();
-    throw new Error(`PA-API ${res.status} (${market}): ${txt.slice(0, 300)}`);
+    throw new Error(`Auth failed (${market}): HTTP ${res.status} — ${txt.slice(0, 200)}`);
   }
 
   const data = await res.json();
-  const prices = {};
+  tokenCache[market] = {
+    token:     data.access_token,
+    expiresAt: now + (data.expires_in ?? 3600) * 1000,
+  };
+  return tokenCache[market].token;
+}
 
-  for (const item of data.ItemsResult?.Items ?? []) {
-    const price = item.Offers?.Listings?.[0]?.Price?.Amount;
-    if (price != null) prices[item.ASIN] = price;
+/**
+ * Fetch prices for up to 10 ASINs in one Creators API request.
+ * Returns { ASIN: priceNumber, ... }
+ */
+async function fetchCreatorsPrices(asins, market) {
+  const cfg   = CREATORS_API[market];
+  const token = await getBearerToken(market);
+
+  const res = await fetch(cfg.apiUrl, {
+    method:  'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type':  'application/json',
+      'x-marketplace': cfg.marketplace,
+    },
+    body: JSON.stringify({
+      itemIds:     asins,
+      itemIdType:  'ASIN',
+      marketplace: cfg.marketplace,
+      partnerTag:  cfg.tag,
+      resources:   ['offersV2.listings.price'],
+    }),
+  });
+
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(`Creators API ${res.status} (${market}): ${txt.slice(0, 300)}`);
   }
 
-  // Log items with no price (out of stock / errors)
-  for (const err of data.Errors ?? []) {
-    console.warn(`    ⚠️  PA-API error for ${err.Code}: ${err.Message}`);
+  const data   = await res.json();
+  const prices = {};
+
+  for (const item of data.itemsResult?.items ?? []) {
+    const price = item.offersV2?.listings?.[0]?.price?.amount;
+    if (price != null) prices[item.asin] = price;
+  }
+
+  // Log items with errors (out of stock, invalid ASIN, etc.)
+  for (const err of data.errors ?? []) {
+    console.warn(`    ⚠️  API error ${err.code}: ${err.message}`);
   }
 
   return prices;
@@ -196,7 +206,7 @@ function updateFilePrice(filePath, asin, newPrice, currency) {
     for (let j = i + 1; j < Math.min(i + 10, lines.length); j++) {
       const m = lines[j].match(/^(\s*price\s*:\s*['"`])([^'"`]+)(['"`].*)$/);
       if (!m) {
-        if (lines[j].match(/asin\s*:/)) break; // next product
+        if (lines[j].match(/asin\s*:/)) break; // next product block
         continue;
       }
 
@@ -237,7 +247,7 @@ function chunks(arr, size) {
 
 async function processMarket(asinMap, market, currency) {
   const asins   = Object.keys(asinMap);
-  const batches = chunks(asins, 10); // PA-API max 10 ASINs per request
+  const batches = chunks(asins, 10); // Creators API max 10 ASINs per request
   let filesUpdated = 0;
 
   for (const batch of batches) {
@@ -245,7 +255,7 @@ async function processMarket(asinMap, market, currency) {
 
     let prices;
     try {
-      prices = await fetchPAAIPrices(batch, market);
+      prices = await fetchCreatorsPrices(batch, market);
     } catch (err) {
       console.error(`  ❌ ${err.message}`);
       continue;
@@ -272,7 +282,7 @@ async function processMarket(asinMap, market, currency) {
 }
 
 async function main() {
-  console.log('🔄  HomeOffice Price Updater — Amazon PA-API v5');
+  console.log('🔄  HomeOffice Price Updater — Amazon Creators API');
   console.log(`    Seuil min de changement : ${MIN_CHANGE_PCT}%`);
   console.log(`    Date                    : ${new Date().toISOString().split('T')[0]}\n`);
 
