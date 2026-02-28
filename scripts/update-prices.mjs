@@ -69,6 +69,12 @@ const FR_ASINS = {
   'B096K7YHPW': ['src/pages/home-office-setup.astro'],
   'B0FHHV6YR5': ['src/pages/home-office-setup.astro'],
   'B07L755X9G': ['src/pages/home-office-setup.astro'],
+  // Webcams
+  'B07MM4V7NR': ['src/pages/best-webcams-home-office.astro'],
+  'B01N5UOYC4': ['src/pages/best-webcams-home-office.astro'],
+  'B07W6HPP3T': ['src/pages/best-webcams-home-office.astro'],
+  'B08PKBZ428': ['src/pages/best-webcams-home-office.astro'],
+  'B006RHJUM4': ['src/pages/best-webcams-home-office.astro'],
 };
 
 // EN ASINs (Amazon.com, USD)
@@ -81,6 +87,12 @@ const EN_ASINS = {
   'B096K7YHPW': ['src/pages/en/home-office-setup.astro'],
   'B0FHHV6YR5': ['src/pages/en/home-office-setup.astro'],
   'B07L755X9G': ['src/pages/en/home-office-setup.astro'],
+  // Webcams
+  'B07MM4V7NR': ['src/pages/en/best-webcams-home-office.astro'],
+  'B01N5UOYC4': ['src/pages/en/best-webcams-home-office.astro'],
+  'B07W6HPP3T': ['src/pages/en/best-webcams-home-office.astro'],
+  'B08PKBZ428': ['src/pages/en/best-webcams-home-office.astro'],
+  'B006RHJUM4': ['src/pages/en/best-webcams-home-office.astro'],
 };
 
 // ── Amazon Creators API — OAuth2 ──────────────────────────────────────────────
