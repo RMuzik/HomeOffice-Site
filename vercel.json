@@ -29,7 +29,7 @@
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml" },
     {
       "has": [{ "type": "host", "value": "homeofficesetup.net" }],
-      "source": "/(.*)",
+      "source": "/((?!products/|assets/|_astro/).*)",
       "destination": "/en/$1"
     }
   ],
