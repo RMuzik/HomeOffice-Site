@@ -41,16 +41,16 @@ const products = [
     rank: 3,
     badge: 'new' as const,
     brand: 'Logitech',
-    name: 'Brio 505 Full HD Webcam',
-    asin: 'B07W6HPP3T',
-    price: '$99',
-    rating: 4.3,
-    reviewCount: 2100,
-    img: '🖥️',
-    imgUrl: '/products/B07W6HPP3T.jpg',
-    verdict: 'The sweet spot between the C920s and Brio 4K. Full HD with AI auto-framing that keeps you centered on screen, dual noise-cancelling mics, and a built-in privacy cover. Microsoft Teams certified.',
-    pros: ['AI auto-framing', 'Dual noise-cancelling mics', 'Privacy cover', 'Microsoft Teams certified'],
-    cons: ['No 4K', 'Auto-framing can occasionally lag', 'Basic design'],
+    name: 'C920x HD Pro Webcam',
+    asin: 'B085TFF7M1',
+    price: '$79',
+    rating: 4.6,
+    reviewCount: 51000,
+    img: '🏢',
+    imgUrl: '/products/B085TFF7M1.jpg',
+    verdict: 'The Microsoft Teams-certified variant of the C920s, sold exclusively on Amazon. Same proven 1080p sensor and dual noise-cancelling mics, with official Teams certification baked in. The better choice if your company standardizes on Microsoft Teams.',
+    pros: ['Microsoft Teams certified', 'Same sensor quality as C920s', 'Often priced lower than C920s', 'Privacy shutter included'],
+    cons: ['No 4K', '30fps only', 'Very similar to C920s for non-Teams users'],
   },
   {
     rank: 4,
@@ -121,12 +121,12 @@ const schema = {
   <div class="bg-electric/5 border border-electric/20 rounded-2xl p-5 mb-10 flex gap-4 items-start">
     <span class="text-3xl shrink-0">🏆</span>
     <div>
-      <p class="font-display font-bold text-ink mb-1">Our Top Pick: Logitech C920x</p>
+      <p class="font-display font-bold text-ink mb-1">Our Top Pick: Logitech C920s</p>
       <p class="text-sm text-ink-muted leading-relaxed">
-        The <strong>Logitech C920x</strong> is the most reliable, versatile home office webcam at a price that's hard to argue against. 1080p with great low-light performance and a mic that actually works — all in a plug-and-play package.
+        The <strong>Logitech C920s</strong> is the most reliable, versatile home office webcam at a price that's hard to argue against. 1080p with fast autofocus, dual stereo mics, and a built-in privacy shutter — all in a plug-and-play package.
       </p>
       <a
-        href={`https://www.amazon.com/dp/B085TFF7M1?tag=${AFFILIATE_TAG}&linkCode=ogi`}
+        href={`https://www.amazon.com/dp/B07MM4V7NR?tag=${AFFILIATE_TAG}&linkCode=ogi`}
         target="_blank"
         rel="noopener sponsored"
         class="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-electric hover:text-electric-light transition-colors"

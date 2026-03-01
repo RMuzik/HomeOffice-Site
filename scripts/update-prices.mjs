@@ -107,7 +107,7 @@ const EN_ASINS = {
   // Webcams
   'B07MM4V7NR': ['src/pages/en/best-webcams-home-office.astro'],
   'B01N5UOYC4': ['src/pages/en/best-webcams-home-office.astro'],
-  'B07W6HPP3T': ['src/pages/en/best-webcams-home-office.astro'],
+  'B085TFF7M1': ['src/pages/en/best-webcams-home-office.astro'],
   'B08PKBZ428': ['src/pages/en/best-webcams-home-office.astro'],
   'B006RHJUM4': ['src/pages/en/best-webcams-home-office.astro'],
 };
