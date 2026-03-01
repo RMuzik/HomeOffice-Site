@@ -65,10 +65,27 @@ const FR_ASINS = {
   'B0DK51HDGB': ['src/pages/budget-home-office-setup.astro'],
   'B0CFR34FDB': ['src/pages/budget-home-office-setup.astro'],
   'B004ELA7TA': ['src/pages/budget-home-office-setup.astro'],
-  'B0DTQ9SKYF': ['src/pages/home-office-setup.astro', 'src/pages/index.astro'],
+  'B0DTQ9SKYF': ['src/pages/home-office-setup.astro', 'src/pages/index.astro', 'src/pages/best-monitors-home-office.astro'],
   'B096K7YHPW': ['src/pages/home-office-setup.astro'],
   'B0FHHV6YR5': ['src/pages/home-office-setup.astro'],
   'B07L755X9G': ['src/pages/home-office-setup.astro'],
+  // Monitors
+  'B0BY2R4BHW': ['src/pages/best-monitors-home-office.astro'],
+  'B0DPHFHRJM': ['src/pages/best-monitors-home-office.astro'],
+  'B096B3PBFZ': ['src/pages/best-monitors-home-office.astro'],
+  'B08ZS4SX1J': ['src/pages/best-monitors-home-office.astro'],
+  // Headsets
+  'B086M9KHY3': ['src/pages/best-headsets-home-office.astro'],
+  'B000UXZQ42': ['src/pages/best-headsets-home-office.astro'],
+  'B09XS7JWHH': ['src/pages/best-headsets-home-office.astro'],
+  'B071L1F3HM': ['src/pages/best-headsets-home-office.astro'],
+  'B01K6TU90U': ['src/pages/best-headsets-home-office.astro'],
+  // Desk lamps
+  'B0CZ9P1QW9': ['src/pages/best-desk-lamps.astro'],
+  'B0DK59YKRS': ['src/pages/best-desk-lamps.astro'],
+  'B082QHRZFW': ['src/pages/best-desk-lamps.astro'],
+  'B08WT889V3': ['src/pages/best-desk-lamps.astro'],
+  'B0FD9MQF5R': ['src/pages/best-desk-lamps.astro'],
   // Webcams
   'B07MM4V7NR': ['src/pages/best-webcams-home-office.astro'],
   'B01N5UOYC4': ['src/pages/best-webcams-home-office.astro'],
